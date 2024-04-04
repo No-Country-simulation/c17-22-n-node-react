@@ -1,0 +1,82 @@
+.container-fluid{
+    margin: 10px;
+}
+
+.containerNav{
+    display: flex;
+    justify-content: space-around;
+}
+
+.containerNav form{
+    width: 70%;
+}
+
+.containerNav input{
+    color: rgb(20, 20, 20);
+}
+.containerNav input:focus{
+    box-shadow: 0px 0px 0px;
+    border: 1px solid green;
+}
+
+.navbar-brand {
+    padding-top: 0px;
+    padding-bottom: 0px;
+    margin-right: 0px;
+}
+.navbar-brand img{
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    object-position: center;
+}
+.navbar-brand:active{
+    scale: 0.8;
+    filter: drop-shadow(0px 2px 3px #000);
+    transition: all .6s;
+}
+.navbar-brand:hover{
+    filter: drop-shadow(0px 2px 3px #000);
+    transition: all .6s;
+}
+
+
+.navbar-toggler img{
+    width: 30px;
+    height: 30px;
+}
+
+.navbar-toggler{
+    border-color: transparent;
+    transition: all .8s;
+}
+.navbar-toggler:focus {
+    box-shadow: 0 0 0 ;
+    filter: drop-shadow(0px 2px 1px #000);
+    transition: all .5s;
+}
+
+
+
+
+
+@media screen and (max-width: 991px) {
+    .containerNav{
+        margin-top: 50px;
+        display: block;
+    }
+
+    .containerNav form{
+        margin: auto;
+        width: 95%;
+    }
+
+    .containerNav ul{
+        margin-top: 30px;
+        align-items: center;
+    }
+
+    .nav-link{
+        width: 50vw;
+    }
+}
