@@ -14,8 +14,87 @@ datasource db {
 }
 
 model User {
-  id Int @id
+  id          Int          @id
+  name        String
+  email       String       @unique
+  city        City         @relation(fields: [cityId], references: [id])
+  cityId      Int          
+  password    String
+  entrepeneur Entrepeneur?
+  investor    Investor?
+  Review      Review[]
+  Vote        Vote[]
 }
 
+model Country {
+  id    Int    @id
+  name  String
+  citys City[]
+}
 
+model City {
+  id        Int     @id
+  country   Country @relation(fields: [countryId], references: [id])
+  countryId Int     @unique
+  users     User[]
+}
 
+model Entrepeneur {
+  user             User              @relation(fields: [id], references: [id])
+  id               Int               @id
+  mensual_tickets  Int
+  Entrepreneurship Entrepreneurship?
+}
+
+model Investor {
+  user          User @relation(fields: [id], references: [id])
+  id            Int  @id
+  mensual_votes Int
+}
+
+model Entrepreneurship {
+  id            Int         @id
+  description   String?
+  creation_date DateTime
+  meta          String[]
+  entrepeneur   Entrepeneur @relation(fields: [entrepeneurId], references: [id])
+  entrepeneurId Int         @unique
+  subcategory   Subcategory @relation(fields: [subcategoryId], references: [id])
+  subcategoryId Int
+  Review        Review[]
+  Vote          Vote[]
+}
+
+model Category {
+  id          Int           @id
+  name        String
+  Subcategory Subcategory[]
+}
+
+model Subcategory {
+  id               Int                @id
+  name             String
+  category         Category           @relation(fields: [categoryId], references: [id])
+  categoryId       Int
+  Entrepreneurship Entrepreneurship[]
+}
+
+model Review {
+  user               User             @relation(fields: [userId], references: [id])
+  entrepreneurship   Entrepreneurship @relation(fields: [entrepreneurshipId], references: [id])
+  userId             Int
+  entrepreneurshipId Int
+  text               String
+
+  @@id([userId, entrepreneurshipId])
+}
+
+model Vote {
+  user               User             @relation(fields: [userId], references: [id])
+  entrepreneurship   Entrepreneurship @relation(fields: [entrepreneurshipId], references: [id])
+  userId             Int
+  entrepreneurshipId Int
+  value              Boolean
+
+  @@id([userId, entrepreneurshipId])
+}
