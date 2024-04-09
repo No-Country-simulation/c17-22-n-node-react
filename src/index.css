@@ -11,9 +11,6 @@ body{
   color: rgb(20, 20, 20);
 }
 
-
-
-
 .efectoBoton{
   background-image: linear-gradient(to right, rgb(230, 230, 230) 0%, rgb(211, 211, 211) 51%, rgb(230, 230, 230) 100%);
   padding: 8px;
