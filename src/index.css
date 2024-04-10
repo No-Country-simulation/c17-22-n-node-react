@@ -20,6 +20,7 @@ body{
   color: rgb(20, 20, 20);          
   border-radius: 5px;
   border: 0;
+  text-decoration: none;
 }
 
 .efectoBoton:hover {

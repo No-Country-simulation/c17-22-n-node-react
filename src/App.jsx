@@ -1,6 +1,5 @@
 import Router from "./Routers/Router.jsx"
 
-
 function App() {
   return (
     <>
@@ -8,6 +7,5 @@ function App() {
     </>
   )
 }
-
 
 export default App
