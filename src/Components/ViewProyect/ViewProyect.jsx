@@ -1,25 +1,24 @@
-/*
-import { useSearchParams } from "react-router-dom"
+import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
 import Project from "../Project/Project"
-*/
+import jsonData from "../../../db.json";
 
 
 const ViewProyect = () => {
-    /*
-    const [proyectData, setProyectData] = useState([])
+    const [proyectData, setProyectData] = useState(null)
 
-    const { proyectId } = useSearchParams()
+    const { proyectId } = useParams();
+
 
     useEffect(() => {
-        //Conseguir el proyecto por el ID
-        //setProyect(aca la data del proyecto)
-    }, [])
-    
+        const project = jsonData.find(item => item.id === parseInt(proyectId));
+        setProyectData(project);
+    }, [proyectId]);
+
+
     return (
-        <Project {...proyectData}/>
+        proyectData && <Project {...proyectData} />
     )
-    */
 }
 
 

@@ -1,0 +1,46 @@
+footer{
+    color: rgb(20, 20, 20);
+    padding-top: 2px;
+}
+footer a{
+    color: rgb(20, 20, 20);
+    text-decoration: none;
+}
+footer p{
+    margin-top: 11px;
+}
+
+
+
+.imgStyleLogo{
+    width: 100%;
+    height: 150px;
+}
+
+.imgStyle{
+    width: 20px;
+    height: 20px;
+    object-fit: cover;
+    object-position: center;
+}
+
+.mx-auto {
+    margin-right: 0px !important;
+    margin-left: auto !important;
+}
+
+.row {
+    margin-right: 0px;
+    margin-left: 0px;
+}
+
+.hrStyles{
+    width: 60px;
+    background-color: rgb(211, 211, 211);
+    height: 2px;
+}
+
+.colorUpDown{
+    background-color: rgb(248, 249, 250);
+    margin-top: -20px;
+}
