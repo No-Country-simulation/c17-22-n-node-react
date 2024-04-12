@@ -12,12 +12,12 @@ body{
 }
 
 .efectoBoton{
-  background-image: linear-gradient(to right, rgb(230, 230, 230) 0%, rgb(211, 211, 211) 51%, rgb(230, 230, 230) 100%);
+  background-image: linear-gradient(to right, #fc047c 0%, #e904737a 90%, #fc047c 100%);
   padding: 8px;
   margin: 10px;
   text-align: center;
   background-size: 200% auto;
-  color: rgb(20, 20, 20);          
+  color: rgb(235, 235, 235);        
   border-radius: 5px;
   border: 0;
   text-decoration: none;
@@ -26,6 +26,7 @@ body{
 .efectoBoton:hover {
   background-position: right center;
   text-decoration: none;
+  color: rgb(235, 235, 235);
   transition: all .5s
 }
 .efectoBoton:active{
