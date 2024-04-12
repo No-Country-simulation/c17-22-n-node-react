@@ -56,8 +56,8 @@ const NavBar = () =>{
                                 </button>
                                 <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                     {
-                                    results.map((proyect) => (
-                                        <li key={proyect.id}>
+                                    results.map((proyect, index) => (
+                                        index < 8 && <li key={proyect.id}>
                                             <Link to={`/proyect/${proyect.id}`} className="dropdown-item">{lengthOfTitle(proyect.title)}</Link>
                                         </li>
                                     ))
@@ -75,11 +75,11 @@ const NavBar = () =>{
                     </form>
                     
                     <ul className="navbar-nav">
-                        <li className="nav-item">
+                        <li>
                             <NavLink to="/login" className="nav-link efectoBoton">iniciar Sesion</NavLink>
                         </li>
                         
-                        <li className="nav-item">
+                        <li>
                             <NavLink to="/register" className="nav-link efectoBoton">Registrarse</NavLink>
                         </li>
                     </ul>

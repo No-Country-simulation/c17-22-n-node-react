@@ -31,11 +31,13 @@
 
 .containerNav{
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
+    align-items: center;
 }
 
 .containerNav form{
-    width: 70%;
+    width: 60%;
+    margin-right: -2vw;
 }
 
 .containerNav input{
@@ -53,7 +55,7 @@
     margin-right: 10px;
 }
 .navbar-brand img{
-    width: 15vw;
+    width: 25vw;
     height: 100%;
 }
 .navbar-brand:active{
@@ -89,9 +91,24 @@
 
 
 
-@media screen and (max-width: 1030px) {
+@media screen and (max-width: 1146px) {
     ul{
         font-size: 15px;
+    }
+
+    .input-group{
+        width: 50%;
+    }
+}
+
+
+@media screen and (max-width: 1099px) {
+    ul{
+        font-size: 14px;
+    }
+
+    .input-group{
+        width: 40%;
     }
 }
 
