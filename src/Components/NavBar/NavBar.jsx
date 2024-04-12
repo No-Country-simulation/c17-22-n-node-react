@@ -1,18 +1,20 @@
 import { Link, NavLink } from 'react-router-dom'
+import { useState } from 'react'
 import lg from "../../assets/img/Story Starter.svg"
 import imgNavBar from "../../assets/img/menu.png"
-import { useState } from 'react'
+import jsonData from "../../../db.json";
 import "./navBar.css"
+
 
 
 const NavBar = () =>{
     const [search, setSearch] = useState("")
+    const proyects = jsonData;
 
     const handleSearch = (e) =>{
         setSearch(e.target.value)
     }
 
-    const proyects = [{id:1,title:"Hi"},{id:2,title:"Bye"},{id:3,title:"Good"}, {id:4,title:"Hello"}]
 
     let results = []
     if(!search){
@@ -23,6 +25,15 @@ const NavBar = () =>{
             data.title.toLowerCase().includes(search.toLocaleLowerCase())
         )
     }
+
+
+    const lengthOfTitle = (title) => {
+        if (title.length > 29) {
+            return title.substring(0, 29) + "...";
+        } else {
+            return title;
+        }
+    };
 
 
     return (
@@ -39,18 +50,27 @@ const NavBar = () =>{
                         <input value={search} onChange={handleSearch} className="form-control me-1" type="text" placeholder="Buscar" aria-label="Search" />
                         
                         <div className="input-group">
-                                { results.map( (proyect) => (
-                                        <div key={proyect.id}>
-                                            <Link to={`/proyect/${proyect.id}`} className="efectoBoton">{proyect.title}</Link>
-                                        </div>
-                                        ))
-                                }
-                                { results.length === 0 && search.length > 0 && (
-                                        <div>
-                                            <p>Busque el título de un proyecto existente</p>
-                                        </div>
-                                    )
-                                }
+                            <div className="dropdown">
+                                <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Resultados
+                                </button>
+                                <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    {
+                                    results.map((proyect) => (
+                                        <li key={proyect.id}>
+                                            <Link to={`/proyect/${proyect.id}`} className="dropdown-item">{lengthOfTitle(proyect.title)}</Link>
+                                        </li>
+                                    ))
+                                    }
+                                    {
+                                        results.length === 0 && (
+                                            <li>
+                                                <p>Escribi un titulo existente</p>
+                                            </li>
+                                        )
+                                    }
+                                </ul>
+                            </div>
                         </div>
                     </form>
                     
