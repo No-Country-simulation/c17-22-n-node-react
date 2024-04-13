@@ -1,0 +1,33 @@
+.containerCard{
+    text-decoration: none;
+    background-color: #FEDDED;
+}
+
+.containerImgProyect{
+    height: 300px;
+}
+
+.imgProject{
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+.imgUser{
+    height: 50px;
+    width: 50px;
+}
+
+.colorBackgroundLikes{
+    background-color: #FC077D;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    font-size: .8rem;
+}
+
+.iconsCard{
+    height: 30px;
+    width: 30px;
+    margin-right: 10px;
+}
