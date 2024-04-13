@@ -17,8 +17,9 @@ model User {
   id          Int          @id @default(autoincrement())
   name        String
   email       String       @unique
-  city        City         @relation(fields: [cityId], references: [id])
-  cityId      Int          
+  city        String
+  country     String
+  // cityId      Int          
   password    String
   entrepeneur Entrepeneur?
   investor    Investor?
@@ -26,19 +27,19 @@ model User {
   Vote        Vote[]
 }
 
-model Country {
-  id    Int    @id @default(autoincrement())
-  name  String
-  citys City[]
-}
+// model Country {
+//   id    Int    @id @default(autoincrement())
+//   name  String
+//   citys City[]
+// }
 
-model City {
-  id        Int     @id @default(autoincrement())
-  country   Country @relation(fields: [countryId], references: [id])
-  name  String @default("")
-  countryId Int     @unique
-  users     User[]
-}
+// model City {
+//   id        Int     @id @default(autoincrement())
+//   country   Country @relation(fields: [countryId], references: [id])
+//   name  String @default("")
+//   countryId Int     @unique
+//   users     User[]
+// }
 
 model Entrepeneur {
   user             User              @relation(fields: [id], references: [id], onDelete: Cascade)
