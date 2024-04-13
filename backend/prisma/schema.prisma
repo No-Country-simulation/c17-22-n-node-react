@@ -22,7 +22,7 @@ model User {
   password    String
   entrepeneur Entrepeneur?
   investor    Investor?
-  Review      Review[]
+  // Review      Review[]
   Vote        Vote[]
 }
 
@@ -62,7 +62,7 @@ model Entrepreneurship {
   entrepeneurId Int         @unique
   subcategory   Subcategory @relation(fields: [subcategoryId], references: [id])
   subcategoryId Int
-  Review        Review[]
+  // Review        Review[]
   Vote          Vote[]
 }
 
@@ -80,16 +80,16 @@ model Subcategory {
   Entrepreneurship Entrepreneurship[]
 }
 
-model Review {
-  user               User             @relation(fields: [userId], references: [id])
-  entrepreneurship   Entrepreneurship @relation(fields: [entrepreneurshipId], references: [id])
-  userId             Int
-  entrepreneurshipId Int
-  text               String
-  created            DateTime         @default(now())
+// model Review {
+//   user               User             @relation(fields: [userId], references: [id])
+//   entrepreneurship   Entrepreneurship @relation(fields: [entrepreneurshipId], references: [id])
+//   userId             Int
+//   entrepreneurshipId Int
+//   text               String
+//   created            DateTime         @default(now())
 
-  @@id([userId, entrepreneurshipId])
-}
+//   @@id([userId, entrepreneurshipId])
+// }
 
 model Vote {
   user               User             @relation(fields: [userId], references: [id])

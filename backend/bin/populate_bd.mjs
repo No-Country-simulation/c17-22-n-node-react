@@ -294,21 +294,21 @@ async function main() {
 
   // review
 
-  const review001 = await prisma.review.create({
-    data: {
-      userId: User005.id,
-      entrepreneurshipId: entrepreneurship001.id,
-      text: "Review 001"
-    }
-  })
+  // const review001 = await prisma.review.create({
+  //   data: {
+  //     userId: User005.id,
+  //     entrepreneurshipId: entrepreneurship001.id,
+  //     text: "Review 001"
+  //   }
+  // })
 
-  const review002 = await prisma.review.create({
-    data: {
-      userId: User006.id,
-      entrepreneurshipId: entrepreneurship001.id,
-      text: "Review 002"
-    }
-  })
+  // const review002 = await prisma.review.create({
+  //   data: {
+  //     userId: User006.id,
+  //     entrepreneurshipId: entrepreneurship001.id,
+  //     text: "Review 002"
+  //   }
+  // })
 
   // VOTE
   const vote001 = await prisma.vote.create({
