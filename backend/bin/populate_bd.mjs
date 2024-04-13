@@ -9,17 +9,17 @@ async function main() {
   // CATEGORY
   const category001 = await prisma.category.create({
     data: {
-      name: "Category 001",
+      name: "Libros",
     }
   });
   const category002 = await prisma.category.create({
     data: {
-      name: "Category 002",
+      name: "Cines",
     }
   });
   const category003 = await prisma.category.create({
     data: {
-      name: "Category 003",
+      name: "Videojuegos",
     }
   });
 
@@ -92,145 +92,81 @@ async function main() {
 
   const User001 = await prisma.user.create({
     data: {
-      name: "Nombre User 01",
-      email: "emailInve001@gmail.com",
+      name: "Luis García",
+      email: "luis.garcia@example.com",
       password: "qwerty",
-      city: {
-        create: {
-          name: "Ciudad 001",
-          country: {
-            create: {
-              name: "Country 001"
-            }
-          }
-        }
-      }
+      city: "Lima",
+      country: "Peru",
     }
   });
 
   const User002 = await prisma.user.create({
     data: {
-      name: "Nombre User 02",
-      email: "emailInve002@gmail.com",
+      name: "Ana López",
+      email: "ana.lopez@example.com",
       password: "qwerty",
-      city: {
-        create: {
-          name: "Ciudad 002",
-          country: {
-            create: {
-              name: "Country 002"
-            }
-          }
-        }
-      }
+      city: "Arequipa",
+      country: "Peru",
     }
   });
 
   const User003 = await prisma.user.create({
     data: {
-      name: "Nombre User 03",
-      email: "emailInve003@gmail.com",
+      name: "Diego Pérez",
+      email: "diego.perez@example.com",
       password: "qwerty",
-      city: {
-        create: {
-          name: "Ciudad 003",
-          country: {
-            create: {
-              name: "Country 003"
-            }
-          }
-        }
-      }
+      city: "Rosario",
+      country: "Argentina",
     }
   });
 
   const User004 = await prisma.user.create({
     data: {
-      name: "Nombre User 04",
-      email: "emailInve004@gmail.com",
+      name: "María Rodríguez",
+      email: "maria.rodriguez@example.com",
       password: "qwerty",
-      city: {
-        create: {
-          name: "Ciudad 004",
-          country: {
-            create: {
-              name: "Country 004"
-            }
-          }
-        }
-      }
+      city: "Cordoba",
+      country: "Argentina",
     }
   });
 
   const User005 = await prisma.user.create({
     data: {
-      name: "Nombre User 05",
-      email: "emailInve005@gmail.com",
+      name: "Carlos Martínez",
+      email: "carlos.martinez@example.com",
       password: "qwerty",
-      city: {
-        create: {
-          name: "Ciudad 005",
-          country: {
-            create: {
-              name: "Country 005"
-            }
-          }
-        }
-      }
+      city: "Buenos Aires",
+      country: "Argentina",
     }
   });
 
   const User006 = await prisma.user.create({
     data: {
-      name: "Nombre User 06",
-      email: "emailInve006@gmail.com",
+      name: "Sofía Gómez",
+      email: "sofia.gomez@example.com",
       password: "qwerty",
-      city: {
-        create: {
-          name: "Ciudad 006",
-          country: {
-            create: {
-              name: "Country 006"
-            }
-          }
-        }
-      }
+      city: "Salta",
+      country: "Argentina",
     }
   });
 
   const User007 = await prisma.user.create({
     data: {
-      name: "Nombre User 07",
-      email: "emailInve007@gmail.com",
+      name: "Javier Sánchez",
+      email: "javier.sanchez@example.com",
       password: "qwerty",
-      city: {
-        create: {
-          name: "Ciudad 007",
-          country: {
-            create: {
-              name: "Country 007"
-            }
-          }
-        }
-      }
+      city: "Santa Fe",
+      country: "Argentina",
     }
   });
 
   const User008 = await prisma.user.create({
     data: {
-      name: "Nombre User 08",
-      email: "emailInve008@gmail.com",
+      name: "Laura Flores",
+      email: "laura.flores@example.com",
       password: "qwerty",
-      city: {
-        create: {
-          name: "Ciudad 008",
-          country: {
-            create: {
-              name: "Country 008"
-            }
-          }
-        }
-      }
+      city: "Buenos Aires",
+      country: "Argentina",
     }
   });
 
