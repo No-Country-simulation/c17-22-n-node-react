@@ -35,27 +35,28 @@ model Country {
 model City {
   id        Int     @id @default(autoincrement())
   country   Country @relation(fields: [countryId], references: [id])
+  name  String @default("")
   countryId Int     @unique
   users     User[]
 }
 
 model Entrepeneur {
-  user             User              @relation(fields: [id], references: [id])
-  id               Int               @id @default(autoincrement())
+  user             User              @relation(fields: [id], references: [id], onDelete: Cascade)
+  id               Int               @id
   mensual_tickets  Int
   Entrepreneurship Entrepreneurship?
 }
 
 model Investor {
-  user          User @relation(fields: [id], references: [id])
-  id            Int  @id @default(autoincrement())
+  user          User @relation(fields: [id], references: [id], onDelete: Cascade)
+  id            Int  @id
   mensual_votes Int
 }
 
 model Entrepreneurship {
   id            Int         @id @default(autoincrement())
   description   String?
-  creation_date DateTime
+  creation_date DateTime    @default(now())
   meta          String[]
   entrepeneur   Entrepeneur @relation(fields: [entrepeneurId], references: [id])
   entrepeneurId Int         @unique
@@ -85,6 +86,7 @@ model Review {
   userId             Int
   entrepreneurshipId Int
   text               String
+  created            DateTime         @default(now())
 
   @@id([userId, entrepreneurshipId])
 }
@@ -95,6 +97,11 @@ model Vote {
   userId             Int
   entrepreneurshipId Int
   value              Boolean
+  created            DateTime         @default(now())
 
   @@id([userId, entrepreneurshipId])
+}
+
+generator erd {
+  provider = "prisma-erd-generator"
 }
