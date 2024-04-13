@@ -14,80 +14,83 @@ datasource db {
 }
 
 model User {
-  id          Int          @id
+  id          Int          @id @default(autoincrement())
   name        String
   email       String       @unique
-  city        City         @relation(fields: [cityId], references: [id])
-  cityId      Int          
+  city        String
+  country     String
+  // cityId      Int          
   password    String
   entrepeneur Entrepeneur?
   investor    Investor?
-  Review      Review[]
+  // Review      Review[]
   Vote        Vote[]
 }
 
-model Country {
-  id    Int    @id
-  name  String
-  citys City[]
-}
+// model Country {
+//   id    Int    @id @default(autoincrement())
+//   name  String
+//   citys City[]
+// }
 
-model City {
-  id        Int     @id
-  country   Country @relation(fields: [countryId], references: [id])
-  countryId Int     @unique
-  users     User[]
-}
+// model City {
+//   id        Int     @id @default(autoincrement())
+//   country   Country @relation(fields: [countryId], references: [id])
+//   name  String @default("")
+//   countryId Int     @unique
+//   users     User[]
+// }
 
 model Entrepeneur {
-  user             User              @relation(fields: [id], references: [id])
+  user             User              @relation(fields: [id], references: [id], onDelete: Cascade)
   id               Int               @id
   mensual_tickets  Int
   Entrepreneurship Entrepreneurship?
 }
 
 model Investor {
-  user          User @relation(fields: [id], references: [id])
+  user          User @relation(fields: [id], references: [id], onDelete: Cascade)
   id            Int  @id
   mensual_votes Int
 }
 
 model Entrepreneurship {
-  id            Int         @id
+  id            Int         @id @default(autoincrement())
   description   String?
-  creation_date DateTime
+  creation_date DateTime    @default(now())
   meta          String[]
   entrepeneur   Entrepeneur @relation(fields: [entrepeneurId], references: [id])
   entrepeneurId Int         @unique
   subcategory   Subcategory @relation(fields: [subcategoryId], references: [id])
   subcategoryId Int
-  Review        Review[]
+  // Review        Review[]
   Vote          Vote[]
 }
 
 model Category {
-  id          Int           @id
+  id          Int           @id @default(autoincrement())
   name        String
   Subcategory Subcategory[]
 }
 
 model Subcategory {
-  id               Int                @id
+  id               Int                @id @default(autoincrement())
   name             String
   category         Category           @relation(fields: [categoryId], references: [id])
   categoryId       Int
   Entrepreneurship Entrepreneurship[]
 }
 
-model Review {
-  user               User             @relation(fields: [userId], references: [id])
-  entrepreneurship   Entrepreneurship @relation(fields: [entrepreneurshipId], references: [id])
-  userId             Int
-  entrepreneurshipId Int
-  text               String
+// model Review {
+//   user               User             @relation(fields: [userId], references: [id])
+//   entrepreneurship   Entrepreneurship @relation(fields: [entrepreneurshipId], references: [id])
+//   userId             Int
+//   entrepreneurshipId Int
+//   text               String
+//   created            DateTime         @default(now())
 
-  @@id([userId, entrepreneurshipId])
-}
+//   @@id([userId, entrepreneurshipId])
+// }
 
 model Vote {
   user               User             @relation(fields: [userId], references: [id])
@@ -95,6 +98,11 @@ model Vote {
   userId             Int
   entrepreneurshipId Int
   value              Boolean
+  created            DateTime         @default(now())
 
   @@id([userId, entrepreneurshipId])
+}
+
+generator erd {
+  provider = "prisma-erd-generator"
 }

@@ -20,7 +20,7 @@
 
 ### Back-End:
 - Lorenzo Polverino <br /> [ ![](https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white 'LinkedIn Link')](https://www.linkedin.com/in/lorenzopolveirno/)
-- Paul Alexander Luque Ccosi |
+- Paul Alexander Luque <br /> [ ![](https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white 'LinkedIn Link')](https://www.linkedin.com/in/paul-alexander-luque/)
 - Yurbanis Briceño <br /> [ ![](https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white 'LinkedIn Link')](https://www.linkedin.com/in/yurbanis-brice%C3%B1o-lara/)
 - Jhonson Medina |
 

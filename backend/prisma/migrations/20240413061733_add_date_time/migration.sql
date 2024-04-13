@@ -1,0 +1,13 @@
+-- AlterTable
+ALTER TABLE "Entrepeneur" ALTER COLUMN "id" DROP DEFAULT;
+DROP SEQUENCE "entrepeneur_id_seq";
+
+-- AlterTable
+ALTER TABLE "Investor" ALTER COLUMN "id" DROP DEFAULT;
+DROP SEQUENCE "investor_id_seq";
+
+-- AlterTable
+ALTER TABLE "Review" ADD COLUMN     "created" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP;
+
+-- AlterTable
+ALTER TABLE "Vote" ADD COLUMN     "created" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP;
