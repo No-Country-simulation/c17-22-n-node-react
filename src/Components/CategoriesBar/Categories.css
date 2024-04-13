@@ -1,0 +1,27 @@
+.titleCat , .flecha{
+    color: #FC077D;
+}
+
+.dropdrownMenu{
+    background-color: #FC077D;
+}
+
+.dropdownHeader{
+    color: #FEDDED;
+    font-size: medium;
+}
+
+.dropdownItem{
+    color: white;
+    font-size: small;
+}
+
+.dropdownItem:hover{
+    background-color: #FEDDED;
+    color: #3F3D3D;
+}
+
+.flecha{
+    font-size: 2rem;
+    transform: rotate(180deg);
+}
