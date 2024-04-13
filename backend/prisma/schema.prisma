@@ -14,7 +14,7 @@ datasource db {
 }
 
 model User {
-  id          Int          @id
+  id          Int          @id @default(autoincrement())
   name        String
   email       String       @unique
   city        City         @relation(fields: [cityId], references: [id])
@@ -27,13 +27,13 @@ model User {
 }
 
 model Country {
-  id    Int    @id
+  id    Int    @id @default(autoincrement())
   name  String
   citys City[]
 }
 
 model City {
-  id        Int     @id
+  id        Int     @id @default(autoincrement())
   country   Country @relation(fields: [countryId], references: [id])
   countryId Int     @unique
   users     User[]
@@ -41,19 +41,19 @@ model City {
 
 model Entrepeneur {
   user             User              @relation(fields: [id], references: [id])
-  id               Int               @id
+  id               Int               @id @default(autoincrement())
   mensual_tickets  Int
   Entrepreneurship Entrepreneurship?
 }
 
 model Investor {
   user          User @relation(fields: [id], references: [id])
-  id            Int  @id
+  id            Int  @id @default(autoincrement())
   mensual_votes Int
 }
 
 model Entrepreneurship {
-  id            Int         @id
+  id            Int         @id @default(autoincrement())
   description   String?
   creation_date DateTime
   meta          String[]
@@ -66,13 +66,13 @@ model Entrepreneurship {
 }
 
 model Category {
-  id          Int           @id
+  id          Int           @id @default(autoincrement())
   name        String
   Subcategory Subcategory[]
 }
 
 model Subcategory {
-  id               Int                @id
+  id               Int                @id @default(autoincrement())
   name             String
   category         Category           @relation(fields: [categoryId], references: [id])
   categoryId       Int
