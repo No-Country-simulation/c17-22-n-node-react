@@ -6,7 +6,7 @@ import "./project.css"
 
 const Project = ({id, title, summary, content, img, likes, author}) => {
     return (
-        <article className='containerCard'>
+        <article className='containerFather'>
             <div className='containerCardProyect' key={id}>
                 <h1>{title}</h1>
                 <h3>{summary}</h3>
