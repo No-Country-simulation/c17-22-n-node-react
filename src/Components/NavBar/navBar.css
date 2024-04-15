@@ -1,3 +1,7 @@
+.navbar{
+    padding: 20px;
+}
+
 .navbar-collapse {
     transition: 0.3s ease-out;
     transition-delay: 0.1s;
@@ -25,9 +29,6 @@
 }
 
 
-.container-fluid{
-    margin: 10px;
-}
 
 .containerNav{
     display: flex;
@@ -35,14 +36,57 @@
     align-items: center;
 }
 
+
 .containerNav form{
+    position: relative; 
     width: 60%;
     margin-right: -2vw;
 }
 
+.containerResults {
+    position: absolute;
+    width: 100%;
+    background-color: #fff;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.541);
+    z-index: 100;
+    border-radius: 5px;
+    padding-left: 40px;
+}
+
+.containerResults div{
+    color: #3F3D3D;
+    padding-top: 10px;
+    padding-bottom: 2px;
+    font-size: 16px;
+}
+.containerResults div:hover{
+    color: #fc047c;
+    transition: all .3s;
+    filter: drop-shadow(0px 2px 3px #fc047c);
+}
+
+
+
+.input-label {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+.lupa-icon {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+}
+
+
+
 .containerNav input{
     color: rgb(20, 20, 20);
     padding: 10px;
+    padding-left: 40px;
 }
 .containerNav input:focus{
     box-shadow: 0px 0px 0px;
@@ -116,7 +160,7 @@
 
 @media screen and (max-width: 991px) {
     .navbar-brand img{
-        width: 40vw;
+        width: 50vw;
     }
 
     .containerNav{

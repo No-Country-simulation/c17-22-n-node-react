@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
 import Project from "../Project/Project"
-import jsonData from "../../../db.json";
+import jsonData from "../../assets/BDdemo/db.json";
 
 
 const ViewProyect = () => {

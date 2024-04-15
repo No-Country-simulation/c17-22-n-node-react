@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import house from "../../assets/img/home.png"
 import mail from "../../assets/img/email.png"
-import jsonData from "../../../db.json";
+import jsonData from "../../assets/BDdemo/db.json";
 import lg from "../../assets/img/Story Starter.svg"
 import "./footer.css"
 
