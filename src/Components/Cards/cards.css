@@ -1,0 +1,32 @@
+.containerNoProjects{
+    padding: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    animation: fade 0.5s ease;
+}
+
+.messageNoProjects{
+    font-size: 25px;
+    color: #FC077D;
+}
+
+.buttonNoProjects{
+    background-color: #FC077D;
+    color: white;
+}
+
+.buttonNoProjects:hover{
+    background-color: rgba(252, 7, 125, .5);
+    color: white;
+}
+
+@keyframes fade {
+    from {
+      opacity: 0; /* Inicia completamente transparente */
+    }
+    to {
+      opacity: 1; /* Se muestra completamente visible */
+    }
+  }
