@@ -5,21 +5,16 @@
 .group-input {
   display: flex;
   flex-direction: column;
-  width: 18rem;
-  margin: .8rem 0;
+  width: 20rem;
+  margin: 0.8rem 0;
+}
+
+.group-input > input {
+  height: 3rem;
 }
 
 .group-input > input:focus {
   box-shadow: 0px 0px 0px;
-  border: 1px solid green
+  border: 1px solid #fc077d;
 }
 
-.btn-create {
-  width: 8rem;
-}
-
-/* .radio-container > label {
-  display: flex;
-  gap: .5rem;
-  align-items: center;
-} */
