@@ -2,15 +2,14 @@ import { Link, NavLink } from 'react-router-dom'
 import { useState } from 'react'
 import lg from "../../assets/img/Story Starter.svg"
 import imgNavBar from "../../assets/img/menu.png"
-import jsonData from "../../assets/BDdemo/db.json";
 import lupa from "../../assets/img/lupa.png"
+import { projects } from "../../assets/BDdemo/projects"
 import "./navBar.css"
 
 
 
 const NavBar = () =>{
     const [search, setSearch] = useState("")
-    const proyects = jsonData;
 
     const handleSearch = (e) =>{
         setSearch(e.target.value)
@@ -27,7 +26,7 @@ const NavBar = () =>{
         results = []
     }
     else{
-        results = proyects.filter( (data) =>
+        results = projects.filter( (data) =>
             data.title.toLowerCase().includes(search.toLocaleLowerCase())
         )
     }
@@ -58,9 +57,9 @@ const NavBar = () =>{
                             results.length != 0 && <article className='containerResults'>
                                         <section>
                                             {
-                                            results.map((proyect, index) => (
-                                                index < 8 && <div key={proyect.id}>
-                                                    <Link to={`/proyect/${proyect.id}`} className="dropdown-item" onClick={close}>{lengthOfTitle(proyect.title)}</Link>
+                                            results.map((project, index) => (
+                                                index < 8 && <div key={project.id}>
+                                                    <Link to={`/project/${project.id}`} className="dropdown-item" onClick={close}>{lengthOfTitle(project.title)}</Link>
                                                 </div>
                                             ))
                                             }

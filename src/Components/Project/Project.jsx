@@ -4,32 +4,39 @@ import em from "../../assets/img/gmail.png"
 import "./project.css"
 
 
-const Project = ({id, title, summary, content, img, likes, author}) => {
+const Project = ({id, title, category, description, image, likes, dislikes, user}) => {
     return (
         <article className='containerFather'>
             <div className='containerCardProyect' key={id}>
                 <h1>{title}</h1>
-                <h3>{summary}</h3>
+                <h3>{category}</h3>
                 
                 <div className='container-fluid'>
                     <div className='row'>
                         <picture className="nleft col-md-8">
-                            <img src={img} alt={`Img-${title}`} />
+                            <img src={image} alt={`Img-${title}`} />
                         </picture>
                         
                         <section className='nright col-md-4'>
                             <div className='one'>
-                                <h6>Likes: <span>{likes}</span>❤️</h6>
-                                <h6>Emprendedore/s: <span>{author}</span></h6>
+                                <div className='containerLikesProject'>
+                                    <h6>Likes: <span>{likes}</span>❤️</h6>
+                                    <h6>Dislikes: <span>{dislikes}</span>💔</h6>
+                                </div>
+                                
+                                <div className='containerUserProject'>
+                                    <h6>Emprendedore/s: <span>{user.name}</span></h6>
+                                    <img className='userImg' src={user.photo} alt={`Img-of-user-${user.name}`} />
+                                </div>
                             </div>
                             
                             <button className='efectoBoton'>Me gusta</button>
                             
                             <h5>Contacto</h5>
                             <div className='two'>
-                                <a href=""><img src={em} alt="img Email" /></a>
+                                <a href="" target="_blank"><img className='rrssImg' src={em} alt="img Email" /></a>
                                     <br />
-                                <a href=""><img src={ig} alt="img Instagram" /></a>
+                                <a href="" target="_blank"><img className='rrssImg' src={ig} alt="img Instagram" /></a>
                             </div>
                         </section>
                     </div>
@@ -37,7 +44,7 @@ const Project = ({id, title, summary, content, img, likes, author}) => {
                 
                 <h2>Descripcion del proyecto</h2>
                 <div className='containerDescription'>
-                    <p>{content}</p>
+                    <p>{description}</p>
                 </div>
             </div>
         </article>
