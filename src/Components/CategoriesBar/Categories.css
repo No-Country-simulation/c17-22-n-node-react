@@ -1,0 +1,47 @@
+.titleCat , .flecha{
+    color: #FC077D;
+}
+
+.dropdrownMenu{
+    background-color: #FC077D;
+}
+
+.dropdownHeader{
+    color: #FEDDED;
+    font-size: medium;
+    cursor: default;
+}
+
+.dropdownItem{
+    color: white;
+    font-size: small;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    cursor: pointer;
+}
+
+.dropdownItem:hover{
+    background-color: #FEDDED;
+    color: #3F3D3D;
+}
+
+.buttonCategory{
+    font-weight: bold;
+    transition: transform 0.5s ease
+}
+
+.buttonCategory:hover{
+    transform: scale(1.1) ;
+    -webkit-transform: scale(1.1) ;
+    -moz-transform: scale(1.1) ;
+}
+
+.buttonCategory:active {
+    transform: scale(.9) ;
+    -webkit-transform: scale(.9) ;
+    -moz-transform: scale(.9) ;
+}
+
+.flecha{
+    font-size: 2rem;
+    transform: rotate(180deg);
+}

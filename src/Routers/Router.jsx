@@ -3,7 +3,7 @@ import Navbar from '../Components/NavBar/NavBar.jsx';
 import Footer from '../Components/Footer/Footer.jsx';
 import LoginForm from "../Components/LoginForm/LoginForm.jsx";
 import RegisterForm from "../Components/RegisterForm/RegisterForm.jsx"
-import Home from "../Components/Home/Home.jsx"
+import Home from "../pages/Home/Home.jsx"
 import Error404 from "../Components/Error404/Error404.jsx"
 import ViewProyect from "../Components/ViewProyect/ViewProyect.jsx"
 

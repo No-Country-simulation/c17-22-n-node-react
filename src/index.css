@@ -1,14 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
 *{
   margin: 0px;
   padding: 0px;
   text-decoration: none;
   box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
 }
 
 
 body{
   background-color: rgb(235, 235, 235);
-  color: rgb(20, 20, 20);
+  color: #3F3D3D
 }
 
 .efectoBoton{

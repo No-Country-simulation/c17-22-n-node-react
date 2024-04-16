@@ -2,7 +2,8 @@ import { Link, NavLink } from 'react-router-dom'
 import { useState } from 'react'
 import lg from "../../assets/img/Story Starter.svg"
 import imgNavBar from "../../assets/img/menu.png"
-import jsonData from "../../../db.json";
+import jsonData from "../../assets/BDdemo/db.json";
+import lupa from "../../assets/img/lupa.png"
 import "./navBar.css"
 
 
@@ -13,6 +14,11 @@ const NavBar = () =>{
 
     const handleSearch = (e) =>{
         setSearch(e.target.value)
+    }
+
+
+    const close = () =>{
+        setSearch("")
     }
 
 
@@ -28,8 +34,8 @@ const NavBar = () =>{
 
 
     const lengthOfTitle = (title) => {
-        if (title.length > 29) {
-            return title.substring(0, 29) + "...";
+        if (title.length > 40) {
+            return title.substring(0, 40) + "...";
         } else {
             return title;
         }
@@ -38,7 +44,6 @@ const NavBar = () =>{
 
     return (
         <nav className="navbar navbar-expand-lg bg-body-tertiary">
-            <div className="container-fluid">
                 <NavLink to="/" className="navbar-brand"><img src={lg} alt="Logo" /></NavLink>
                 
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -46,32 +51,22 @@ const NavBar = () =>{
                 </button>
                 
                 <div className="collapse navbar-collapse containerNav" id="navbarSupportedContent">
-                    <form className="d-flex" role="search">
-                        <input value={search} onChange={handleSearch} className="form-control me-1" type="text" placeholder="Buscar" aria-label="Search" />
-                        
-                        <div className="input-group">
-                            <div className="dropdown">
-                                <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Resultados
-                                </button>
-                                <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    {
-                                    results.map((proyect, index) => (
-                                        index < 8 && <li key={proyect.id}>
-                                            <Link to={`/proyect/${proyect.id}`} className="dropdown-item">{lengthOfTitle(proyect.title)}</Link>
-                                        </li>
-                                    ))
-                                    }
-                                    {
-                                        results.length === 0 && (
-                                            <li>
-                                                <p>Escribi un titulo existente</p>
-                                            </li>
-                                        )
-                                    }
-                                </ul>
-                            </div>
-                        </div>
+                    <form>
+                            <img src={lupa} alt="Lupa" className="lupa-icon" />
+                            <input value={search} onChange={handleSearch} className="form-control me-1" type="text" placeholder="Buscar" aria-label="Search" />
+                            {
+                            results.length != 0 && <article className='containerResults'>
+                                        <section>
+                                            {
+                                            results.map((proyect, index) => (
+                                                index < 8 && <div key={proyect.id}>
+                                                    <Link to={`/proyect/${proyect.id}`} className="dropdown-item" onClick={close}>{lengthOfTitle(proyect.title)}</Link>
+                                                </div>
+                                            ))
+                                            }
+                                        </section>
+                                    </article>
+                            }
                     </form>
                     
                     <ul className="navbar-nav">
@@ -84,7 +79,6 @@ const NavBar = () =>{
                         </li>
                     </ul>
                 </div>
-            </div>
         </nav>
     )
 }
