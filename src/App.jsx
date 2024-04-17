@@ -17,13 +17,13 @@ function App() {
 		<>
 			{showNavbarAndFooter() && <NavBar />}
 			<Routes>
-				<Route exact path="/" element={<Home />} />
+				<Route path="/" element={<Home />} />
 
-				<Route exact path="/createProject" element={<CreateProject />} />
-				<Route exact path="/project/:projectId" element={<ViewProject />} />
+				<Route path="/createProject" element={<CreateProject />} />
+				<Route path="/project/:projectId" element={<ViewProject />} />
 
-				<Route exact path="/login" element={<LoginForm />} />
-				<Route exact path="/register" element={<RegisterForm />} />
+				<Route path="/login" element={<LoginForm />} />
+				<Route path="/register" element={<RegisterForm />} />
 
 				<Route path="*" element={<Error404 />} />
 			</Routes>
