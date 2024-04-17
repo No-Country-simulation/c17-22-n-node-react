@@ -1,14 +1,12 @@
 import { Link } from "react-router-dom";
 import house from "../../assets/img/home.png"
 import mail from "../../assets/img/email.png"
-import jsonData from "../../assets/BDdemo/db.json";
 import lg from "../../assets/img/Story Starter.svg"
+import { projects } from "../../assets/BDdemo/projects"
 import "./footer.css"
 
 
 const Footer = () => {
-    const proyects = jsonData;
-
     const lengthOfTitle = (title) => {
         if (title.length > 20) {
             return title.substring(0, 20) + "...";
@@ -39,9 +37,9 @@ const Footer = () => {
                         <h6 className="fw-bold">Ultimos proyectos</h6>
                         <hr className="mb-3 mt-0 d-inline-block mx-auto hrStyles" />
                         {
-                        proyects.map((proyect, index) => (
-                            index < 6 && <p key={proyect.id}>
-                                <Link to={`/proyect/${proyect.id}`}>{lengthOfTitle(proyect.title)}</Link>
+                        projects.map((project, index) => (
+                            index < 6 && <p key={project.id}>
+                                <Link to={`/project/${project.id}`}>{lengthOfTitle(project.title)}</Link>
                             </p>
                             ))
                         }
