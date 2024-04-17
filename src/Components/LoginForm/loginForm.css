@@ -1,3 +1,7 @@
+.login-container {
+  height: 100vh;
+}
+
 .btn-create {
   height: 3rem;
   background-color: #fc077d;
@@ -18,7 +22,7 @@
   width: 20rem;
   display: flex;
   align-items: center;
-  gap: .3rem;
+  gap: 0.3rem;
 }
 
 .check-div > input[type="checkbox"] {
@@ -27,7 +31,7 @@
   height: 20px;
   width: 20px;
   background-color: #d5d5d5;
-  border-radius: .2em;
+  border-radius: 0.2em;
   cursor: pointer;
   display: flex;
   outline: none;

@@ -1,13 +1,17 @@
+import lg from "../../assets/img/Story Starter.svg";
 import { NavLink } from "react-router-dom";
 import "./loginForm.css";
 
 const LoginForm = () => {
   return (
     <>
-      <div className="login-container bg-body-tertiary d-flex flex-column align-items-center">
-        <div className="">
+      <div className="login-container bg-body-tertiary d-flex flex-column align-items-center justify-content-center gap-5">
+        <NavLink to="/" className="navbar-brand">
+          <img src={lg} alt="Logo Login" />
+        </NavLink>
+        <div>
           <h3 className="text-start pb-3">Iniciar Sesión</h3>
-          <form className="d-flex flex-column  justify-content-center gap-2">
+          <form className="d-flex flex-column justify-content-center gap-2">
             <div className="group-input">
               <input
                 type="text"
