@@ -1,0 +1,27 @@
+[
+	{
+		"entrepreneurshipId": "1",
+		"positive": "10",
+		"negative": "2"
+	},
+	{
+		"entrepreneurshipId": "2",
+		"positive": "3000",
+		"negative": "800"
+	},
+	{
+		"entrepreneurshipId": "3",
+		"positive": "50000",
+		"negative": "600"
+	},
+	{
+		"entrepreneurshipId": "4",
+		"positive": "7",
+		"negative": "10"
+	},
+	{
+		"entrepreneurshipId": "5",
+		"positive": "1000",
+		"negative": "2"
+	}
+]

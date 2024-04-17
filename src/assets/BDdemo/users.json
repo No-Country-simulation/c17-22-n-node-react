@@ -1,0 +1,47 @@
+[
+	{
+		"userId": "1",
+		"username": "Juan perez",
+		"image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsJiXoqeVf4LvN08A2BmewtxQLkN-ko6ha5Oi3gdO_4A&s",
+		"password": "password1",
+		"email": "juanperez@example.com",
+		"investor": false,
+		"url": "https://www.instagram.com"
+	},
+	{
+		"userId": "2",
+		"username": "JK Rowling",
+		"image": "https://c.ndtvimg.com/2020-05/ngh0qgoo_jk-rowling_625x300_27_May_20.jpg?im=Resize=(1230,900)",
+		"password": "password2",
+		"email": "jkrowling@example.com",
+		"investor": false,
+		"url": "https://www.instagram.com"
+	},
+	{
+		"userId": "3",
+		"username": "Steven Spielberg",
+		"image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/MKr25425_Steven_Spielberg_%28Berlinale_2023%29.jpg/1200px-MKr25425_Steven_Spielberg_%28Berlinale_2023%29.jpg",
+		"password": "password3",
+		"email": "stevenspielberg@example.com",
+		"investor": false,
+		"url": "https://www.instagram.com"
+	},
+	{
+		"userId": "4",
+		"username": "Stephen King",
+		"image": "https://elplanetaurbano.com/wp-content/uploads/2022/09/stephen-king-mate-epu.jpg",
+		"password": "password4",
+		"email": "stephenking@example.com",
+		"investor": false,
+		"url": "https://www.instagram.com"
+	},
+	{
+		"userId": "5",
+		"username": "EA Sports",
+		"image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGwE3f1krR7Yo-jgD92cdS6sK1Yva6Dg1R3i26lauIqw&s",
+		"password": "password5",
+		"email": "easports@example.com",
+		"investor": false,
+		"url": "https://www.instagram.com"
+	}
+]

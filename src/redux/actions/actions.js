@@ -1,23 +1,43 @@
 // import axios from "axios"
 
-// ESTOS IMPORTS (DE ACA ABAJO HASTA LA LINEA COMENTADA) 
+// ESTOS IMPORTS (DE ACA ABAJO HASTA LA LINEA COMENTADA)
 //NO IRIAN CUANDO TENGAMOS LOS ENDPOINTS DEL BACKEND
-import { categories } from "../../assets/BDdemo/categories"
-import { projects } from "../../assets/BDdemo/projects"
-import { subCategories } from "../../assets/BDdemo/subcategories"
+import users from "../../assets/BDdemo/users.json"
+import categories from "../../assets/BDdemo/categories.json"
+import entrepreneurships from "../../assets/BDdemo/entrepreneurships.json"
+import subCategories from "../../assets/BDdemo/subcategories.json"
+import votes from "../../assets/BDdemo/votes.json"
 
 //---------------------------------------------------------------------------------
 
+export const GET_USERS = "GET_USERS"
 export const GET_PROJECTS = "GET_PROJECTS"
 export const GET_CATEGORIES = "GET_CATEGORIES"
 export const GET_SUBCATEGORIES = "GET_SUBCATEGORIES"
+export const GET_VOTES = "GET_VOTES"
 export const FILTER_CATEGORIES = "FILTER_CATEGORIES"
 export const FILTER_SUBCATEGORIES = "FILTER_SUBCATEGORIES"
 
-
-
-// !! LAS FUCIONES COMENTADAS (DE ACA ABAJO HASTA LA LINEA COMENTADA) 
+// !! LAS FUCIONES COMENTADAS (DE ACA ABAJO HASTA LA LINEA COMENTADA)
 // SON LAS QUE VAN REALMENTE, LAS OTRAS SON LAS DE PRUEBA
+
+// export const getUsers = () => {
+//     return async function(dispatch){
+//         const response = await axios("ACA IRÍA LA URL DE LA API")
+
+//         return dispatch({
+//             type: GET_USERS,
+//             payload: response.data
+//         })
+//     }
+// }
+
+export const getUsers = () => {
+	return {
+		type: GET_USERS,
+		payload: users,
+	}
+}
 
 // export const getProjects = () => {
 //     return async function(dispatch){
@@ -31,10 +51,10 @@ export const FILTER_SUBCATEGORIES = "FILTER_SUBCATEGORIES"
 // }
 
 export const getProjects = () => {
-    return {
-        type: GET_PROJECTS,
-        payload: projects
-    }
+	return {
+		type: GET_PROJECTS,
+		payload: entrepreneurships,
+	}
 }
 
 // export const getCategories = () => {
@@ -49,10 +69,10 @@ export const getProjects = () => {
 // }
 
 export const getCategories = () => {
-    return {
-        type: GET_CATEGORIES,
-        payload: categories
-    }
+	return {
+		type: GET_CATEGORIES,
+		payload: categories,
+	}
 }
 
 // export const getSubCategories = () => {
@@ -67,23 +87,42 @@ export const getCategories = () => {
 // }
 
 export const getSubCategories = () => {
-    return {
-        type: GET_SUBCATEGORIES,
-        payload: subCategories
-    }
+	return {
+		type: GET_SUBCATEGORIES,
+		payload: subCategories,
+	}
 }
+
+// export const getSubCategories = () => {
+//     return async function(dispatch){
+//         const response = await axios("ACA IRÍA LA URL DE LA API")
+
+//         return dispatch({
+//             type: GET_VOTES,
+//             payload: response.data
+//         })
+//     }
+// }
+
+export const getVotes = () => {
+	return {
+		type: GET_VOTES,
+		payload: votes,
+	}
+}
+
 //---------------------------------------------------------------------------------
 
 export const filterCatgories = (category) => {
-    return {
-        type: FILTER_CATEGORIES,
-        payload: category
-    }
+	return {
+		type: FILTER_CATEGORIES,
+		payload: category,
+	}
 }
 
 export const filterSubCatgories = (category, subCategory) => {
-    return {
-        type: FILTER_SUBCATEGORIES,
-        payload: {category, subCategory}
-    }
+	return {
+		type: FILTER_SUBCATEGORIES,
+		payload: { category, subCategory },
+	}
 }
