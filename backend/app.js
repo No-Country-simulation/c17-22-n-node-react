@@ -7,10 +7,15 @@ const { PrismaClient} = require('@prisma/client')
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
+const loginRouter = require('./routes/auth');
 
 require("dotenv").config()
 
 const app = express();
+
+// configure jwt
+app.set('jwt-secret',process.env.JWT_SECRET);
+
 const prisma = new PrismaClient();
 // view engine setup
 
@@ -22,10 +27,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/login', loginRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  next(createError(404));
+  res.status(404).json({ error: 'Not Found', message: 'El recurso solicitado no se encontró' });
+  next();
 });
 
 // error handler
