@@ -1,12 +1,8 @@
 const jwt = require('jsonwebtoken') 
 
-const tokenSign = async (user) => { 
+const tokenSign = async (payload) => { 
     return jwt.sign(
-        {
-            _id: user._id, //TODO: <---
-            role: user.role
-        }, //TODO: Payload ! Carga útil
-        process.env.JWT_SECRET
+       payload, process.env.JWT_SECRET
     );
 }
 
