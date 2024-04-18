@@ -28,15 +28,15 @@ const loginCtrl = async (req, res) => {
     const checkPassword = await compare(password, user.password)
 
 
-    if (checkPassword) { //TODO Contraseña es correcta!
+    if (checkPassword) {
 
       const payload = {
         userId: user.id,
-        type: "Ejemplo de un tipo de usuario",
+        type: "Ejemplo de un tipo de usuario", // TODO: complete with type user
         username: user.email
 
       }
-      const tokenSession = await tokenSign(payload) //TODO: 2d2d2d2d2d2d2
+      const tokenSession = await tokenSign(payload)
       res.send({
         ...payload,
         tokenSession
