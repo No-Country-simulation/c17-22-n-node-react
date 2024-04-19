@@ -17,6 +17,7 @@ export const GET_SUBCATEGORIES = "GET_SUBCATEGORIES"
 export const GET_VOTES = "GET_VOTES"
 export const FILTER_CATEGORIES = "FILTER_CATEGORIES"
 export const FILTER_SUBCATEGORIES = "FILTER_SUBCATEGORIES"
+export const POST_PROJECT = "POST_PROJECT"
 
 // !! LAS FUCIONES COMENTADAS (DE ACA ABAJO HASTA LA LINEA COMENTADA)
 // SON LAS QUE VAN REALMENTE, LAS OTRAS SON LAS DE PRUEBA
@@ -108,6 +109,27 @@ export const getVotes = () => {
 	return {
 		type: GET_VOTES,
 		payload: votes,
+	}
+}
+
+// export function postProject(newProject) {
+// 	return async function (dispatch) {
+// 		const response = await axios.post(
+// 			"http://localhost:3001/recipes",
+// 			newProject
+// 		)
+
+// 		return dispatch({
+// 			type: POST_PROJECT,
+// 			payload: response.data,
+// 		})
+// 	}
+// }
+
+export function postProject(newProject) {
+	return {
+		type: POST_PROJECT,
+		payload: newProject,
 	}
 }
 

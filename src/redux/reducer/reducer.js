@@ -6,6 +6,7 @@ import {
 	GET_VOTES,
 	FILTER_CATEGORIES,
 	FILTER_SUBCATEGORIES,
+	POST_PROJECT,
 } from "../actions/actions"
 
 const initialState = {
@@ -15,6 +16,7 @@ const initialState = {
 	categories: [],
 	subCategories: [],
 	votes: [],
+	newProject: [],
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -28,8 +30,8 @@ const rootReducer = (state = initialState, action) => {
 		case GET_PROJECTS:
 			return {
 				...state,
-				projectsOnScreen: action.payload,
-				allProjects: action.payload,
+				projectsOnScreen: [action.payload, ...state.newProject],
+				allProjects: [action.payload, ...state.newProject],
 			}
 		case GET_CATEGORIES:
 			return {
@@ -66,6 +68,11 @@ const rootReducer = (state = initialState, action) => {
 			return {
 				...state,
 				projectsOnScreen: filtered,
+			}
+		case POST_PROJECT:
+			return {
+				...state,
+				newProject: [...state.newProject, action.payload],
 			}
 		default:
 			return state
