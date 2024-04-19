@@ -32,13 +32,14 @@ const loginCtrl = async (req, res) => {
 
       const payload = {
         userId: user.id,
-        type: "Ejemplo de un tipo de usuario", // TODO: complete with type user
         username: user.email
 
       }
       const tokenSession = await tokenSign(payload)
       res.send({
-        ...payload,
+        id: user.id,
+        name: user.name,
+        username: user.email,
         tokenSession
       })
       return
