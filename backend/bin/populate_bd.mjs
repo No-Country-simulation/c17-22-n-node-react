@@ -5,7 +5,7 @@ const prisma = new PrismaClient()
 
 async function main() {
 
-
+   console.log("Creating data")
   // CATEGORY
   const category001 = await prisma.category.create({
     data: {
@@ -283,6 +283,7 @@ async function main() {
 main()
   .then(async () => {
     await prisma.$disconnect()
+    console.log("Data inserted withour errors")
   })
   .catch(async (e) => {
     console.error(e)

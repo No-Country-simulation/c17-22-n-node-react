@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "devstart": "nodemon ./bin/www"
   },
   "dependencies": {
     "@prisma/client": "^5.12.1",
@@ -12,14 +13,20 @@
     "debug": "~2.6.9",
     "dotenv": "^16.4.5",
     "express": "~4.16.1",
+    "express-validator": "^7.0.1",
     "http-errors": "~1.6.3",
     "jade": "~1.11.0",
     "jsonwebtoken": "^9.0.2",
-    "morgan": "~1.9.1"
+    "jwt-decode": "^4.0.0",
+    "morgan": "~1.9.1",
+    "nodemon": "^3.1.0"
   },
   "devDependencies": {
     "@mermaid-js/mermaid-cli": "^10.8.0",
+    "express-async-handler": "^1.2.0",
     "pg": "^8.11.5",
-    "prisma-erd-generator": "^1.11.2"
+    "prisma": "^5.12.1",
+    "prisma-erd-generator": "^1.11.2",
+    "pug": "^3.0.2"
   }
 }
