@@ -11,8 +11,8 @@ export default function validation(projectData) {
 	if (projectData.description.length < 50)
 		errors.description = "No puede tener menos de 50 caracteres"
 
-	if (!projectData.categoryID)
-		errors.categoryID = "Debes seleccionar una categoria"
+	if (!projectData.categoryId)
+		errors.categoryId = "Debes seleccionar una categoria"
 
 	if (!projectData.subcategoryId)
 		errors.subcategoryId = "Debes seleccionar una subcategoria"

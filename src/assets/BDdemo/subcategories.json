@@ -1,15 +1,15 @@
 [
 	{
 		"subcategoryId": "1",
-		"subcategory": "Comedia"
+		"subcategory": "Acción"
 	},
 	{
 		"subcategoryId": "2",
-		"subcategory": "Mitologia"
+		"subcategory": "Aventura"
 	},
 	{
 		"subcategoryId": "3",
-		"subcategory": "Terror"
+		"subcategory": "Comedia"
 	},
 	{
 		"subcategoryId": "4",
@@ -17,6 +17,10 @@
 	},
 	{
 		"subcategoryId": "5",
-		"subcategory": "Tecnologia"
+		"subcategory": "Drama"
+	},
+	{
+		"subcategoryId": "6",
+		"subcategory": "Terror"
 	}
 ]

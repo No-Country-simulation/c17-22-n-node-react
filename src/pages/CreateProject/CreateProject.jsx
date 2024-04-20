@@ -1,17 +1,22 @@
 import { useEffect, useState } from "react"
 import validation from "../../assets/validations/createProject"
-import "./createproject.css"
 import { useDispatch, useSelector } from "react-redux"
 import {
 	getCategories,
 	getSubCategories,
 	postProject,
 } from "../../redux/actions/actions"
+import { uploadImg } from "../../utils/uploadImg"
+import cargarImagen from "../../assets/img/cargarImagen.jpg"
+import "./createproject.css"
 
 export const CreateProject = () => {
 	const dispatch = useDispatch()
+
+	/* ESTADOS ------------------------------------------------------- */
 	const categories = useSelector((state) => state.categories)
 	const subCategories = useSelector((state) => state.subCategories)
+	const allProjects = useSelector((state) => state.allProjects)
 
 	const [newProject, setNewProject] = useState({
 		name: "",
@@ -31,19 +36,29 @@ export const CreateProject = () => {
 		entrepreneurId: "",
 	})
 
+	const [projectCreatedSuccessfully, setProjectCreatedSuccessfully] =
+		useState(false)
+	const [projectExists, setProjectExists] = useState(false)
+	const [missingData, setMissingData] = useState(false)
+
+	/* HANDLERS ------------------------------------------------------- */
+
+	const handleImg = async (e) => {
+		const newImage = await uploadImg(e)
+		setNewProject({ ...newProject, imageUrl: newImage })
+		setErrors(validation({ ...newProject, imageUrl: newImage }))
+	}
+
+	const deleteImg = () => {
+		setNewProject({ ...newProject, imageUrl: "" })
+	}
+
 	const handleChange = (e) => {
 		const name = e.target.name
 		const value = e.target.value
 		setNewProject({ ...newProject, [name]: value })
 		setErrors(validation({ ...newProject, [name]: value }))
 	}
-
-	const [projectCreatedSuccessfully, setProjectCreatedSuccessfully] =
-		useState(false)
-	const [projectExists, setProjectExists] = useState(false)
-	const [missingData, setMissingData] = useState(false)
-
-	const allProjects = useSelector((state) => state.allProjects)
 
 	const handleSubmit = async (e) => {
 		const searchProject = allProjects.some(
@@ -90,40 +105,38 @@ export const CreateProject = () => {
 
 	if (!projectCreatedSuccessfully) {
 		return (
-			<div className="bg-body-tertiary d-flex flex-column align-items-center justify-content-center gap-4">
-				<h3>Empeza tu proyecto</h3>
-				<div>
-					<form
-						className="needs-validation bg-body-tertiary mx-3 2"
-						noValidate
-						onSubmit={handleSubmit}
-					>
-						<div className="form-floating col-md-12 mb-4">
+			<div className="container d-flex justify-content-center align-items-center my-5">
+				<div className="bg-body-tertiary p-5 rounded">
+					<h3 className="mb-4">Empezá tu proyecto</h3>
+					<form className="needs-validation" noValidate onSubmit={handleSubmit}>
+						<div className="form-floating mb-4">
 							<input
-								type="email"
-								className="form-control"
+								type="text"
+								className="form-control inputCP"
 								id="floatingInput"
-								placeholder=""
+								placeholder="Titulo"
 								name="name"
 								value={newProject.name}
 								onChange={handleChange}
 							/>
 							<label htmlFor="floatingInput">Titulo</label>
-							<p>{errors.name}</p>
+							<p className="text-danger">{errors.name}</p>
 						</div>
-						<div className="form-floating col-md-12 mb-4">
+
+						<div className="form-floating mb-4">
 							<textarea
 								className="form-control"
-								placeholder=""
+								placeholder="Descripción"
 								id="floatingTextarea"
 								name="description"
 								value={newProject.description}
 								onChange={handleChange}
 							></textarea>
 							<label htmlFor="floatingTextarea">Descripción</label>
-							<p>{errors.description}</p>
+							<p className="text-danger">{errors.description}</p>
 						</div>
-						<div className="form-floating col-md-12 mb-4">
+
+						<div className="form-floating mb-4">
 							<select
 								className="form-select"
 								id="floatingSelect"
@@ -141,9 +154,10 @@ export const CreateProject = () => {
 								))}
 							</select>
 							<label htmlFor="floatingSelect">Categoria</label>
-							<p>{errors.categoryId}</p>
+							<p className="text-danger">{errors.categoryId}</p>
 						</div>
-						<div className="form-floating col-md-12 mb-4">
+
+						<div className="form-floating mb-4">
 							<select
 								className="form-select"
 								id="floatingSelect"
@@ -164,9 +178,10 @@ export const CreateProject = () => {
 								))}
 							</select>
 							<label htmlFor="floatingSelect">Subcategoria</label>
-							<p>{errors.subcategoryId}</p>
+							<p className="text-danger">{errors.subcategoryId}</p>
 						</div>
-						<div className="col-md-12 mb-4">
+
+						<div className="mb-4">
 							<label htmlFor="formFile" className="form-label">
 								Imagen
 							</label>
@@ -175,18 +190,46 @@ export const CreateProject = () => {
 								type="file"
 								id="formFile"
 								name="image"
-								value={newProject.image}
-								onChange={handleChange}
+								accept="image/*"
+								onChange={handleImg}
 							/>
-							<p>{errors.subcategoryId}</p>
+							<div className="card mt-3" style={{ position: "relative" }}>
+								<div className="image-container">
+									{newProject.imageUrl ? (
+										<img
+											src={newProject.imageUrl}
+											className="card-img-top imgCP"
+											alt="Imagen seleccionada"
+										/>
+									) : (
+										<img
+											src={cargarImagen}
+											className="card-img-top imgCP"
+											alt="Imagen seleccionada"
+										/>
+									)}
+									{newProject.imageUrl && (
+										<button
+											onClick={deleteImg}
+											className="btn btn-danger deleteImgCP"
+										>
+											Eliminar Imagen
+										</button>
+									)}
+								</div>
+							</div>
+							<p className="text-danger">{errors.imageUrl}</p>
 						</div>
-						<div>
-							<button className="btn col-md-12 mb-4 btn-create" type="submit">
-								Crear proyecto
-							</button>
-							{missingData && <p>Faltan datos por completar</p>}
-							{projectExists && <p>La receta ya existe</p>}
-						</div>
+
+						<button className="btn btn-create" type="submit">
+							Crear proyecto
+						</button>
+						{missingData && (
+							<p className="text-danger">Faltan datos por completar</p>
+						)}
+						{projectExists && (
+							<p className="text-danger">El proyecto ya existe</p>
+						)}
 					</form>
 				</div>
 			</div>
