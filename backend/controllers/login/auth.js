@@ -1,10 +1,12 @@
 const { compare } = require('../../helpers/handleBcrypt')
 const { tokenSign } = require('../../helpers/generateTokens')
 const { PrismaClient } = require('@prisma/client')
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
 
 const prismaClient = new PrismaClient();
 
-//TODO: Login!
+
 const loginCtrl = async (req, res) => {
   try {
     const { username, password } = req.body
@@ -61,20 +63,21 @@ const loginCtrl = async (req, res) => {
 const registerCtrl = async (req, res) => {
   try {
     const { username, email, city, country, password, investor, url, imageUrl } = req.body
-
     // check if user is already registered
     const user = await prismaClient.user.findUnique({
       where: {
         email: username
       }
     })
-
+    
     if (user) {
       res.status(409)
       res.send({ error: 'User already exist' })
       return
     }
-
+    
+    
+    const passwordEncrypted = await bcrypt.hash(password, saltRounds);
     /// username deberia de ser name , en el excel
     const registerUser = await prismaClient.user.create({
       data: {
@@ -82,7 +85,7 @@ const registerCtrl = async (req, res) => {
         email: email,
         city: city,
         country: country,
-        password: password,
+        password: passwordEncrypted,
       }
 
     })
@@ -114,7 +117,7 @@ const registerCtrl = async (req, res) => {
 
   } catch (e) {
     res.status(404)
-    res.send({ error: 'Invalidad data' })
+    res.send({ error: 'Invalidad data' ,e})
   }
 }
 
