@@ -263,9 +263,144 @@ exports.addVote = [
   })
 ]
 
-exports.updateEntrepreneurship = []
+exports.updateEntrepreneurship = [
+ body("name")
+  .optional()
+  .trim()
+  .isLength({min:1, max:120})
+  .withMessage("name should be not empty"),
+  body("description")
+  .optional()
+  .trim()
+  .isLength({max:500})
+  .withMessage("Description to long"),
+  body("categoryId")
+  .optional()
+  .toInt()
+  .isInt({min:1})
+  .withMessage("Category should be provided"),
+  body("subcategoryId")
+  .optional()
+  .toInt()
+  .isInt({min:1})
+  .withMessage("SubCategory should be provided"),
+  body("imageUrl")
+  .optional()
+  .trim()
+  .isURL()
+  .withMessage("Ivalid URL provided"),
+  asyncHandler( async (req,res,next) => {
+    const result = validationResult(req);
+    if (!result.isEmpty()) {
+      return res.status(400).json({ msg: 'Invalid data' + result.array()[0]});
+    }
 
-exports.updateVote = []
+    const userId = req.admin ? req.body.entrepeneurId : req.userId;
+    const user = await prisma.entrepeneur.findFirst({
+      where:{
+        id:parseInt(userId)
+      }
+    })
+    if(!user){
+      return res.status(400).json({msg:`The user ${userId} dosent exits`})
+    }
+
+    const entrepreneurship = await prisma.entrepreneurship.findFirst({
+      where:{id:parseInt(req.params.entrepreneurshipId)}
+    })
+
+    if(!entrepreneurship){
+      return res.status(400).json({msg:`The entrepreneurship ${entrepreneurship} dosent exits`})
+    }
+
+    const subcategory = await prisma.subcategory.findFirst({
+      where:{
+        AND:[
+          {id:parseInt(req.body.subcategoryId)},
+          {categoryId: parseInt(req.body.categoryId)}
+        ]
+      }
+    })
+
+    if(!subcategory){
+      return res.status(400).json({msg:`The subcategory ${req.body.subcategoryId} in the category ${req.body.categoryId} could'y be found`});
+    }
+
+    const newentrepreneurshipData = {
+      name: req.body.name ?? entrepreneurship.name,
+      description: req.body.description ?? entrepreneurship.description,
+      imageUrl: req.body.imageUrl ?? entrepreneurship.imageUrl,
+      subcategoryId: parseInt(req.body.subcategoryId) ?? entrepreneurship.subcategoryId,
+    }
+
+    await prisma.entrepreneurship.update({
+      where:{
+        id: parseInt(req.params.entrepeneurId)
+      },
+      data:newentrepreneurshipData
+    })
+  })
+]
+
+exports.updateVote = [
+  body("isPositive")
+  .optional()  
+  .isBoolean()
+  .withMessage("Invalid value for vote"),
+  body("userId")
+  .optional()
+  .trim()
+  .toInt({min:1})
+  .isInt()
+  .withMessage("Invalid userId provided"),
+  asyncHandler( async ( req,res, next) => {
+     const result = validationResult(req);
+    if (!result.isEmpty()) {
+      return res.status(400).json({ msg: 'Invalid data' + result.array()[0]});
+    }
+
+    const userId = req.admin ? req.body.entrepeneurId : req.userId;
+    const user = await prisma.investor.findFirst({
+      where:{
+        id:parseInt(userId)
+      }
+    })
+    if(!user){
+      return res.status(400).json({msg:`The user ${userId} dosent exits`})
+    }
+
+    const entrepreneurship = await prisma.entrepreneurship.findFirst({
+      where:{
+        id:parseInt(req.params.entrepreneurshipId)
+      }
+    })
+    if(!entrepreneurship){
+      return res.status(400).json({msg:`The Entrepreneurship ${req.params.entrepreneurshipId} dosent exits`})
+    }
+
+    const vote = await prisma.vote.findFirst({
+      where:{
+        userId:parseInt(userId),
+        entrepreneurshipId:parseInt(req.params.entrepreneurshipId)
+      }
+    })
+    if(!vote){
+      return res.status(404).json({msg:`The Vote ${req.params.voteId} dosen't exists`})
+    }
+
+    await prisma.vote.update({
+      where:{
+        AND:[
+          {userId:parseInt(userId)},
+          {entrepreneurshipId: parseInt(req.params.entrepreneurshipId)}
+        ]
+      }
+    })
+
+    return res.status(200).json({msg:`the Vote ${voteId} was updated correctly`});
+
+  })
+]
 
 exports.deleteEntrepreneurship = asyncHandler( async (req,res,next) => {
     
@@ -298,7 +433,7 @@ exports.deleteAllVotes = asyncHandler(async (req,res,next) => {
     return res.status(404).json({msg:`Entrepreneurship ${entrepreneurshipId} was not found`});
   }
   
-  const deletedVotes = await prisma.vote.deleteMany({
+  await prisma.vote.deleteMany({
     where:{
       entrepreneurshipId:parseInt(req.params.entrepreneurshipId)
     }
@@ -310,27 +445,27 @@ exports.deleteAllVotes = asyncHandler(async (req,res,next) => {
 
 exports.deleteVote = asyncHandler(async (req,res,next) => {
 
-  if (req.userId !== req.params.voteId){
+  if (!admin && req.userId !== req.params.voteId){
     return res.status(403).json({msg:`You cannot delete a vote that is not your's`})
   }
 
-    const investor = prisma.investor.findFirst({where:{id: parseInt(req.params.voteId)}})
-    if(!investor) {
-      return res.status(404).json({msg:`The user ${req.params.voteId} was not found`});
-    }
-    const entrepreneurship = prisma.entrepreneurship.findFirst({where:{id: parseInt(req.params.entrepreneurshipId)}})
-    if(!entrepreneurship){
-      return res.status(404).json({msg:`The Entrepreneurship ${req.params.entrepreneurshipId} was not found`});
-    }
+  const investor = prisma.investor.findFirst({where:{id: parseInt(req.params.voteId)}})
+  if(!investor) {
+    return res.status(404).json({msg:`The user ${req.params.voteId} was not found`});
+  }
+  const entrepreneurship = prisma.entrepreneurship.findFirst({where:{id: parseInt(req.params.entrepreneurshipId)}})
+  if(!entrepreneurship){
+    return res.status(404).json({msg:`The Entrepreneurship ${req.params.entrepreneurshipId} was not found`});
+  }
 
-    await prisma.vote.delete({
-      where:{
-        AND:[
-          {entrepreneurshipId:parseInt(req.params.entrepreneurshipId)},
-          {investorId: parseInt(req.params.voteId)}          
-        ]
-      }
-    })
-    return res.status(200).json({msg:"vote deleted correctly"});
+  await prisma.vote.delete({
+    where:{
+      AND:[
+        {entrepreneurshipId:parseInt(req.params.entrepreneurshipId)},
+        {investorId: parseInt(req.params.voteId)}          
+      ]
+    }
+  })
+  return res.status(200).json({msg:"vote deleted correctly"});
 })
 
