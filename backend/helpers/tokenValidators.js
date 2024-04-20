@@ -33,6 +33,8 @@ const isValidEntrepreneur = async (req,res, next) => {
     where:{user:decodedToken.userId}
   })
   if(result){
+    req.mensual_tickets = result.mensual_tickets
+    req.userId = decodedToken.userId;
     next()
   } else{
     return res.status(403).json({msg:"Precondition Failed"});
@@ -45,6 +47,8 @@ const isValidInvestor = async (req, res, next) => {
     where:{user:decodedToken.userId}
   })
   if(result){
+    req.mensual_votes = result.mensual_votes
+    req.userId = decodedToken.userId;
     next()
   } else{
     return res.status(403).json({msg:"Precondition Failed"});
@@ -66,6 +70,7 @@ const isAdmin = async (req, res, next) => {
   ])
 
   if(responses[0] !== null && responses[1] === null && responses[2] === null){
+    req.admin = true
     next()
   } else{
     return res.status(403).json({msg:"Forbibben"});

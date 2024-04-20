@@ -15,8 +15,8 @@ router.get('/:entrepreneurshipId', controller.getOne);
 router.get('/:entrepreneurshipId/votes', controller.getVotes);
 router.get('/:entrepreneurshipId/votes/:voteId', controller.getVote);
 
-router.post('/', authentication.parseToken, authentication.isValidToken, authentication.isValidEntrepreneur,dummy);
-router.post('/vote',authentication.parseToken,  authentication.isValidToken, authentication.isValidInvestor, dummy);
+router.post('/', authentication.parseToken, authentication.isValidToken, authentication.isValidEntrepreneur, controller.addEntrepreneurship);
+router.post('/vote',authentication.parseToken, authentication.isValidToken, authentication.isValidInvestor, dummy);
 
 router.put('/:entrepreneurshipId',authentication.parseToken,  authentication.isValidToken, authentication.isValidEntrepreneur,dummy);
 router.put('/:entrepreneurshipId/vote/:voteId', authentication.isValidToken, authentication.isValidInvestor,dummy);
