@@ -94,7 +94,7 @@ const registerCtrl = async (req, res) => {
       const investor = await prismaClient.investor.create({
         data: {
           id: registerUser.id,
-          mensual_votes: 0
+          mensual_votes: 10
 
         }
       })
@@ -102,7 +102,7 @@ const registerCtrl = async (req, res) => {
       const entrepeneur = await prismaClient.entrepeneur.create({
         data: {
           id: registerUser.id,
-          mensual_tickets: 0
+          mensual_tickets: 10
 
         }
       })
