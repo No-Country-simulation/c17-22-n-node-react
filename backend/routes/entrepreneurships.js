@@ -10,10 +10,10 @@ const dummy = (req,res,next) => {
 }
 
 /* GET users listing. */
-router.get('/', dummy);
-router.get('/:entrepreneurshipId', dummy);
-router.get('/:entrepreneurshipId/vote', dummy);
-router.get('/:entrepreneurshipId/vote/:voteId', dummy);
+router.get('/', controller.getAll);
+router.get('/:entrepreneurshipId', controller.getOne);
+router.get('/:entrepreneurshipId/votes', controller.getVotes);
+router.get('/:entrepreneurshipId/votes/:voteId', controller.getVote);
 
 router.post('/', authentication.parseToken, authentication.isValidToken, authentication.isValidEntrepreneur,dummy);
 router.post('/vote',authentication.parseToken,  authentication.isValidToken, authentication.isValidInvestor, dummy);
