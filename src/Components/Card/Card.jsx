@@ -39,8 +39,6 @@ export const Card = ({ project }) => {
 		(subCategory) => subCategory.subcategoryId === subcategoryId
 	)
 
-	console.log(categoryId, subcategory)
-
 	//MANEJO DE VOTOS POR CARD--------------------------------------------------------
 
 	const [sun, setSun] = useState(sol)
