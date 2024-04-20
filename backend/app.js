@@ -7,11 +7,12 @@ const { PrismaClient} = require('@prisma/client')
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
+const entrepreneurshipsRouter = require('./routes/entrepreneurships');
 
 require("dotenv").config()
 
 const app = express();
-const prisma = new PrismaClient();
+const prisma = new PrismaClient(); // no es necesario
 // view engine setup
 
 app.use(logger('dev'));
@@ -22,6 +23,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/entrepreneurships/', entrepreneurshipsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
