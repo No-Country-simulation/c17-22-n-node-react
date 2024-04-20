@@ -2,12 +2,7 @@ const express = require('express');
 const router = express.Router();
 const controller = require("../controllers/entrepreneurship");
 const authentication = require("../helpers/tokenValidators");
-// const authentication = require("")
-
-
-const dummy = (req,res,next) => {
-  res.send('respond with a resource');
-}
+// const authentication = require("")}
 
 /* GET users listing. */
 router.get('/', controller.getAll);
@@ -16,13 +11,13 @@ router.get('/:entrepreneurshipId/votes', controller.getVotes);
 router.get('/:entrepreneurshipId/votes/:voteId', controller.getVote);
 
 router.post('/', authentication.parseToken, authentication.isValidToken, authentication.isValidEntrepreneur, controller.addEntrepreneurship);
-router.post('/vote',authentication.parseToken, authentication.isValidToken, authentication.isValidInvestor, dummy);
+router.post('/vote',authentication.parseToken, authentication.isValidToken, authentication.isValidInvestor, controller.addVote);
 
-router.put('/:entrepreneurshipId',authentication.parseToken,  authentication.isValidToken, authentication.isValidEntrepreneur,dummy);
-router.put('/:entrepreneurshipId/vote/:voteId', authentication.isValidToken, authentication.isValidInvestor,dummy);
+router.put('/:entrepreneurshipId',authentication.parseToken,  authentication.isValidToken, authentication.isValidEntrepreneur,controller.updateEntrepreneurship);
+router.put('/:entrepreneurshipId/vote/:voteId', authentication.isValidToken, authentication.isValidInvestor,controller.updateVote);
 
-router.delete('/:entrepreneurshipId',authentication.parseToken, authentication.isValidToken, authentication.isValidEntrepreneur, dummy)
-router.delete('/:entrepreneurshipId/vote',authentication.parseToken,  authentication.isValidToken, authentication.isAdmin, dummy)
-router.delete('/:entrepreneurshipId/vote/:voteId',authentication.parseToken, authentication.isValidToken, authentication.isValidInvestor,dummy)
+router.delete('/:entrepreneurshipId',authentication.parseToken, authentication.isValidToken, authentication.isValidEntrepreneur, controller.deleteEntrepreneurship)
+router.delete('/:entrepreneurshipId/vote',authentication.parseToken,  authentication.isValidToken, authentication.isAdmin, controller.deleteAllVotes)
+router.delete('/:entrepreneurshipId/vote/:voteId',authentication.parseToken, authentication.isValidToken, authentication.isValidInvestor,controller.deleteVote)
 
 module.exports = router;

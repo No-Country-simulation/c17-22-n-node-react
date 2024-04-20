@@ -4,7 +4,6 @@ const { body, validationResult } = require("express-validator");
 
 const prisma = new PrismaClient();
 
-//TODO
 const isFromLastMonth = (entrepreneurshipDate) => {
   console.log({
     entrepreneurshipDate,
@@ -265,4 +264,73 @@ exports.addVote = [
 ]
 
 exports.updateEntrepreneurship = []
+
+exports.updateVote = []
+
+exports.deleteEntrepreneurship = asyncHandler( async (req,res,next) => {
+    
+    const entrepreneurship = await prisma.entrepreneurship.findFirst({
+      where:{
+        id:parseInt(req.params.entrepreneurshipId)
+      }
+    })
+    
+    if(!req.admin && entrepreneurship.entrepeneurId !== parseInt(req.userId)){  
+      return res.status(403).json({msg:"You cannot delete a entrepreneurship that is not your's "})
+    }
+
+    await prisma.entrepreneurship.delete({
+      where:{
+        id:entrepreneurship.id
+      }
+    })
+    return res.status(200).json({msg:`The entrepreneurship ${entrepreneurship.id} was deleted correctly`})
+})
+
+exports.deleteAllVotes = asyncHandler(async (req,res,next) => {
+  const entrepreneurship = await prisma.entrepreneurship.findFirst({
+    where:{
+      id:parseInt(req.params.entrepreneurshipId)
+    }
+  });
+
+  if(!entrepreneurship) {
+    return res.status(404).json({msg:`Entrepreneurship ${entrepreneurshipId} was not found`});
+  }
+  
+  const deletedVotes = await prisma.vote.deleteMany({
+    where:{
+      entrepreneurshipId:parseInt(req.params.entrepreneurshipId)
+    }
+  })
+
+  return res.status(200).json({msg:`All votes deleted correctly`})
+
+})
+
+exports.deleteVote = asyncHandler(async (req,res,next) => {
+
+  if (req.userId !== req.params.voteId){
+    return res.status(403).json({msg:`You cannot delete a vote that is not your's`})
+  }
+
+    const investor = prisma.investor.findFirst({where:{id: parseInt(req.params.voteId)}})
+    if(!investor) {
+      return res.status(404).json({msg:`The user ${req.params.voteId} was not found`});
+    }
+    const entrepreneurship = prisma.entrepreneurship.findFirst({where:{id: parseInt(req.params.entrepreneurshipId)}})
+    if(!entrepreneurship){
+      return res.status(404).json({msg:`The Entrepreneurship ${req.params.entrepreneurshipId} was not found`});
+    }
+
+    await prisma.vote.delete({
+      where:{
+        AND:[
+          {entrepreneurshipId:parseInt(req.params.entrepreneurshipId)},
+          {investorId: parseInt(req.params.voteId)}          
+        ]
+      }
+    })
+    return res.status(200).json({msg:"vote deleted correctly"});
+})
 
