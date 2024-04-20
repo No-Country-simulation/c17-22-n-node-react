@@ -7,7 +7,6 @@ import { projects } from "../../assets/BDdemo/projects"
 import "./navBar.css"
 
 
-
 const NavBar = () =>{
     const [search, setSearch] = useState("")
 
@@ -39,6 +38,7 @@ const NavBar = () =>{
             return title;
         }
     };
+
 
 
     return (

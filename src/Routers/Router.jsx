@@ -12,7 +12,7 @@ const Router = () => {
     return (
         <BrowserRouter>
             <Navbar />
-                <Routes>                    
+                <Routes>
                     <Route exact path="/" element={<Home/>} />
                     
                     <Route exact path='/project/:projectId' element={<ViewProject/>} />

@@ -11,7 +11,8 @@
 
 body{
   background-color: rgb(235, 235, 235);
-  color: #3F3D3D
+  color: #3F3D3D;
+  padding-top: 100px;
 }
 
 .efectoBoton{
@@ -35,4 +36,23 @@ body{
 .efectoBoton:active{
   scale: 0.9;
   transition: all .5s
+}
+
+
+
+
+
+
+@media screen and (max-width: 1146px) {
+  body{
+    padding-top: 99px;
+  }  
+}
+
+
+
+@media screen and (max-width: 991px) {
+  body{
+    padding-top: 90px;
+  }  
 }
