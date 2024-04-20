@@ -30,8 +30,10 @@ const rootReducer = (state = initialState, action) => {
 		case GET_PROJECTS:
 			return {
 				...state,
-				projectsOnScreen: [action.payload, ...state.newProject],
-				allProjects: [action.payload, ...state.newProject],
+				projectsOnScreen: action.payload,
+				...state.newProject,
+				allProjects: action.payload,
+				...state.newProject,
 			}
 		case GET_CATEGORIES:
 			return {
