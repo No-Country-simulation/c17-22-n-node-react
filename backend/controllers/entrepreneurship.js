@@ -138,12 +138,17 @@ exports.addEntrepreneurship = [
       if(isFromLastMonth(lastEntrepreneurshipCreated.creation_date)){
         // add new tickets
         await prisma.entrepeneur.update({
-          where:{id:parseInt(userId)},
+          where:{userId:parseInt(userId)},
           data:{mensual_tickets: 9}
         });
       } else {
         return res.status(403).json({msg:"Mountly tickets used"})
       }
+    } else{
+      await prisma.entrepeneur.update({
+        where:{userId:parseInt(userId)},
+        data:{mensual_tickets:user.mensual_tickets - 1}
+      })
     }
     // create new entrepreneurship
     const entrepreneurshipData = {
@@ -237,12 +242,17 @@ exports.addVote = [
       if(isFromLastMonth(lastvotePosted.created)){
           // add new tickets
         await prisma.investor.update({
-          where:{id:parseInt(userId)},
+          where:{userId:parseInt(userId)},
           data:{mensual_votes: 9}
         });
       } else {
         return res.status(403).json({msg:"Mountly votes used"})
       }
+    } else{
+      await prisma.investor.update({
+        where:{userId:parseInt(userId)},
+        data:{mensual_votes:user.mensual_votes - 1}
+      })
     }
 
     const voteData = {
