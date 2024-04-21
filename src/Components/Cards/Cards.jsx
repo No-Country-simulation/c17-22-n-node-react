@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux"
 import { Card } from "../Card/Card"
-import { getProjects } from "../../redux/actions/actions"
 import "./cards.css"
+import { getProjects } from "../../redux/actions/projectActions"
 
 export const Cards = ({ projectsOnScreen, users, votes }) => {
 	const dispatch = useDispatch()

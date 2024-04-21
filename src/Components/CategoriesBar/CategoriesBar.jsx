@@ -1,8 +1,6 @@
 import { useDispatch } from "react-redux"
-import {
-	filterCatgories,
-	filterSubCatgories,
-} from "../../redux/actions/actions"
+import { filterCategories } from "../../redux/actions/categoriesActions"
+import { filterSubcategories } from "../../redux/actions/subcategoriesActions"
 import "./Categories.css"
 
 // eslint-disable-next-line react/prop-types
@@ -10,11 +8,11 @@ export const CategoriesBar = ({ categories, subCategories }) => {
 	const dispatch = useDispatch()
 
 	const handleFilterCategory = (e) => {
-		dispatch(filterCatgories(e.target.value))
+		dispatch(filterCategories(e.target.value))
 	}
 
 	const handleFilterSubCategory = (category, subCategory) => {
-		dispatch(filterSubCatgories({ category, subCategory }))
+		dispatch(filterSubcategories({ category, subCategory }))
 	}
 
 	return (
