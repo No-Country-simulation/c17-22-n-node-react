@@ -354,7 +354,7 @@ exports.updateVote = [
   .isInt()
   .withMessage("Invalid userId provided"),
   asyncHandler( async ( req,res, next) => {
-     const result = validationResult(req);
+    const result = validationResult(req);
     if (!result.isEmpty()) {
       return res.status(400).json({ msg: 'Invalid data' + result.array()[0]});
     }
@@ -402,6 +402,7 @@ exports.updateVote = [
   })
 ]
 
+//No me acuerdo si se borra en cascada
 exports.deleteEntrepreneurship = asyncHandler( async (req,res,next) => {
     
     const entrepreneurship = await prisma.entrepreneurship.findFirst({

@@ -97,11 +97,37 @@ const isAdmin = async (req, res, next) => {
   }
 }
 
+const getUserFromToken = async(req,res,next) => {
+  const decodedToken = jwtDecode(req.token);
+  const responses = await Promise.all([
+    prisma.user.findFirst({
+      where:{id:parseInt(decodedToken.userId)}, select:{id},
+    }),
+    prisma.investor.findFirst({
+      where:{id: parseInt(decodedToken.userId)}, select:{id},
+    }),
+    prisma.entrepeneur.findFirst({
+      where:{id: parseInt(decodedToken.userId)}, select:{id},
+    })
+  ])
+
+  req.userId = decodedToken.userId
+  if(responses[1]){
+    req.userType = "Investor"
+  } else if( responses[2]){
+    req.userType = "Entrepreneur"
+  } else{
+    req.userType = "Admin"
+  }
+  next()
+}
+
 module.exports = {
   parseToken,
   isValidToken,
   isValidEntrepreneur,
   isValidInvestor,
   isAdmin,
+  getUserFromToken,
 }
 
