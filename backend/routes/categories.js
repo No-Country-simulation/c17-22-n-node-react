@@ -8,3 +8,5 @@ router.get("/:categoryId", controller.getCategory)
 router.post("/",authentication.parseToken, authentication.isValidToken, authentication.isValidEntrepreneur, controller.addCategory);
 router.put("/:categoryId", authentication.parseToken, authentication.isValidToken, authentication.isValidEntrepreneur, controller.updateCategory);
 router.delete("/:categoryId",authentication.parseToken, authentication.isValidToken, authentication.isValidEntrepreneur, controller.deleteCategory);
+
+module.exports = router
