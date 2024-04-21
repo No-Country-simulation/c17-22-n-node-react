@@ -17,8 +17,6 @@ model User {
   id          Int          @id @default(autoincrement())
   name        String
   email       String       @unique
-  city        String
-  country     String
   // cityId      Int          
   password    String
   image       String?

@@ -62,7 +62,7 @@ const loginCtrl = async (req, res) => {
 
 const registerCtrl = async (req, res) => {
   try {
-    const { username, email, city, country, password, investor, url, imageUrl } = req.body
+    const { username, email, password, investor, url, imageUrl } = req.body
     // check if user is already registered
     const user = await prismaClient.user.findUnique({
       where: {
@@ -83,10 +83,8 @@ const registerCtrl = async (req, res) => {
       data: {
         name: username,
         email: email,
-        city: city,
-        country: country,
         password: passwordEncrypted,
-        image: imageUrl
+        image: imageUrl,
       }
 
     })
