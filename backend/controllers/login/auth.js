@@ -86,6 +86,7 @@ const registerCtrl = async (req, res) => {
         city: city,
         country: country,
         password: passwordEncrypted,
+        image: imageUrl
       }
 
     })
