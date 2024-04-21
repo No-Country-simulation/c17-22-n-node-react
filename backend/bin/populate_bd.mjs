@@ -5,7 +5,7 @@ const prisma = new PrismaClient()
 
 async function main() {
 
-   console.log("Creating data")
+  console.log("Creating data")
   // CATEGORY
   const category001 = await prisma.category.create({
     data: {
@@ -95,8 +95,6 @@ async function main() {
       name: "Luis García",
       email: "luis.garcia@example.com",
       password: "qwerty",
-      city: "Lima",
-      country: "Peru",
     }
   });
 
@@ -105,8 +103,6 @@ async function main() {
       name: "Ana López",
       email: "ana.lopez@example.com",
       password: "qwerty",
-      city: "Arequipa",
-      country: "Peru",
     }
   });
 
@@ -115,8 +111,6 @@ async function main() {
       name: "Diego Pérez",
       email: "diego.perez@example.com",
       password: "qwerty",
-      city: "Rosario",
-      country: "Argentina",
     }
   });
 
@@ -125,8 +119,6 @@ async function main() {
       name: "María Rodríguez",
       email: "maria.rodriguez@example.com",
       password: "qwerty",
-      city: "Cordoba",
-      country: "Argentina",
     }
   });
 
@@ -135,8 +127,6 @@ async function main() {
       name: "Carlos Martínez",
       email: "carlos.martinez@example.com",
       password: "qwerty",
-      city: "Buenos Aires",
-      country: "Argentina",
     }
   });
 
@@ -145,8 +135,6 @@ async function main() {
       name: "Sofía Gómez",
       email: "sofia.gomez@example.com",
       password: "qwerty",
-      city: "Salta",
-      country: "Argentina",
     }
   });
 
@@ -155,8 +143,6 @@ async function main() {
       name: "Javier Sánchez",
       email: "javier.sanchez@example.com",
       password: "qwerty",
-      city: "Santa Fe",
-      country: "Argentina",
     }
   });
 
@@ -165,8 +151,6 @@ async function main() {
       name: "Laura Flores",
       email: "laura.flores@example.com",
       password: "qwerty",
-      city: "Buenos Aires",
-      country: "Argentina",
     }
   });
 
@@ -210,6 +194,7 @@ async function main() {
   const entrepreneurship001 = await prisma.entrepreneurship.create({
     data: {
       description: "Description for entrepeneurship 001",
+      name: "Name 01",
       // creation_date: now(),
       meta: ["meta 001", "meta 002"],
       entrepeneurId: entrepeneur001.id,
@@ -220,6 +205,7 @@ async function main() {
   const entrepreneurship002 = await prisma.entrepreneurship.create({
     data: {
       description: "Description for entrepeneurship 002",
+      name: "Name 02",
       // creation_date: now(),
       meta: ["meta 001", "meta 002"],
       entrepeneurId: entrepeneur002.id,

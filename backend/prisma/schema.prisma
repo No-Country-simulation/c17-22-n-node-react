@@ -17,10 +17,9 @@ model User {
   id          Int          @id @default(autoincrement())
   name        String
   email       String       @unique
-  city        String
-  country     String
   // cityId      Int          
   password    String
+  image       String?
   entrepeneur Entrepeneur?
   investor    Investor?
   // Review      Review[]
@@ -56,7 +55,9 @@ model Investor {
 
 model Entrepreneurship {
   id            Int         @id @default(autoincrement())
+  name          String        
   description   String?
+  image         String?      
   creation_date DateTime    @default(now())
   meta          String[]
   entrepeneur   Entrepeneur @relation(fields: [entrepeneurId], references: [id])
