@@ -1,10 +1,8 @@
 import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom"
-import {
-	filterCatgories,
-	filterSubCatgories,
-} from "../../redux/actions/actions"
+import { filterCategories } from "../../redux/actions/categoriesActions"
+import { filterSubcategories } from "../../redux/actions/subcategoriesActions"
 import "./card.css"
 
 import sol from "../../assets/img/sol.png"
@@ -101,12 +99,12 @@ export const Card = ({ project }) => {
 
 	const handleFilterCategory = (category) => {
 		console.log(category)
-		dispatch(filterCatgories(category))
+		dispatch(filterCategories(category))
 	}
 
 	const handleFilterSubCategory = (category, subCategory) => {
 		console.log(category, subCategory)
-		dispatch(filterSubCatgories({ category, subCategory }))
+		dispatch(filterSubcategories({ category, subCategory }))
 	}
 
 	//--------------------------------------------------------------------------------

@@ -1,12 +1,10 @@
 import { useDispatch, useSelector } from "react-redux"
 import { useEffect } from "react"
-import {
-	getCategories,
-	getProjects,
-	getSubCategories,
-	getUsers,
-	getVotes,
-} from "../../redux/actions/actions"
+import { getProjects } from "../../redux/actions/projectActions"
+import { getCategories } from "../../redux/actions/categoriesActions"
+import { getSubcategories } from "../../redux/actions/subcategoriesActions"
+import { getUsers } from "../../redux/actions/userActions"
+import { getVotes } from "../../redux/actions/votesActions"
 import { CategoriesBar } from "../../Components/CategoriesBar/CategoriesBar"
 import { Cards } from "../../Components/Cards/Cards"
 import "./home.css"
@@ -23,7 +21,7 @@ const Home = () => {
 	useEffect(() => {
 		dispatch(getProjects())
 		dispatch(getCategories())
-		dispatch(getSubCategories())
+		dispatch(getSubcategories())
 		dispatch(getUsers())
 		dispatch(getVotes())
 	}, [dispatch])
