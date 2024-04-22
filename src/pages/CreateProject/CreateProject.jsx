@@ -1,14 +1,13 @@
 import { useEffect, useState } from "react"
 import validation from "../../assets/validations/createProject"
 import { useDispatch, useSelector } from "react-redux"
-import {
-	getCategories,
-	getSubCategories,
-	postProject,
-} from "../../redux/actions/actions"
+
 import { uploadImg } from "../../utils/uploadImg"
 import cargarImagen from "../../assets/img/cargarImagen.jpg"
 import "./createproject.css"
+import { addProject } from "../../redux/actions/projectActions"
+import { getCategories } from "../../redux/actions/categoriesActions"
+import { getSubcategories } from "../../redux/actions/subcategoriesActions"
 
 export const CreateProject = () => {
 	const dispatch = useDispatch()
@@ -93,14 +92,14 @@ export const CreateProject = () => {
 
 		if (!searchProject && completeData) {
 			e.preventDefault()
-			dispatch(postProject(newProject))
+			dispatch(addProject(newProject))
 			setProjectCreatedSuccessfully(true)
 		}
 	}
 
 	useEffect(() => {
 		dispatch(getCategories())
-		dispatch(getSubCategories())
+		dispatch(getSubcategories())
 	}, [dispatch])
 
 	if (!projectCreatedSuccessfully) {
