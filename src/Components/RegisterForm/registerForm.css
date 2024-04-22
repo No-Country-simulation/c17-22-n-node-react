@@ -1,7 +1,3 @@
-.register-container > h3 {
-  color: #198754;
-}
-
 .group-input {
   display: flex;
   flex-direction: column;
@@ -18,3 +14,18 @@
   border: 1px solid #fc077d;
 }
 
+.info-links-register {
+  max-width: 21rem;
+  color: #5C5C5C;
+  font-size: 12px;
+}
+
+.info-links-register > span > a {
+  color: #5C5C5C;
+}
+
+.group-radio-input {
+  display: flex;
+  align-items: center;
+  gap: .2rem;
+}

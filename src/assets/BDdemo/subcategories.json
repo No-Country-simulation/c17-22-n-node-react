@@ -1,0 +1,26 @@
+[
+	{
+		"subcategoryId": "1",
+		"subcategory": "Acción"
+	},
+	{
+		"subcategoryId": "2",
+		"subcategory": "Aventura"
+	},
+	{
+		"subcategoryId": "3",
+		"subcategory": "Comedia"
+	},
+	{
+		"subcategoryId": "4",
+		"subcategory": "Deportes"
+	},
+	{
+		"subcategoryId": "5",
+		"subcategory": "Drama"
+	},
+	{
+		"subcategoryId": "6",
+		"subcategory": "Terror"
+	}
+]
