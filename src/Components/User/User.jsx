@@ -1,9 +1,11 @@
 import { Link, useParams } from "react-router-dom";
 import "./User.css";
-import { getProjects, getUsers } from "../../redux/actions/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import Error404 from "../Error404/Error404";
+import { getUsers } from "../../redux/actions/userActions";
+import { getProjects } from "../../redux/actions/projectActions";
+import ig from "../../assets/img/instagram.png";
 
 const User = () => {
   const { userId } = useParams();
@@ -31,27 +33,27 @@ const User = () => {
           <img src={user[0].image} alt="User profile" className="img-fluid" />
           <div className="user-info">
             <h2> {user[0].username} </h2>
-            <a href={user[0].url} target="_blank">
-              Contacto
-            </a>
+            { user[0].url ? <a href={user[0].url} target="_blank"><img className='ig-logo-user' src={ig} alt="img Instagram" /></a> : "" }
           </div>
         </div>
         <div>
-          <h5 className="text-center mt-4">Projectos Creados</h5>
-          <ul>
+          <h5 className="text-center my-4">Projectos Creados</h5>
+          <div className="container text-center d-flex gap-5">
             {ofTheUser.length === 0 ? (
-              <li>Este usuario no tiene ningun proyecto</li>
+                <p className="without-projects">Este usuario no tiene ningun proyecto</p>
             ) : (
               ofTheUser.map((p) => {
                 console.log(p);
                 return (
-                  <li key={p.entrepreneurId}>
-                    <Link to={`/project/${p.entrepreneurshipId}`}>{p.name}</Link>
-                  </li>
+                  <Link to={`/project/${p.entrepreneurshipId}`} className="user-projects-card" key={p.entrepreneurId}>
+                    <h4>{p.name}</h4>
+                    <img src={p.image} alt="" className="img-fluid" />
+                    <p>Ver Proyecto</p>
+                  </Link>
                 );
               })
             )}
-          </ul>
+          </div>
         </div>
       </div>
     </>
