@@ -7,6 +7,7 @@ import LoginForm from "./Components/LoginForm/LoginForm"
 import RegisterForm from "./Components/RegisterForm/RegisterForm"
 import Error404 from "./Components/Error404/Error404"
 import Footer from "./Components/Footer/Footer"
+import User from "./Components/User/User"
 
 function App() {
 	const location = useLocation()
@@ -24,6 +25,8 @@ function App() {
 
 				<Route path="/login" element={<LoginForm />} />
 				<Route path="/register" element={<RegisterForm />} />
+
+				<Route path="/user/:userId" element={<User/> } />
 
 				<Route path="*" element={<Error404 />} />
 			</Routes>

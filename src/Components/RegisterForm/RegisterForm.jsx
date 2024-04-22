@@ -10,7 +10,7 @@ const RegisterForm = () => {
           <img src={lg} alt="Logo Register" />
         </NavLink>
         <div>
-        <p className="text-end small">¿Tines una cuenta? <NavLink to="/login">Ingresar</NavLink></p>
+        <p className="text-end small">¿Tines una cuenta? <NavLink to="/login" style={{textDecoration: 'none'}}>Ingresar</NavLink></p>
           <h3 className="text-start pb-3">Registrarme</h3>
           <form className="d-flex flex-column justify-content-center gap-2">
             <div className="group-input ">

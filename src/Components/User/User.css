@@ -1,0 +1,11 @@
+.user-container > img {
+  width: 15rem;
+  height: 15rem;
+  border-radius: 50rem;
+  object-fit: cover;
+}
+
+.user-info > a {
+  text-decoration: none;
+  margin-left: 1.5rem;
+}
