@@ -1,186 +1,191 @@
-.containerText{
-    font-weight: bold;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0px !important;
+.containerText {
+	font-weight: bold;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 0px !important;
 }
 
-
 .carousel {
-    height: 70vh;
-    width: 100%;
-    background-color: #fc047c15;
+	height: 75vh;
+	width: 100%;
+	background-color: #fc047c15;
 }
 
 .carousel-inner {
-    height: 100%
+	height: 100%;
 }
 
 .carousel-item {
-    height: 100%;
-    padding: 15px;
+	height: 100%;
+	padding: 15px;
 }
 
 .carousel-item img {
-    height: 100%;
+	height: 100%;
 }
 
-
-#welcomeCarousel img{
-    height: 100vh;
-    margin-top: -20vh;
-    margin-left: -50px;
+#welcomeCarousel img {
+	height: 100vh;
+	margin-top: -20vh;
+	margin-left: -50px;
 }
 
-
-
-
-.containerCarousel{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 50px;
+.containerCarousel {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 50px;
 }
 
-.Lleft{
-    width: 50%;
-    display: block;
+.Lleft {
+	width: 50%;
+	display: block;
 }
-.Lleft h2{
-    font-weight: 400;
-    font-size: 50px;
+.Lleft h2 {
+	font-weight: 400;
+	font-size: 50px;
 }
-.Lleft p{
-    color: #fc047c;
-    font-size: 18px;
-}
-
-.Lright{
-    height: 50vh;
+.Lleft p {
+	color: #fc047c;
+	font-size: 18px;
 }
 
+.Lright {
+	height: 50vh;
+}
 
+.buttonsFlecha {
+	opacity: 0;
+}
 
+.buttonsFlecha:hover {
+	opacity: 0;
+}
 
+.buttonsFlecha:focus {
+	opacity: 0;
+}
 
+.imagenCompletaCarrousel {
+	animation: fade 3s ease;
+}
 
 @media (max-width: 992px) {
-    .carousel {
-        height: 60vh
-    }
+	.carousel {
+		height: 60vh;
+	}
 
-    #welcomeCarousel img{
-        height: 80vh;
-        margin-left: -40px;
-    }
+	#welcomeCarousel img {
+		height: 80vh;
+		margin-left: -40px;
+	}
 
-    .Lleft h2{
-        font-weight: 400;
-        font-size: 45px;
-    }
-    .Lleft p{
-        color: #fc047c;
-        font-size: 15px;
-    }
+	.Lleft h2 {
+		font-weight: 400;
+		font-size: 45px;
+	}
+	.Lleft p {
+		color: #fc047c;
+		font-size: 15px;
+	}
 }
-
-
 
 @media (max-width: 770px) {
-    .carousel {
-        height: 50vh
-    }
+	.carousel {
+		height: 50vh;
+	}
 
-    .Lleft h2{
-        font-weight: 400;
-        font-size: 40px;
-    }
-    .Lleft p{
-        color: #fc047c;
-        font-size: 14px;
-    }
+	.Lleft h2 {
+		font-weight: 400;
+		font-size: 40px;
+	}
+	.Lleft p {
+		color: #fc047c;
+		font-size: 14px;
+	}
 
-    .Lright{
-        height: 35vh;
-    }
+	.Lright {
+		height: 35vh;
+	}
 
-    .containerCarousel{
-        margin-top: 20px;
-    }
+	.containerCarousel {
+		margin-top: 20px;
+	}
 
-    #welcomeCarousel img{
-        height: 60vh;
-        margin-top: -10vh;
-        margin-left: -40px;
-    }
+	#welcomeCarousel img {
+		height: 60vh;
+		margin-top: -10vh;
+		margin-left: -40px;
+	}
 }
-
-
 
 @media (max-width: 610px) {
-    .Lleft h2{
-        font-weight: 400;
-        font-size: 40px;
-    }
-    .Lleft p{
-        color: #fc047c;
-        font-size: 13px;
-    }
+	.Lleft h2 {
+		font-weight: 400;
+		font-size: 40px;
+	}
+	.Lleft p {
+		color: #fc047c;
+		font-size: 13px;
+	}
 
-    .Lright{
-        height: 30vh;
-    }
+	.Lright {
+		height: 30vh;
+	}
 
-    .containerCarousel{
-        margin-top: 0px;
-    }
+	.containerCarousel {
+		margin-top: 0px;
+	}
 
-    #welcomeCarousel img{
-        height: 50vh;
-        margin-top: -60px;
-        margin-left: -40px;
-    }
-    #welcomeCarousel .Lleft{
-        margin-top: 50px;
-    }
-    #welcomeCarousel .Lleft h2{
-        font-size: 30px;
-    }
+	#welcomeCarousel img {
+		height: 50vh;
+		margin-top: -60px;
+		margin-left: -40px;
+	}
+	#welcomeCarousel .Lleft {
+		margin-top: 50px;
+	}
+	#welcomeCarousel .Lleft h2 {
+		font-size: 30px;
+	}
 }
-
-
-
-
 
 @media (max-width: 440px) {
-    .Lleft h2{
-        font-weight: 400;
-        font-size: 35px;
-    }
-    .Lleft p{
-        color: #fc047c;
-        font-size: 12px;
-    }
+	.Lleft h2 {
+		font-weight: 400;
+		font-size: 35px;
+	}
+	.Lleft p {
+		color: #fc047c;
+		font-size: 12px;
+	}
 
-    .Lright{
-        height: 25vh;
-    }
+	.Lright {
+		height: 25vh;
+	}
 }
 
-
-
 @media (max-width: 380px) {
-    .Lleft h2{
-        font-weight: 400;
-        font-size: 30px;
-    }
-    .Lleft p{
-        color: #fc047c;
-        font-size: 11px;
-    }
+	.Lleft h2 {
+		font-weight: 400;
+		font-size: 30px;
+	}
+	.Lleft p {
+		color: #fc047c;
+		font-size: 11px;
+	}
 
-    .Lright{
-        height: 25vh;
-    }
+	.Lright {
+		height: 25vh;
+	}
+}
+
+@keyframes fade {
+	from {
+		opacity: 0; /* Inicia completamente transparente */
+	}
+	to {
+		opacity: 1; /* Se muestra completamente visible */
+	}
 }
