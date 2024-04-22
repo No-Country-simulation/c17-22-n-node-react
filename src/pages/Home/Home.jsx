@@ -7,7 +7,9 @@ import { getUsers } from "../../redux/actions/userActions"
 import { getVotes } from "../../redux/actions/votesActions"
 import { CategoriesBar } from "../../Components/CategoriesBar/CategoriesBar"
 import { Cards } from "../../Components/Cards/Cards"
+import Carousel from "../../Components/Carousel/Carousel";
 import "./home.css"
+
 
 const Home = () => {
 	const dispatch = useDispatch()
@@ -29,17 +31,7 @@ const Home = () => {
 	return (
 		<>
 			<div className="container-fluid containerText">
-				<p className="d-sm-block">
-					Ahora sos todo un EMPRENDEDOR listo para compartir tus proyectos de
-					<br />
-					entretenimiento al mundo en esta plataforma de Crowfunding. <br />
-					Los integrantes de esta comunidad van a ser los Inversores que con su
-					voto <br />
-					(a favor o en contra) le otorgan un diferencial a tu creacion
-					permitiendo mas <br />
-					visibilidad y la gran posibilidad de que salgas al mercado comercial.
-					Sumate!
-				</p>
+				<Carousel/>
 			</div>
 			<div>
 				<CategoriesBar categories={categories} subCategories={subCategories} />
