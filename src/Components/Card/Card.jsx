@@ -5,10 +5,10 @@ import { filterCategories } from "../../redux/actions/categoriesActions"
 import { filterSubcategories } from "../../redux/actions/subcategoriesActions"
 import "./card.css"
 
-import sol from "../../assets/img/sol.png"
-import luna from "../../assets/img/luna.png"
-import solRosa from "../../assets/img/solRosa.png"
-import lunaRosa from "../../assets/img/lunaRosa.png"
+import likeNegro from "../../assets/img/likeNegro.png"
+import likeRosa from "../../assets/img/likeRosa.png"
+import dislikeNegro from "../../assets/img/dislikeNegro.png"
+import dislikeRosa from "../../assets/img/dislikeRosa.png"
 
 export const Card = ({ project }) => {
 	const dispatch = useDispatch()
@@ -39,11 +39,11 @@ export const Card = ({ project }) => {
 
 	//MANEJO DE VOTOS POR CARD--------------------------------------------------------
 
-	const [sun, setSun] = useState(sol)
+	const [likeImg, setLikeImg] = useState(likeNegro)
 	const [liked, setLiked] = useState(false)
 	const [likesCard, setLikesCard] = useState(positive)
 
-	const [moon, setMoon] = useState(luna)
+	const [dislikeImg, setDislikeImg] = useState(dislikeNegro)
 	const [disliked, setDisliked] = useState(false)
 	const [dislikesCard, setDislikesCard] = useState(negative)
 
@@ -51,22 +51,22 @@ export const Card = ({ project }) => {
 		if (!liked && !disliked) {
 			setLikesCard(likesCard + 1)
 			setLiked(true)
-			setSun(solRosa)
+			setLikeImg(likeRosa)
 		}
 
 		if (liked && !disliked) {
 			setLikesCard(likesCard - 1)
 			setLiked(false)
-			setSun(sol)
+			setLikeImg(likeNegro)
 		}
 
 		if (!liked && disliked) {
 			setLikesCard(likesCard + 1)
 			setDislikesCard(dislikesCard - 1)
 			setLiked(true)
-			setSun(solRosa)
+			setLikeImg(likeRosa)
 			setDisliked(false)
-			setMoon(luna)
+			setDislikeImg(dislikeNegro)
 		}
 	}
 
@@ -74,22 +74,22 @@ export const Card = ({ project }) => {
 		if (!disliked && !liked) {
 			setDislikesCard(dislikesCard + 1)
 			setDisliked(true)
-			setMoon(lunaRosa)
+			setDislikeImg(dislikeRosa)
 		}
 
 		if (disliked && !liked) {
 			setDislikesCard(dislikesCard - 1)
 			setDisliked(false)
-			setMoon(luna)
+			setDislikeImg(dislikeNegro)
 		}
 
 		if (!disliked && liked) {
 			setDislikesCard(dislikesCard + 1)
 			setLikesCard(likesCard - 1)
 			setDisliked(true)
-			setMoon(lunaRosa)
+			setDislikeImg(dislikeRosa)
 			setLiked(false)
-			setSun(sol)
+			setLikeImg(likeNegro)
 		}
 	}
 
@@ -177,23 +177,23 @@ export const Card = ({ project }) => {
 				<h5>Votación</h5>
 				<div className="d-flex align-items-center justify-content-center mx-5">
 					<img
-						src={sun}
+						src={likeImg}
 						alt="Like"
 						className="img-fluid iconsCard"
 						onClick={handleLike}
 					/>
-					<div className="d-flex align-items-center justify-content-center colorBackgroundLikes">
+					<div className="d-flex align-items-center justify-content-center likesCard">
 						<b>{likesCard}</b>
 					</div>
 				</div>
 				<div className="d-flex align-items-center justify-content-center">
 					<img
-						src={moon}
+						src={dislikeImg}
 						alt="Dislike"
 						className="img-fluid iconsCard"
 						onClick={handleDislike}
 					/>
-					<div className="d-flex align-items-center justify-content-center colorBackgroundLikes">
+					<div className="d-flex align-items-center justify-content-center likesCard">
 						<b>{dislikesCard}</b>
 					</div>
 				</div>

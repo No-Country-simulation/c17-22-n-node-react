@@ -16,10 +16,7 @@ export const CategoriesBar = ({ categories, subCategories }) => {
 	}
 
 	return (
-		<div className="container">
-			<h4 className="titleCat">
-				<b>Categorías</b>
-			</h4>
+		<div className="container pt-2">
 			<div className="container text-center">
 				<div className="row">
 					{categories?.map((category) => (
