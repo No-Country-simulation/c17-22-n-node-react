@@ -7,9 +7,8 @@ import { getUsers } from "../../redux/actions/userActions"
 import { getVotes } from "../../redux/actions/votesActions"
 import { CategoriesBar } from "../../Components/CategoriesBar/CategoriesBar"
 import { Cards } from "../../Components/Cards/Cards"
-import Carousel from "../../Components/Carousel/Carousel";
+import Carousel from "../../Components/Carousel/Carousel"
 import "./home.css"
-
 
 const Home = () => {
 	const dispatch = useDispatch()
@@ -30,12 +29,13 @@ const Home = () => {
 
 	return (
 		<>
-			<div className="container-fluid containerText">
-				<Carousel/>
-			</div>
 			<div>
 				<CategoriesBar categories={categories} subCategories={subCategories} />
 			</div>
+			<div className="container-fluid containerText">
+				<Carousel />
+			</div>
+			<h3 className="container proyectoDestacado">Proyectos destacados</h3>
 			<div>
 				<Cards
 					users={users}
