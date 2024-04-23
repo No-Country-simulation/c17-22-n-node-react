@@ -27,7 +27,7 @@ const Footer = () => {
                     <div className="col-md-3 col-lg-4 col-xl-3 mx-auto">
                         <h6 className="fw-bold">Story Starter</h6>
                         <hr className="mb-3 mt-0 d-inline-block mx-auto hrStyles" />
-                        <p>Ayudamos a comenzar tu historia...</p>
+                        <p>Somos más que una plataforma de crowdfunding, somos un punto de encuentro para hacer realidad tus sueños.</p>
                         <Link to="/"><img className="imgStyleLogo" src={lg} alt="Logo" /></Link>
                     </div>
                     {/* Grid column */}
