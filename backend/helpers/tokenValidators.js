@@ -30,24 +30,48 @@ const isValidToken = (req,res,next) => {
 const isValidEntrepreneur = async (req,res, next) => {
   const decodedToken = jwtDecode(req.token)
   const result = await prisma.entrepeneur.findFirst({
-    where:{user:decodedToken.userId}
+    where:{id:parseInt(decodedToken.userId)}
   })
   if(result){
+    req.mensual_tickets = result.mensual_tickets
+    req.userId = decodedToken.userId;
     next()
-  } else{
-    return res.status(403).json({msg:"Precondition Failed"});
+  }else{
+    const admin = await prisma.user.findFirst({
+      where:{
+        id:parseInt(decodedToken.userId)
+      }
+    });
+    if(admin){
+      req.admin = true
+      next()
+    } else{
+      return res.status(403).json({msg:"Precondition Failed"});
+    }
   }
 }
 
 const isValidInvestor = async (req, res, next) => {
  const decodedToken = jwtDecode(req.token)
   const result = await prisma.investor.findFirst({
-    where:{user:decodedToken.userId}
+    where:{id:parseInt(decodedToken.userId)}
   })
   if(result){
+    req.mensual_votes = result.mensual_votes
+    req.userId = decodedToken.userId;
     next()
   } else{
-    return res.status(403).json({msg:"Precondition Failed"});
+    const admin = await prisma.user.findFirst({
+      where:{
+        id:parseInt(decodedToken.userId)
+      }
+    });
+    if(admin){
+      req.admin = true
+      next()
+    }else{
+      return res.status(403).json({msg:"Precondition Failed"});
+    }
   }
 }
 
@@ -55,21 +79,47 @@ const isAdmin = async (req, res, next) => {
   const decodedToken = jwtDecode(req.token);
   const responses = await Promise.all([
     prisma.user.findFirst({
-      where:{id:decodedToken.userId}, data:{id},
+      where:{id:parseInt(decodedToken.userId)}, select:{id},
     }),
     prisma.investor.findFirst({
-      where:{user: decodedToken.userId}, data:{id},
+      where:{id: parseInt(decodedToken.userId)}, select:{id},
     }),
     prisma.entrepeneur.findFirst({
-      where:{user: decodedToken.userId}, data:{id},
+      where:{id: parseInt(decodedToken.userId)}, select:{id},
     })
   ])
 
   if(responses[0] !== null && responses[1] === null && responses[2] === null){
+    req.admin = true
     next()
   } else{
     return res.status(403).json({msg:"Forbibben"});
   }
+}
+
+const getUserFromToken = async(req,res,next) => {
+  const decodedToken = jwtDecode(req.token);
+  const responses = await Promise.all([
+    prisma.user.findFirst({
+      where:{id:parseInt(decodedToken.userId)}, select:{id},
+    }),
+    prisma.investor.findFirst({
+      where:{id: parseInt(decodedToken.userId)}, select:{id},
+    }),
+    prisma.entrepeneur.findFirst({
+      where:{id: parseInt(decodedToken.userId)}, select:{id},
+    })
+  ])
+
+  req.userId = decodedToken.userId
+  if(responses[1]){
+    req.userType = "Investor"
+  } else if( responses[2]){
+    req.userType = "Entrepreneur"
+  } else{
+    req.userType = "Admin"
+  }
+  next()
 }
 
 module.exports = {
@@ -78,5 +128,6 @@ module.exports = {
   isValidEntrepreneur,
   isValidInvestor,
   isAdmin,
+  getUserFromToken,
 }
 

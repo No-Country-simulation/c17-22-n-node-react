@@ -35,12 +35,32 @@ const loginCtrl = async (req, res) => {
       const payload = {
         userId: user.id,
         username: user.email
-
       }
+
+      const investor = await prismaClient.investor.findFirst({
+        where:{
+          id:user.id
+        }
+      })
+
+      let type 
+
+      if(!investor) {
+        const entrepeneur = await prismaClient.entrepeneur.findFirst({
+          where:{
+            id:user.id
+          }
+        })
+        type = entrepeneur ? "entrepeneur": "admin"
+      }else{
+        type = "investor"
+      }
+
       const tokenSession = await tokenSign(payload)
       res.send({
         id: user.id,
         name: user.name,
+        type,
         username: user.email,
         tokenSession
       })
