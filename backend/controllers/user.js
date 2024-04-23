@@ -56,10 +56,13 @@ exports.getUser = asyncHandler( async (req, res, next)=>{
 
 exports.getAllUsers = asyncHandler( async (req, res, next)=>{
 
-  const allUsersid = await prisma.user.findMany({});
+  const allUsersid = await prisma.user.findMany({
+    select:{id:true}
+  });
+  console.log(allUsersid);
   const allUser = await Promise.all(
     allUsersid.map( async userId => {
-      return await fetchUser(userId)
+      return await fetchUser(userId.id)
     } 
   ));
 
@@ -74,6 +77,7 @@ exports.getAllEntrepreneurs = asyncHandler( async (req,res,next) =>{
 })
 
 exports.getAllInvestors = asyncHandler( async ( req, res, next) => {
+  console.log("here");
   const investors = await prisma.investor.findMany({});
   return res.status(200).json(investors)
 })
@@ -86,7 +90,7 @@ exports.getUserVotes = asyncHandler( async (req, res, next)=>{
   })
 
   if(!user){
-    return res.status(404).json({msg:`THe user ${req.params.userId} dosen't exits`})
+    return res.status(404).json({msg:`The user ${req.params.userId} dosen't exits`})
   }
   const votes = await prisma.vote.findMany({
     where:{

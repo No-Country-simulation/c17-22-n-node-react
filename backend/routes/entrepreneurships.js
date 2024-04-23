@@ -7,8 +7,8 @@ const authentication = require("../helpers/tokenValidators");
 /* GET users listing. */
 router.get('/', controller.getAll);
 router.get('/:entrepreneurshipId', controller.getOne);
-router.get('/:entrepreneurshipId/votes', controller.getVotes);
-router.get('/:entrepreneurshipId/votes/:voteId', controller.getVote);
+router.get('/:entrepreneurshipId/vote', controller.getVotes);
+router.get('/:entrepreneurshipId/vote/:voteId', controller.getVote);
 
 router.post('/', authentication.parseToken, authentication.isValidToken, authentication.isValidEntrepreneur, controller.addEntrepreneurship);
 router.post('/vote',authentication.parseToken, authentication.isValidToken, authentication.isValidInvestor, controller.addVote);
