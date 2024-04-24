@@ -101,13 +101,13 @@ const getUserFromToken = async(req,res,next) => {
   const decodedToken = jwtDecode(req.token);
   const responses = await Promise.all([
     prisma.user.findFirst({
-      where:{id:parseInt(decodedToken.userId)}, select:{id},
+      where:{id:parseInt(decodedToken.userId)}, select:{id:true},
     }),
     prisma.investor.findFirst({
-      where:{id: parseInt(decodedToken.userId)}, select:{id},
+      where:{id: parseInt(decodedToken.userId)}, select:{id:true},
     }),
     prisma.entrepeneur.findFirst({
-      where:{id: parseInt(decodedToken.userId)}, select:{id},
+      where:{id: parseInt(decodedToken.userId)}, select:{id:true},
     })
   ])
 

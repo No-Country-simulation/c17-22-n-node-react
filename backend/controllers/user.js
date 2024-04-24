@@ -106,17 +106,20 @@ exports.updateUser = [
   .isLength({min:1, max:56})
   .withMessage("Invalid User length"),
   body("email")
+  .optional()
   .trim()
   .isEmail()
   .withMessage("Invalid email"),
   body("imageUrl")
+  .optional()
   .trim()
   .isURL()
   .withMessage("Invalid Url"),
   asyncHandler( async ( req, res, next ) => {
     const result = validationResult(req);
+    console.log(result.array()[0]);
     if (!result.isEmpty()) {
-      return res.status(400).json({ msg: 'Invalid data' + result.array()[0]});
+      return res.status(400).json({ msg: 'Invalid data' + result.array()[0].msg});
     }
 
   const userToUpdate = await prisma.user.findFirst({
@@ -132,7 +135,7 @@ exports.updateUser = [
   const newUserData = {
     name: req.body.name ?? userToUpdate.name,
     email: req.body.email ?? userToUpdate.email,
-    imageUrl: req.body.imageUrl ?? userToUpdate.imageUrl
+    image: req.body.imageUrl ?? userToUpdate.image
   }
 
   if(req.userType !== "Admin" && (parseInt(req.userId) === parseInt(req.params.userId))){
