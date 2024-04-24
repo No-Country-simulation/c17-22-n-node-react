@@ -10,6 +10,7 @@ import ig from "../../assets/img/instagram.png";
 const User = () => {
   const { userId } = useParams();
   const dispatch = useDispatch();
+  const isAuth = useSelector(state => state.userLogged)
 
   const users = useSelector((state) => state.users);
   const projects = useSelector((state) => state.projectsOnScreen);
@@ -28,11 +29,15 @@ const User = () => {
 
   return (
     <>
+      
       <div className="d-flex flex-column bg-body-tertiary justify-content-center align-items-center">
         <div className="user-container d-flex gap-5 bg-body-tertiary justify-content-center align-items-center mt-3">
           <img src={user[0].image} alt="User profile" className="img-fluid" />
           <div className="user-info">
+            <div className="d-flex align-items-center gap-4">
             <h2> {user[0].username} </h2>
+            { isAuth ? <Link className="edit-btn efectoBoton" to={"/edit-profile"}>Editar Perfil</Link> : "" }
+            </div>
             { user[0].url ? <a href={user[0].url} target="_blank"><img className='ig-logo-user' src={ig} alt="img Instagram" /></a> : "" }
           </div>
         </div>
@@ -43,7 +48,6 @@ const User = () => {
                 <p className="without-projects">Este usuario no tiene ningun proyecto</p>
             ) : (
               ofTheUser.map((p) => {
-                console.log(p);
                 return (
                   <Link to={`/project/${p.entrepreneurshipId}`} className="user-projects-card" key={p.entrepreneurId}>
                     <h4>{p.name}</h4>

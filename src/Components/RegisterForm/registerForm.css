@@ -16,16 +16,66 @@
 
 .info-links-register {
   max-width: 21rem;
-  color: #5C5C5C;
+  color: #5c5c5c;
   font-size: 12px;
 }
 
 .info-links-register > span > a {
-  color: #5C5C5C;
+  color: #5c5c5c;
 }
 
-.group-radio-input {
+.toggle-container-toa > p {
+  margin-bottom: 5px;
+}
+
+.toggle-radio-toa {
   display: flex;
+  gap: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.toggle-radio-toa > input[type="radio"] {
+  display: none;
+}
+
+.toggle-radio-toa > label {
+  position: relative;
+  color: #fc077d;
+  cursor: pointer;
+  display: inline-flex;
   align-items: center;
-  gap: .2rem;
+  gap: 0.6em;
+  border: 2px solid #fc077d;
+  padding: 0.5em 1em;
+  border-radius: 0.5em;
+}
+
+.toggle-radio-toa > label::before {
+  content: "";
+  height: 1em;
+  width: 1em;
+  border: 2px solid #fc077d;
+  border-radius: 50%;
+}
+
+.toggle-radio-toa > input[type="radio"]:checked + label::before {
+  height: 1em;
+  width: 1em;
+  border: 0.2em solid #ffffff;
+  background-color: #fc077d;
+}
+
+.toggle-radio-toa > input[type="radio"]:checked + label {
+  background-color: #fc077d;
+  color: #ffffff;
+}
+
+.errores-container {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0.2rem 0.5rem;
+  border-radius: 1rem;
+  color: red;
 }

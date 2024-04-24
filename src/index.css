@@ -1,27 +1,25 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 
-*{
+* {
   margin: 0px;
   padding: 0px;
   text-decoration: none;
   box-sizing: border-box;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
 
-
-body{
-  background-color: rgb(235, 235, 235);
-  color: #3F3D3D;
-  padding-top: 100px;
-}
-
-.efectoBoton{
-  background-image: linear-gradient(to right, #fc047c 0%, #e904737a 90%, #fc047c 100%);
+.efectoBoton {
+  background-image: linear-gradient(
+    to right,
+    #fc047c 0%,
+    #e904737a 90%,
+    #fc047c 100%
+  );
   padding: 8px;
   margin: 10px;
   text-align: center;
   background-size: 200% auto;
-  color: rgb(235, 235, 235);        
+  color: rgb(235, 235, 235);
   border-radius: 5px;
   border: 0;
   text-decoration: none;
@@ -31,28 +29,21 @@ body{
   background-position: right center;
   text-decoration: none;
   color: rgb(235, 235, 235);
-  transition: all .5s
+  transition: all 0.5s;
 }
-.efectoBoton:active{
+.efectoBoton:active {
   scale: 0.9;
-  transition: all .5s
+  transition: all 0.5s;
 }
-
-
-
-
-
 
 @media screen and (max-width: 1146px) {
-  body{
+  body {
     padding-top: 99px;
-  }  
+  }
 }
 
-
-
 @media screen and (max-width: 991px) {
-  body{
+  body {
     padding-top: 90px;
-  }  
+  }
 }
