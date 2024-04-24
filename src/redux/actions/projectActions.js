@@ -5,12 +5,15 @@ import entrepreneurships from "../../assets/BDdemo/entrepreneurships.json"
 
 export const GET_PROJECTS = "GET_PROJECTS"
 export const GET_PROJECT_BY_ID = "GET_PROJECT_BY_ID"
+export const GET_BEST_PROJECTS = "GET_BEST_PROJECTS"
 
 export const POST_PROJECT = "POST_PROJECT"
 
 export const PUT_PROJECT = "PUT_PROJECT"
 
 export const DELETE_PROJECT = "DELETE_PROJECT"
+
+export const FILTER_PROJECT_BY_NAME = "FILTER_PROJECT_BY_NAME"
 
 // const urlApi = "ACA VA LA URL API"
 
@@ -52,6 +55,13 @@ export const getProjectById = (id) => {
 	return {
 		type: GET_PROJECT_BY_ID,
 		payload: id,
+	}
+}
+
+export const getBestProjects = () => {
+	return {
+		type: GET_BEST_PROJECTS,
+		payload: entrepreneurships,
 	}
 }
 
@@ -115,5 +125,14 @@ export function deleteProject(id) {
 	return {
 		type: DELETE_PROJECT,
 		payload: id,
+	}
+}
+
+// * FILTER-------------------------------------------------------------
+
+export function filterProjectByName(searchString) {
+	return {
+		type: FILTER_PROJECT_BY_NAME,
+		payload: searchString,
 	}
 }

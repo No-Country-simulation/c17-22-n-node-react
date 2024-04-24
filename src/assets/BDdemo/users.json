@@ -43,5 +43,131 @@
 		"email": "easports@example.com",
 		"investor": false,
 		"url": "https://www.instagram.com"
+	},
+	{
+		"userId": "6",
+		"username": "Christopher Nolan",
+		"image": "https://img.asmedia.epimg.net/resizer/v2/3HXBSMIWLGWMHCVA3RAK45UZRU.jpg?auth=6be367c8ba679ad53f75abf56b887d91ffd8af131454bcb2dcba24e7d9e88220&width=1472&height=828&focal=1476%2C826",
+		"password": "password6",
+		"email": "cnolan@example.com",
+		"investor": false,
+		"url": "https://www.instagram.com"
+	},
+	{
+		"userId": "7",
+		"username": "J.R.R. Tolkien",
+		"image": "https://cdn.britannica.com/65/66765-050-63A945A7/JRR-Tolkien.jpg",
+		"password": "password7",
+		"email": "jrrtolkien@example.com",
+		"investor": false,
+		"url": "https://www.instagram.com"
+	},
+	{
+		"userId": "8",
+		"username": "Shigeru Miyamoto",
+		"image": "https://sm.ign.com/ign_es/feature/s/shigeru-mi/shigeru-miyamoto-responds-to-his-famous-reputation-for-disli_em92.jpg",
+		"password": "password8",
+		"email": "miyamoto@example.com",
+		"investor": false,
+		"url": "https://www.instagram.com"
+	},
+	{
+		"userId": "9",
+		"username": "Stephenie Meyer",
+		"image": "https://hips.hearstapps.com/hmg-prod/images/gettyimages-492372624.jpg?crop=1xw:1.0xh;center,top&resize=640:*",
+		"password": "password9",
+		"email": "smeyer@example.com",
+		"investor": false,
+		"url": "https://www.instagram.com"
+	},
+	{
+		"userId": "10",
+		"username": "Hideo Kojima",
+		"image": "https://es.web.img2.acsta.net/pictures/23/06/07/14/52/0237643.jpg",
+		"password": "password10",
+		"email": "hkojima@example.com",
+		"investor": false,
+		"url": "https://www.instagram.com"
+	},
+	{
+		"userId": "11",
+		"username": "Hayao Miyazaki",
+		"image": "https://es.web.img3.acsta.net/pictures/186/600/18660092_20131025111342602.jpg",
+		"password": "password11",
+		"email": "hmiyazaki@example.com",
+		"investor": false,
+		"url": "https://www.instagram.com"
+	},
+	{
+		"userId": "12",
+		"username": "J.K. Simmons",
+		"image": "https://es.web.img2.acsta.net/c_310_420/pictures/16/01/05/15/02/175725.jpg",
+		"password": "password12",
+		"email": "jksimmons@example.com",
+		"investor": false,
+		"url": "https://www.instagram.com"
+	},
+	{
+		"userId": "13",
+		"username": "Quentin Tarantino",
+		"image": "https://cdn-3.expansion.mx/dims4/default/e5acc01/2147483647/strip/true/crop/1000x1500+0+0/resize/1800x2700!/format/webp/quality/80/?url=https%3A%2F%2Fcdn-3.expansion.mx%2Ff9%2Fce%2F28d85bcf42f48660bae437a3e21a%2Fquentin-tarantino.jpg",
+		"password": "password13",
+		"email": "qtarantino@example.com",
+		"investor": false,
+		"url": "https://www.instagram.com"
+	},
+	{
+		"userId": "14",
+		"username": "Margaret Atwood",
+		"image": "https://media.es.wired.com/photos/6407779006dedac758c1c370/1:1/w_1799,h_1799,c_limit/Margaret-Atwood-Luis-Mora-Culture.jpg",
+		"password": "password14",
+		"email": "matwood@example.com",
+		"investor": false,
+		"url": "https://www.instagram.com"
+	},
+	{
+		"userId": "15",
+		"username": "David Cage",
+		"image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8LPLXnHsefkzekJr2eky39rPlyla6IH8HtCAKFIXiRw&s",
+		"password": "password15",
+		"email": "dcage@example.com",
+		"investor": false,
+		"url": "https://www.instagram.com"
+	},
+	{
+		"userId": "16",
+		"username": "George R.R. Martin",
+		"image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKfNsIo1ivUoGJtz9YbqFtHZ5sgklyy4cH22GC7CPigw&s",
+		"password": "password16",
+		"email": "grrmartin@example.com",
+		"investor": false,
+		"url": "https://www.instagram.com"
+	},
+	{
+		"userId": "17",
+		"username": "Guillermo del Toro",
+		"image": "https://media.vogue.mx/photos/639dffb4032129c563966a05/2:3/w_2560%2Cc_limit/guillermo-del-toro.jpg",
+		"password": "password17",
+		"email": "gdtoro@example.com",
+		"investor": false,
+		"url": "https://www.instagram.com"
+	},
+	{
+		"userId": "18",
+		"username": "Suzanne Collins",
+		"image": "https://m.media-amazon.com/images/M/MV5BMTQyODc5Nzc2MF5BMl5BanBnXkFtZTcwNDAwODgxOA@@._V1_FMjpg_UX1000_.jpg",
+		"password": "password18",
+		"email": "scollins@example.com",
+		"investor": false,
+		"url": "https://www.instagram.com"
+	},
+	{
+		"userId": "20",
+		"username": "Neil Gaiman",
+		"image": "https://media.npr.org/assets/img/2013/05/16/gaimanauthorphoto_custom-8135a6d7a098351be71dc44947f6cde854345a7b.jpg",
+		"password": "password20",
+		"email": "ngaiman@example.com",
+		"investor": false,
+		"url": "https://www.instagram.com"
 	}
 ]
