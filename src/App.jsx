@@ -42,6 +42,19 @@ function App() {
 					color: #3F3D3D;
 					${showNavbarAndFooter() ? "padding-top: 100px;" : ""}
 				}
+
+				@media screen and (max-width: 1146px) {
+					body {
+						${showNavbarAndFooter() ? "padding-top: 90px" : ""}
+					}
+				}
+
+				@media screen and (max-width: 991px) {
+					body {
+						${showNavbarAndFooter() ? "padding-top: 90px" : ""}
+					}
+				}
+
 				`}
 			</style>
 		</>
