@@ -1,22 +1,32 @@
 import { useDispatch } from "react-redux"
 import { filterCategories } from "../../redux/actions/categoriesActions"
 import { filterSubcategories } from "../../redux/actions/subcategoriesActions"
-import "./Categories.css"
+import { useNavigate } from "react-router-dom"
+import { getProjects } from "../../redux/actions/projectActions"
+import "./CategoriesBar.css"
 
 // eslint-disable-next-line react/prop-types
 export const CategoriesBar = ({ categories, subCategories }) => {
 	const dispatch = useDispatch()
+	const navigate = useNavigate()
 
 	const handleFilterCategory = (e) => {
 		dispatch(filterCategories(e.target.value))
+		navigate("/projectsView")
 	}
 
 	const handleFilterSubCategory = (category, subCategory) => {
 		dispatch(filterSubcategories({ category, subCategory }))
+		navigate("/projectsView")
+	}
+
+	const handleAllProjects = () => {
+		dispatch(getProjects())
+		navigate("/projectsView")
 	}
 
 	return (
-		<div className="pt-2 containerCategoriesBar">
+		<div className="pt-2 pb-2 containerCategoriesBar">
 			<div className="container text-center">
 				<div className="row">
 					{categories?.map((category) => (
@@ -64,6 +74,17 @@ export const CategoriesBar = ({ categories, subCategories }) => {
 							</div>
 						</div>
 					))}
+					<div className="col lineaRosa">
+						<div className="containerVerAllProject">
+							<button
+								type="button"
+								className="btn btn-secondary-subtle border border-0 buttonCategory"
+								onClick={handleAllProjects}
+							>
+								Ver todos los emprendimientos
+							</button>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>

@@ -14,7 +14,7 @@ const Carousel = () => {
 				const nextIndex = (currentIndex + 1) % 3
 				setCurrentIndex(nextIndex)
 			}
-		}, 7000)
+		}, 10000)
 
 		return () => clearInterval(intervalId)
 	}, [currentIndex])
