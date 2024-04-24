@@ -30,7 +30,7 @@ model Entrepeneur {
   user             User              @relation(fields: [id], references: [id], onDelete: Cascade)
   id               Int               @id
   mensual_tickets  Int
-  Entrepreneurship Entrepreneurship?
+  Entrepreneurship Entrepreneurship[]
 }
 
 model Investor {
@@ -47,7 +47,7 @@ model Entrepreneurship {
   creation_date DateTime    @default(now())
   meta          String[]
   entrepeneur   Entrepeneur @relation(fields: [entrepeneurId], references: [id])
-  entrepeneurId Int         @unique
+  entrepeneurId Int
   subcategory   Subcategory @relation(fields: [subcategoryId], references: [id])
   subcategoryId Int
   Vote          Vote[]

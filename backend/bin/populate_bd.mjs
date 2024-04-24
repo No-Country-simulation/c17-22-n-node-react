@@ -191,7 +191,7 @@ async function main() {
 
   // emprendimientos
 
- /* const entrepreneurship001 = await prisma.entrepreneurship.create({
+ const entrepreneurship001 = await prisma.entrepreneurship.create({
     data: {
       description: "Description for entrepeneurship 001",
       name: "Name 01",
@@ -200,7 +200,7 @@ async function main() {
       entrepeneurId: entrepeneur001.id,
       subcategoryId: subCategory011.id,
     }
-  });*/
+  });
 
   const entrepreneurship002 = await prisma.entrepreneurship.create({
     data: {
