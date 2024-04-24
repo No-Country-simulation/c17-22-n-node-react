@@ -1,0 +1,186 @@
+.containerFather{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 30px;
+}
+
+
+
+.containerCardProyect{
+    width: 100%;
+    text-align: center;
+}
+
+.containerCardProyect h1{
+    margin-top: 30px;
+    font-size: 30px;
+    font-weight: 600;
+}
+
+.containerCardProyect h2{
+    text-align: left;
+    font-size: 25px;
+    font-weight: 500;
+}
+
+.containerCardProyect h3{
+    font-size: 20px;
+    font-weight: 400;
+    margin-bottom: 40px;
+}
+
+
+
+.lineBackground{
+    margin-top: 60px;
+    margin-bottom: 50px;
+    background-color: #fc047c;
+    color: #fc047c;
+    height: 5px;
+}
+.lineBackground:hover{
+    background-color: #fc047cab;
+    color: #fc047cab;
+    transition: all .2s ease-in-out;
+}
+
+
+
+.nleft{
+    padding-right: 2vw;
+}
+.nleft img{
+    width: 100%;
+    height: 50vh;
+    border-radius: 5px;
+    object-fit: cover;
+    object-position: center;
+    margin-bottom: 15px;
+}
+.nleft img:hover{
+    scale: 1.05;
+    border-radius: 0px;
+    transition: all .5s ease-in-out;
+}
+
+
+.nright{
+    border-top: 6px solid #fc047c;
+    background-color: #fc047c15;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    padding: 20px;
+}
+
+.containerLikesProject{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 30px;
+}
+.containerLikesProject img{
+    height: 30px;
+    width: 30px;
+    object-fit: cover;
+    object-position: center;
+}
+.containerLikesProject img:hover{
+    cursor: pointer;
+    scale: 1.2;
+    transition: all .5s ease-in-out;
+}
+.containerLikesProject h6{
+    border-bottom: 1px solid #fc047c;
+}
+
+
+.containerUserProject{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 60px;
+}
+.containerUserProject span{
+    color: #fc047c;
+}
+.containerUserProject p{
+    margin-top: 20px;
+    margin-left: 10px;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.nright h6{
+    font-size: 20px;
+    font-weight: 500;
+    margin-right: 20px;
+}
+.userImg{
+    width: 100px;
+    height: 100px;
+    border-radius: 20px;
+    object-fit: cover;
+    object-position: center;
+}
+
+
+.rrssImg{
+    margin-top: 20px;
+    width: 50px;
+    height: 50px;
+}
+
+
+.rrss{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.containerDescription{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.containerDescription p{
+    text-align: left;
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: -0.12px;
+    max-width: 100ch;
+}
+.containerDescription p::first-letter{
+    font-size: 25px;
+}
+
+
+
+
+
+
+
+
+@media screen and (max-width: 880px) {
+    .containerLikesProject img{
+        height: 25px;
+        width: 25px;
+    }
+
+    .userImg{
+        width: 80px;
+        height: 80px;
+    }
+
+    .rrssImg{
+        width: 30px;
+        height: 30px;
+    }
+
+    .containerUserProject p{
+        font-size: 18px;
+    }
+
+    .containerDescription p{
+        font-size: 19px;
+    }
+}
