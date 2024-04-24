@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { filterCategories } from "../../redux/actions/categoriesActions"
 import { filterSubcategories } from "../../redux/actions/subcategoriesActions"
 import "./card.css"
@@ -12,6 +12,7 @@ import dislikeRosa from "../../assets/img/dislikeRosa.png"
 
 export const Card = ({ project }) => {
 	const dispatch = useDispatch()
+	const navigate = useNavigate()
 
 	const categories = useSelector((state) => state.categories)
 	const subcategories = useSelector((state) => state.subCategories)
@@ -100,11 +101,15 @@ export const Card = ({ project }) => {
 	const handleFilterCategory = (category) => {
 		console.log(category)
 		dispatch(filterCategories(category))
+		navigate("/projectsView")
+		window.scrollTo(0, 0)
 	}
 
 	const handleFilterSubCategory = (category, subCategory) => {
 		console.log(category, subCategory)
 		dispatch(filterSubcategories({ category, subCategory }))
+		navigate("/projectsView")
+		window.scrollTo(0, 0)
 	}
 
 	//--------------------------------------------------------------------------------
@@ -145,7 +150,7 @@ export const Card = ({ project }) => {
 									<p className="card-text text-truncate">{description}</p>
 									<div className="d-flex">
 										<Link
-											to={"/"}
+											to={"/projectsView"}
 											onClick={() => handleFilterCategory(category.categoryId)}
 										>
 											<button className="me-3 badge buttonCategoryCard">
@@ -153,7 +158,7 @@ export const Card = ({ project }) => {
 											</button>
 										</Link>
 										<Link
-											to={"/"}
+											to={"/projectsView"}
 											onClick={() =>
 												handleFilterSubCategory(
 													category.categoryId,
