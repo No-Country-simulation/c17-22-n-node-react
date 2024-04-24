@@ -28,7 +28,7 @@ function App() {
         <Route path="/register" element={<RegisterForm />} />
 
         <Route path="/user/:userId" element={<User />} />
-        <Route path="/edit-profile" element={<EditProfile />} />
+        <Route path="/edit-profile/:userId" element={<EditProfile />} />
 
         <Route path="*" element={<Error404 />} />
       </Routes>

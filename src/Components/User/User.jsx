@@ -1,5 +1,5 @@
-import { Link, useParams } from "react-router-dom";
 import "./User.css";
+import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import Error404 from "../Error404/Error404";
@@ -29,7 +29,6 @@ const User = () => {
 
   return (
     <>
-      
       <div className="d-flex flex-column bg-body-tertiary justify-content-center align-items-center">
         <div className="user-container d-flex gap-5 bg-body-tertiary justify-content-center align-items-center mt-3">
           <img src={user[0].image} alt="User profile" className="img-fluid" />
