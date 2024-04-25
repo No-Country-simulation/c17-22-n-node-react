@@ -5,7 +5,7 @@ import { useEffect } from "react"
 import Error404 from "../Error404/Error404"
 import { getUsers } from "../../redux/actions/userActions"
 import { getProjects } from "../../redux/actions/projectActions"
-import ig from "../../assets/img/instagram.png"
+import ig from "../../assets/img/instagram.svg"
 
 const User = () => {
 	const { userId } = useParams()
