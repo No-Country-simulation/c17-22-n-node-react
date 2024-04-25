@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import validation from "../../assets/validations/createProject"
+import validation from "../../utils/validations/createProject"
 import { useDispatch, useSelector } from "react-redux"
 
 import { uploadImg } from "../../utils/uploadImg"
@@ -100,6 +100,7 @@ export const CreateProject = () => {
 	useEffect(() => {
 		dispatch(getCategories())
 		dispatch(getSubcategories())
+		window.scrollTo(0, 0)
 	}, [dispatch])
 
 	if (!projectCreatedSuccessfully) {
