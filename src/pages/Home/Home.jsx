@@ -37,7 +37,7 @@ const Home = () => {
 			<div className="container-fluid containerText">
 				<Carousel />
 			</div>
-			<h3 className="container proyectoDestacado">Proyectos destacados</h3>
+			<h3 className="container proyectoDestacado mt-5">Proyectos destacados</h3>
 			<div>
 				<Cards users={users} projects={bestProjects} />
 			</div>
