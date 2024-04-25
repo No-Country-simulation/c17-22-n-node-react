@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import ig from "../../assets/img/instagram.svg";
 import email from "../../assets/img/email.svg"
@@ -36,7 +36,6 @@ const ProjectDetail = ({id, title, category, description, image, likes, dislikes
             setLikeGroup({ liked: false, count: likeGroup.count - 1, image: likeNegro });
         }
     };
-
 
 
     return (
