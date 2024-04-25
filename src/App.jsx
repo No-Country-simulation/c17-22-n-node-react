@@ -10,6 +10,8 @@ import Error404 from "./Components/Error404/Error404"
 import Footer from "./Components/Footer/Footer"
 import User from "./Components/User/User"
 import EditProfile from "./Components/EditProfile/EditProfile"
+import DashboardAdmin from "./Components/DashboardAdmin/DashboardAdmin.jsx"
+
 
 function App() {
 	const location = useLocation()
@@ -29,12 +31,15 @@ function App() {
 				<Route path="/login" element={<LoginForm />} />
 				<Route path="/register" element={<RegisterForm />} />
 
-        <Route path="/user/:userId" element={<User />} />
-        <Route path="/edit-profile/:userId" element={<EditProfile />} />
+				<Route path="/user/:userId" element={<User />} />
+				<Route path="/edit-profile/:userId" element={<EditProfile />} />
+
+				<Route path="/dashboard-admin" element={<DashboardAdmin />} />
 
 				<Route path="*" element={<Error404 />} />
 			</Routes>
 			{showNavbarAndFooter() && <Footer />}
+
 			<style>
 				{`
 				body{
