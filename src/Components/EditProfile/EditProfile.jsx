@@ -27,6 +27,7 @@ const EditProfile = () => {
 
   useEffect(() => {
     dispatch(getUserById(userId));
+    window.scrollTo(0, 0);
   }, [dispatch, userId]);
 
   useEffect(() => {

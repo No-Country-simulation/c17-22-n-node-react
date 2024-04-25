@@ -26,8 +26,8 @@ const LoginForm = () => {
     const storedPassword = localStorage.getItem("password");
     if (storedEmail && storedPassword) {
       setFormLogin({ email: storedEmail, password: storedPassword });
-      setRememberMe(true);
     }
+    window.scrollTo(0, 0);
   }, []);
 
   useEffect(() => {

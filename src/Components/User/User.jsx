@@ -18,6 +18,7 @@ const User = () => {
   useEffect(() => {
     dispatch(getUsers());
     dispatch(getProjects());
+    window.scrollTo(0, 0);
   }, [dispatch]);
 
   const user = users.filter((d) => d.userId === userId);

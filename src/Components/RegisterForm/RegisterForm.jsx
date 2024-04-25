@@ -2,7 +2,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import lg from "../../assets/img/Story Starter.svg";
 import "./registerForm.css";
 import { useDispatch } from "react-redux";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { addUser } from "../../redux/actions/userActions";
 
 const RegisterForm = () => {
@@ -16,6 +16,10 @@ const RegisterForm = () => {
     investor: null,
   });
   const [errorRegister, setErrorRegister] = useState(null);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const handleChangeRegister = (e) => {
     const { name, value, type } = e.target;
