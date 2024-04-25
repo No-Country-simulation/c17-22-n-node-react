@@ -11,7 +11,7 @@ const EditProfile = () => {
   const { userId } = useParams();
   const dispatch = useDispatch();
   const navegation = useNavigate();
-  // const isAuth = useSelector((state) => state.userLogged);
+  const isAuth = useSelector((state) => state.userLogged);
 
   const currentUser = useSelector((state) =>
     state.users.find((u) => u.userId === userId)
@@ -68,7 +68,7 @@ const EditProfile = () => {
     dispatch(deleteUser(userId)).then(navegation("/"));
   };
 
-  if (!currentUser) {
+  if (!currentUser && !isAuth) {
     return <Error404 />;
   }
 
