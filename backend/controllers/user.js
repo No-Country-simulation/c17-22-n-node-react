@@ -115,6 +115,10 @@ exports.updateUser = [
   .trim()
   .isURL()
   .withMessage("Invalid Url"),
+  body("baned")
+  .optional()
+  .isBoolean()
+  .withMessage("Invalid baned option"),
   asyncHandler( async ( req, res, next ) => {
     const result = validationResult(req);
     console.log(result.array()[0]);
@@ -132,10 +136,15 @@ exports.updateUser = [
     return res.status(404).json({msg:`The user ${req.params.userId} dosen't exits`})
   }
 
+  const baned = req.body.baned 
+    ? req.body.baned === "true"
+    : userToUpdate.baned
+
   const newUserData = {
     name: req.body.name ?? userToUpdate.name,
     email: req.body.email ?? userToUpdate.email,
-    image: req.body.imageUrl ?? userToUpdate.image
+    image: req.body.imageUrl ?? userToUpdate.image,
+    baned,
   }
 
   if(req.userType !== "Admin" && (parseInt(req.userId) === parseInt(req.params.userId))){
