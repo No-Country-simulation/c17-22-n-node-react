@@ -109,7 +109,10 @@ const registerCtrl = async (req, res) => {
 
     })
 
-    if (investor) {
+    const isInvestor = investor === "true";
+    
+    if (isInvestor) {
+      console.log("Investor");
       const investor = await prismaClient.investor.create({
         data: {
           id: registerUser.id,
@@ -118,6 +121,7 @@ const registerCtrl = async (req, res) => {
         }
       })
     } else {
+      console.log("entrepreneur");
       const entrepeneur = await prismaClient.entrepeneur.create({
         data: {
           id: registerUser.id,
