@@ -1,86 +1,74 @@
-import { Link, NavLink } from 'react-router-dom'
-import { useState } from 'react'
+import { NavLink, useNavigate } from "react-router-dom"
 import lg from "../../assets/img/Story Starter.svg"
 import imgNavBar from "../../assets/img/menu.png"
 import lupa from "../../assets/img/lupa.png"
-import { projects } from "../../assets/BDdemo/projects"
+import { useDispatch } from "react-redux"
+import { filterProjectByName } from "../../redux/actions/projectActions"
 import "./navBar.css"
 
+const NavBar = () => {
+	const dispatch = useDispatch()
+	const navigate = useNavigate()
 
-const NavBar = () =>{
-    const [search, setSearch] = useState("")
+	const handleChange = async (e) => {
+		e.preventDefault()
+		const searchString = e.target.value
+		await dispatch(filterProjectByName(searchString))
+		navigate("/projectsView")
+	}
 
-    const handleSearch = (e) =>{
-        setSearch(e.target.value)
-    }
+	const handleSubmit = (e) => {
+		e.preventDefault()
+	}
 
+	return (
+		<nav className="navbar navbar-expand-lg bg-body-tertiary">
+			<NavLink to="/" className="navbar-brand">
+				<img src={lg} alt="Logo" />
+			</NavLink>
 
-    const close = () =>{
-        setSearch("")
-    }
+			<button
+				className="navbar-toggler"
+				type="button"
+				data-bs-toggle="collapse"
+				data-bs-target="#navbarSupportedContent"
+				aria-controls="navbarSupportedContent"
+				aria-expanded="false"
+				aria-label="Toggle navigation"
+			>
+				<img src={imgNavBar} alt="Imagen Menu" />
+			</button>
 
+			<div
+				className="collapse navbar-collapse containerNav"
+				id="navbarSupportedContent"
+			>
+				<form onSubmit={handleSubmit}>
+					<img src={lupa} alt="Lupa" className="lupa-icon" />
+					<input
+						onChange={(e) => handleChange(e)}
+						className="form-control me-1"
+						type="search"
+						placeholder="Buscar"
+					/>
+				</form>
 
-    let results = []
-    if(!search){
-        results = []
-    }
-    else{
-        results = projects.filter( (data) =>
-            data.title.toLowerCase().includes(search.toLocaleLowerCase())
-        )
-    }
+				<ul className="navbar-nav">
+					<li>
+						<NavLink to="/login" className="nav-link efectoBoton">
+							iniciar Sesion
+						</NavLink>
+					</li>
 
-
-    const lengthOfTitle = (title) => {
-        if (title.length > 40) {
-            return title.substring(0, 40) + "...";
-        } else {
-            return title;
-        }
-    };
-
-
-
-    return (
-        <nav className="navbar navbar-expand-lg bg-body-tertiary">
-                <NavLink to="/" className="navbar-brand"><img src={lg} alt="Logo" /></NavLink>
-                
-                <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <img src={imgNavBar} alt="Imagen Menu" />
-                </button>
-                
-                <div className="collapse navbar-collapse containerNav" id="navbarSupportedContent">
-                    <form>
-                            <img src={lupa} alt="Lupa" className="lupa-icon" />
-                            <input value={search} onChange={handleSearch} className="form-control me-1" type="text" placeholder="Buscar" aria-label="Search" />
-                            {
-                            results.length != 0 && <article className='containerResults'>
-                                        <section>
-                                            {
-                                            results.map((project, index) => (
-                                                index < 8 && <div key={project.id}>
-                                                    <Link to={`/project/${project.id}`} className="dropdown-item" onClick={close}>{lengthOfTitle(project.title)}</Link>
-                                                </div>
-                                            ))
-                                            }
-                                        </section>
-                                    </article>
-                            }
-                    </form>
-                    
-                    <ul className="navbar-nav">
-                        <li>
-                            <NavLink to="/login" className="nav-link efectoBoton">iniciar Sesion</NavLink>
-                        </li>
-                        
-                        <li>
-                            <NavLink to="/register" className="nav-link efectoBoton">Registrarse</NavLink>
-                        </li>
-                    </ul>
-                </div>
-        </nav>
-    )
+					<li>
+						<NavLink to="/register" className="nav-link efectoBoton">
+							Registrarse
+						</NavLink>
+					</li>
+				</ul>
+			</div>
+		</nav>
+	)
 }
-
 
 export default NavBar

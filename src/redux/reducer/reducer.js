@@ -9,8 +9,10 @@ import {
 import {
 	GET_PROJECTS,
 	GET_PROJECT_BY_ID,
+	GET_BEST_PROJECTS,
 	POST_PROJECT,
 	PUT_PROJECT,
+	FILTER_PROJECT_BY_NAME,
 } from "../actions/projectActions"
 import { GET_VOTES } from "../actions/votesActions"
 import { GET_CATEGORIES, FILTER_CATEGORIES } from "../actions/categoriesActions"
@@ -26,6 +28,7 @@ const initialState = {
 	users: [],
 	allProjects: [],
 	projectsOnScreen: [],
+	bestProjects: [],
 	projectDetail: {},
 	categories: [],
 	subCategories: [],
@@ -34,7 +37,9 @@ const initialState = {
 }
 
 const rootReducer = (state = initialState, action) => {
+	let find
 	let filtered
+	let order
 	switch (action.type) {
 		case GET_USERS:
 			return {
@@ -47,9 +52,7 @@ const rootReducer = (state = initialState, action) => {
 		// 		userDetail: action.payload,
 		// 	}
 		case GET_USER_BY_ID:
-			filtered = state.allProjects.filter(
-				(project) => project.entrepreneurshipId === action.payload
-			)
+			filtered = state.users.find((user) => user.id === action.payload)
 			return {
 				...state,
 				userDetail: filtered,
@@ -82,10 +85,8 @@ const rootReducer = (state = initialState, action) => {
 		case GET_PROJECTS:
 			return {
 				...state,
-				projectsOnScreen: action.payload,
-				...state.newProject,
-				allProjects: action.payload,
-				...state.newProject,
+				projectsOnScreen: [...action.payload, ...state.newProject],
+				allProjects: [...action.payload, ...state.newProject],
 			}
 		// case GET_PROJECT_BY_ID:
 		// 	return {
@@ -93,13 +94,21 @@ const rootReducer = (state = initialState, action) => {
 		// 		projectDetail: action.payload,
 		// 	}
 		case GET_PROJECT_BY_ID:
-			filtered = state.allProjects.filter((project) => {
+			find = state.allProjects.find((project) => {
 				return project.entrepreneurshipId === action.payload
 			})
 
 			return {
 				...state,
-				projectDetail: filtered,
+				projectDetail: find,
+			}
+		case GET_BEST_PROJECTS:
+			order = action.payload.sort(
+				(a, b) => b.votes.cant_positive - a.votes.cant_positive
+			)
+			return {
+				...state,
+				bestProjects: order.slice(0, 5),
 			}
 		case POST_PROJECT:
 			return {
@@ -122,6 +131,14 @@ const rootReducer = (state = initialState, action) => {
 					subcategoryId: action.payload.subcategoryId,
 					imageUrl: action.payload.imageUrl,
 				},
+			}
+		case FILTER_PROJECT_BY_NAME:
+			filtered = state.allProjects.filter((project) =>
+				project.name.toLowerCase().includes(action.payload.toLowerCase())
+			)
+			return {
+				...state,
+				projectsOnScreen: filtered,
 			}
 		case GET_CATEGORIES:
 			return {

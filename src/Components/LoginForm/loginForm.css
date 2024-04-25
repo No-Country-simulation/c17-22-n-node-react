@@ -1,5 +1,5 @@
 .login-container {
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .btn-create {
@@ -67,4 +67,15 @@
 
 .link-new-user > a {
   text-decoration: none;
+}
+
+@media screen and (max-width: 424px) {
+  .login-container-form,
+  .link-new-user {
+    width: 18rem;
+  }
+
+  .link-new-user {
+    text-align: center;
+  }
 }
