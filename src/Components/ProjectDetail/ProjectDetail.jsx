@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 import ig from "../../assets/img/instagram.svg";
 import email from "../../assets/img/email.svg"
