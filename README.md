@@ -1,6 +1,6 @@
 # Story Starter
 <p align="center">
-  <img src="" alt="">
+  <img src="https://i.postimg.cc/XqNbhxnL/Story-Starter.png" alt="Logo">
 </p>
 
 
@@ -8,28 +8,24 @@
 
 
 ## Descripción
-### ...
+### Plataforma de crowdfunding, un punto de encuentro para hacer realidad tus sueños. En Story Starter, creemos en el poder de la comunidad de entretenimiento para impulsar proyectos innovadores, creativos y transformadores.
 
 
 ## Colaboradores
 ### Front-End:
 - Facundo Marco Bacigalupo <br /> [ ![](https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white 'LinkedIn Link')](https://www.linkedin.com/in/facundolucasmarco/)
 - Agustin Scaramello <br /> [ ![](https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white 'LinkedIn Link')](https://www.linkedin.com/in/agustin-scaramello/)
-- Francisco García Matar |
 - Facundo Oliva <br /> [ ![](https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white 'LinkedIn Link')](https://www.linkedin.com/in/facundo-oliva-0999bb252/)
 
 ### Back-End:
 - Lorenzo Polverino <br /> [ ![](https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white 'LinkedIn Link')](https://www.linkedin.com/in/lorenzopolveirno/)
-- Paul Alexander Luque Ccosi |
-- Yurbanis Briceño <br /> [ ![](https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white 'LinkedIn Link')](https://www.linkedin.com/in/yurbanis-brice%C3%B1o-lara/)
-- Jhonson Medina |
+- Paul Alexander Luque Cosi |
 
 ### UX/UI:
-- Lorena Torres |
-- Ivana Pivatto |
+- Ivana Pivatto <br /> [ ![](https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white 'LinkedIn Link')](https://www.linkedin.com/in/ivana-pivatto81/)
 
 ### Testing:
-- Ivana Pivatto |
+- Ivana Pivatto <br /> [ ![](https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white 'LinkedIn Link')](https://www.linkedin.com/in/ivana-pivatto81/)
 
 
 ## Tecnologías
@@ -56,8 +52,6 @@
 ## Enlaces del Proyecto
 - Sitio web (si corresponde)
 - Repositorio en GitHub
-- Otros enlaces importantes
-
 
 <div align='center'>
 <h3>Agradecimientos</h3>
