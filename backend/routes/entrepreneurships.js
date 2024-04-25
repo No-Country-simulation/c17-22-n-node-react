@@ -11,10 +11,10 @@ router.get('/:entrepreneurshipId/vote', controller.getVotes);
 router.get('/:entrepreneurshipId/vote/:voteId', controller.getVote);
 
 router.post('/', authentication.parseToken, authentication.isValidToken, authentication.isValidEntrepreneur, controller.addEntrepreneurship);
-router.post('/vote',authentication.parseToken, authentication.isValidToken, authentication.isValidInvestor, controller.addVote);
+router.post('/:entrepreneurshipId/vote',authentication.parseToken, authentication.isValidToken, authentication.isValidInvestor, controller.addVote);
 
 router.put('/:entrepreneurshipId',authentication.parseToken,  authentication.isValidToken, authentication.isValidEntrepreneur,controller.updateEntrepreneurship);
-router.put('/:entrepreneurshipId/vote/:voteId', authentication.isValidToken, authentication.isValidInvestor,controller.updateVote);
+router.put('/:entrepreneurshipId/vote/:voteId', authentication.parseToken, authentication.isValidToken, authentication.isValidInvestor,controller.updateVote);
 
 router.delete('/:entrepreneurshipId',authentication.parseToken, authentication.isValidToken, authentication.isValidEntrepreneur, controller.deleteEntrepreneurship)
 router.delete('/:entrepreneurshipId/vote',authentication.parseToken,  authentication.isValidToken, authentication.isAdmin, controller.deleteAllVotes)
