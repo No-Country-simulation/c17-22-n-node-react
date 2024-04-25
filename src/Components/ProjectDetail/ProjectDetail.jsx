@@ -38,7 +38,6 @@ const ProjectDetail = ({id, title, category, description, image, likes, dislikes
     };
 
 
-
     return (
         <article className='containerFather'>
             <div className='containerCardProyect' key={id}>
