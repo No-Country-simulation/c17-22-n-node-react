@@ -24,7 +24,6 @@ const EditProfile = () => {
     image: "",
     url: "",
   });
-  const [showPassword, setShowPassword] = useState(false);
 
   useEffect(() => {
     dispatch(getUserById(userId));
@@ -49,10 +48,6 @@ const EditProfile = () => {
 
   const handleDeleteImage = () => {
     setProfile({ ...profile, image: "" });
-  };
-
-  const handleShowPassword = () => {
-    setShowPassword((prev) => !prev);
   };
 
   const handleChangeProfile = (e) => {
@@ -136,27 +131,6 @@ const EditProfile = () => {
               value={profile.email}
               onChange={handleChangeProfile}
             />
-          </div>
-          <div className="group-input-profile">
-            <label htmlFor="password-profile">Contraseña:</label>
-            <div className="d-flex">
-              <input
-                type={showPassword ? "text" : "password"}
-                id="password-profile"
-                name="password"
-                className="form-control input-password-profile"
-                value={profile.password}
-                placeholder="Contraseña"
-                onChange={handleChangeProfile}
-              />
-              <button
-                className="btn btn-create"
-                type="button"
-                onClick={handleShowPassword}
-              >
-                {showPassword ? "Ocultar" : "Mostrar"}
-              </button>
-            </div>
           </div>
           <div className="group-input-profile">
             <label htmlFor="url-profile">Url de Instagram:</label>
