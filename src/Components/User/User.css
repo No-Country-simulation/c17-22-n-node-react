@@ -54,3 +54,9 @@
   transition: all 0.5s ease-in;
   transform: scale(1.01);
 }
+
+@media screen and (max-width: 424px) {
+  .user-container {
+    flex-direction: column;
+  }
+}

@@ -79,3 +79,18 @@
   border-radius: 1rem;
   color: red;
 }
+
+@media screen and (max-width: 424px) {
+  .group-input {
+    width: 100%;
+  }
+
+  .info-links-register {
+    max-width: 15rem;
+  }
+
+  .toggle-radio-toa {
+    gap: 0.2rem;
+    flex-direction: column;
+  }
+}
