@@ -37,12 +37,12 @@ const isValidEntrepreneur = async (req,res, next) => {
     req.userId = decodedToken.userId;
     next()
   }else{
-    const investor = await prisma.investor.findFirst({
+    const admin = await prisma.user.findFirst({
       where:{
         id:parseInt(decodedToken.userId)
       }
     });
-    if(!investor){
+    if(admin){
       req.admin = true
       next()
     } else{
@@ -56,18 +56,17 @@ const isValidInvestor = async (req, res, next) => {
   const result = await prisma.investor.findFirst({
     where:{id:parseInt(decodedToken.userId)}
   })
-  console.log(result);
   if(result){
     req.mensual_votes = result.mensual_votes
     req.userId = decodedToken.userId;
     next()
   } else{
-    const entrepeneur = await prisma.entrepeneur.findFirst({
+    const admin = await prisma.user.findFirst({
       where:{
         id:parseInt(decodedToken.userId)
       }
     });
-    if(!entrepeneur){
+    if(admin){
       req.admin = true
       next()
     }else{
@@ -102,13 +101,13 @@ const getUserFromToken = async(req,res,next) => {
   const decodedToken = jwtDecode(req.token);
   const responses = await Promise.all([
     prisma.user.findFirst({
-      where:{id:parseInt(decodedToken.userId)}, select:{id:true},
+      where:{id:parseInt(decodedToken.userId)}, select:{id},
     }),
     prisma.investor.findFirst({
-      where:{id: parseInt(decodedToken.userId)}, select:{id:true},
+      where:{id: parseInt(decodedToken.userId)}, select:{id},
     }),
     prisma.entrepeneur.findFirst({
-      where:{id: parseInt(decodedToken.userId)}, select:{id:true},
+      where:{id: parseInt(decodedToken.userId)}, select:{id},
     })
   ])
 

@@ -118,7 +118,7 @@ exports.addEntrepreneurship = [
       return res.status(400).json({ msg: 'Invalid data' + result.array()[0]});
     }
 
-    const userId = req.admin ? req.body.entrepreneurId : req.userId;
+    const userId = req.admin ? req.body.entrepeneurId : req.userId;
     const user = await prisma.entrepeneur.findFirst({
       where:{
         id:parseInt(userId)
@@ -129,7 +129,7 @@ exports.addEntrepreneurship = [
       return res.status(404).json({msg: `Entrepreneur ${userId} not found`})
     }
 
-    if(!req.admin && req.mensual_tickets === 0){
+    if(req.mensual_tickets === 0){
       const lastEntrepreneurshipCreated = await prisma.entrepreneurship.findMany({
         take:1,
         orderBy:{creation_date:"desc"},
@@ -138,49 +138,49 @@ exports.addEntrepreneurship = [
       if(isFromLastMonth(lastEntrepreneurshipCreated.creation_date)){
         // add new tickets
         await prisma.entrepeneur.update({
-          where:{id:parseInt(userId)},
+          where:{userId:parseInt(userId)},
           data:{mensual_tickets: 9}
         });
       } else {
         return res.status(403).json({msg:"Mountly tickets used"})
       }
-    } else if(!req.admin){
+    } else{
       await prisma.entrepeneur.update({
-        where:{id:parseInt(userId)},
+        where:{userId:parseInt(userId)},
         data:{mensual_tickets:user.mensual_tickets - 1}
       })
     }
     // create new entrepreneurship
+    const entrepreneurshipData = {
+      name:req.body.name,
+      description:req.body.description !== "" ? req.body.description : "",
+      categoryId: req.body.subcategoryId,
+      subcategoryId: req.body.subcategoryId,
+      imageUrl: req.body.imageUrl,
+      entrepeneurId: parseInt(userId),
+      meta:{}
+    }
+
     const category = await prisma.category.findFirst({
       where:{
         id:req.body.categoryId
       }
     })
-    
+
     if(!category){
       return res.status(400).json({msg:`Invalid data ${ req.body.categoryId}`});
     }
+    
     const subcategory = await prisma.subcategory.findFirst({
       where:{
         id:req.body.subcategoryId,
         categoryId:req.body.subcategoryId,
       }
     });
-    
+
     if(!subcategory){
       return res.status(400).json({msg:`Invalid data ${req.body.subcategoryId}`})
     }
-    
-    const entrepreneurshipData = {
-      name:req.body.name,
-      description:req.body.description !== "" ? req.body.description : "",
-      image: req.body.imageUrl,
-      meta:[],
-      entrepeneurId: user.id,
-      subcategoryId: subcategory.id,
-    }
-    
-    console.log(entrepreneurshipData);
 
     const entrepreneurship = await prisma.entrepreneurship.create({
       data: entrepreneurshipData
@@ -210,9 +210,7 @@ exports.addVote = [
     }
 
     const entrepreneurship = await prisma.entrepreneurship.findFirst({
-      where:{
-        id: parseInt(req.params.entrepreneurshipId)
-      }
+      where:parseInt(req.params.entrepreneurshipId)
     })
 
     if(!entrepreneurship){
@@ -230,7 +228,7 @@ exports.addVote = [
       return res.status(404).json({msg: `Investor ${userId} not found`})
     }
 
-    if(!req.admin && req.mensual_votes === 0){
+    if(req.mensual_votes === 0){
       const lastvotePosted = await prisma.vote.findMany({
         take:1,
         orderBy:{
@@ -244,23 +242,23 @@ exports.addVote = [
       if(isFromLastMonth(lastvotePosted.created)){
           // add new tickets
         await prisma.investor.update({
-          where:{id:parseInt(userId)},
+          where:{userId:parseInt(userId)},
           data:{mensual_votes: 9}
         });
       } else {
         return res.status(403).json({msg:"Mountly votes used"})
       }
-    } else if(!req.admin){
+    } else{
       await prisma.investor.update({
-        where:{id:parseInt(userId)},
+        where:{userId:parseInt(userId)},
         data:{mensual_votes:user.mensual_votes - 1}
       })
     }
 
     const voteData = {
-      value : req.body.isPositive === "trues",
+      value : req.body.isPositive,
       entrepreneurshipId: parseInt(req.params.entrepreneurshipId),
-      userId: parseInt(userId)
+      userId: userId
     }
 
     const newVote = await prisma.vote.create({
@@ -268,7 +266,7 @@ exports.addVote = [
     })
 
     return res.status(200).json({
-      msg:"THe user voted correctly",
+      msg:"",
       voteId: userId,
     })
 
@@ -307,7 +305,7 @@ exports.updateEntrepreneurship = [
       return res.status(400).json({ msg: 'Invalid data' + result.array()[0]});
     }
 
-    const userId = req.admin ? req.body.entrepreneurId : req.userId;
+    const userId = req.admin ? req.body.entrepeneurId : req.userId;
     const user = await prisma.entrepeneur.findFirst({
       where:{
         id:parseInt(userId)
@@ -325,37 +323,32 @@ exports.updateEntrepreneurship = [
       return res.status(400).json({msg:`The entrepreneurship ${entrepreneurship} dosent exits`})
     }
 
-    if(req.body.subcategoryId && req.body.categoryId){
-      
-      const subcategory = await prisma.subcategory.findFirst({
-        where:{
-          AND:[
-            {id:parseInt(req.body.subcategoryId)},
-            {categoryId: parseInt(req.body.categoryId)}
-          ]
-        }
-      })
-      
-      if(!subcategory){
-        return res.status(400).json({msg:`The subcategory ${req.body.subcategoryId} in the category ${req.body.categoryId} could'y be found`});
+    const subcategory = await prisma.subcategory.findFirst({
+      where:{
+        AND:[
+          {id:parseInt(req.body.subcategoryId)},
+          {categoryId: parseInt(req.body.categoryId)}
+        ]
       }
+    })
+
+    if(!subcategory){
+      return res.status(400).json({msg:`The subcategory ${req.body.subcategoryId} in the category ${req.body.categoryId} could'y be found`});
     }
 
     const newentrepreneurshipData = {
       name: req.body.name ?? entrepreneurship.name,
       description: req.body.description ?? entrepreneurship.description,
       imageUrl: req.body.imageUrl ?? entrepreneurship.imageUrl,
-      subcategoryId: req.body.subcategoryId ? parseInt(req.body.subcategoryId) : entrepreneurship.subcategoryId,
+      subcategoryId: parseInt(req.body.subcategoryId) ?? entrepreneurship.subcategoryId,
     }
 
     await prisma.entrepreneurship.update({
       where:{
-        id: parseInt(req.params.entrepreneurshipId)
+        id: parseInt(req.params.entrepeneurId)
       },
       data:newentrepreneurshipData
-    });
-
-    return res.status(200).json({msg:"ENtrepreneurship updated correctly"})
+    })
   })
 ]
 
@@ -376,8 +369,7 @@ exports.updateVote = [
       return res.status(400).json({ msg: 'Invalid data' + result.array()[0]});
     }
 
-    const userId = req.admin ? req.body.investorId : req.userId;
-   
+    const userId = req.admin ? req.body.entrepeneurId : req.userId;
     const user = await prisma.investor.findFirst({
       where:{
         id:parseInt(userId)
@@ -408,17 +400,14 @@ exports.updateVote = [
 
     await prisma.vote.update({
       where:{
-        userId_entrepreneurshipId:{
-          userId:parseInt(userId),
-          entrepreneurshipId: parseInt(req.params.entrepreneurshipId)
-        }
-      },
-      data:{
-        value: req.body.isPositive === "true"
+        AND:[
+          {userId:parseInt(userId)},
+          {entrepreneurshipId: parseInt(req.params.entrepreneurshipId)}
+        ]
       }
     })
 
-    return res.status(200).json({msg:`the Vote ${req.params.voteId} was updated correctly`});
+    return res.status(200).json({msg:`the Vote ${voteId} was updated correctly`});
 
   })
 ]
@@ -435,12 +424,6 @@ exports.deleteEntrepreneurship = asyncHandler( async (req,res,next) => {
     if(!req.admin && entrepreneurship.entrepeneurId !== parseInt(req.userId)){  
       return res.status(403).json({msg:"You cannot delete a entrepreneurship that is not your's "})
     }
-
-    await prisma.vote.deleteMany({
-      where:{
-        entrepreneurshipId:entrepreneurship.id
-      }
-    });
 
     await prisma.entrepreneurship.delete({
       where:{
