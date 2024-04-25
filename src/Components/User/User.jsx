@@ -1,5 +1,5 @@
-import { Link, useParams } from "react-router-dom"
 import "./User.css"
+import { Link, useParams } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import { useEffect } from "react"
 import Error404 from "../Error404/Error404"

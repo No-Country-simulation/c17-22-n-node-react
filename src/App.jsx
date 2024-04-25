@@ -29,8 +29,8 @@ function App() {
 				<Route path="/login" element={<LoginForm />} />
 				<Route path="/register" element={<RegisterForm />} />
 
-				<Route path="/user/:userId" element={<User />} />
-				<Route path="/edit-profile" element={<EditProfile />} />
+        <Route path="/user/:userId" element={<User />} />
+        <Route path="/edit-profile/:userId" element={<EditProfile />} />
 
 				<Route path="*" element={<Error404 />} />
 			</Routes>
@@ -42,6 +42,19 @@ function App() {
 					color: #3F3D3D;
 					${showNavbarAndFooter() ? "padding-top: 100px;" : ""}
 				}
+
+				@media screen and (max-width: 1146px) {
+					body {
+						${showNavbarAndFooter() ? "padding-top: 90px" : ""}
+					}
+				}
+
+				@media screen and (max-width: 991px) {
+					body {
+						${showNavbarAndFooter() ? "padding-top: 90px" : ""}
+					}
+				}
+
 				`}
 			</style>
 		</>
