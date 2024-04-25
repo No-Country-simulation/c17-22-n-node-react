@@ -8,7 +8,7 @@ export const Cards = ({ projects, users }) => {
 
 	const relation = (users, projects) => {
 		return projects.map((project) => {
-			let user = users.find((user) => user.userId === project.entrepreneurId)
+			let user = users.find((user) => user.id === project.entrepreneurId)
 
 			return {
 				entrepreneurshipId: project.entrepreneurshipId,
@@ -21,7 +21,7 @@ export const Cards = ({ projects, users }) => {
 				negative: project.votes.cant_negative,
 				entrepreneurId: project.entrepreneurId,
 				user: user.username,
-				userPhoto: user.image,
+				userPhoto: user.imageUrl,
 			}
 		})
 	}
