@@ -37,12 +37,12 @@ const isValidEntrepreneur = async (req,res, next) => {
     req.userId = decodedToken.userId;
     next()
   }else{
-    const admin = await prisma.user.findFirst({
+    const investor = await prisma.investor.findFirst({
       where:{
         id:parseInt(decodedToken.userId)
       }
     });
-    if(admin){
+    if(!investor){
       req.admin = true
       next()
     } else{
@@ -56,17 +56,18 @@ const isValidInvestor = async (req, res, next) => {
   const result = await prisma.investor.findFirst({
     where:{id:parseInt(decodedToken.userId)}
   })
+  console.log(result);
   if(result){
     req.mensual_votes = result.mensual_votes
     req.userId = decodedToken.userId;
     next()
   } else{
-    const admin = await prisma.user.findFirst({
+    const entrepeneur = await prisma.entrepeneur.findFirst({
       where:{
         id:parseInt(decodedToken.userId)
       }
     });
-    if(admin){
+    if(!entrepeneur){
       req.admin = true
       next()
     }else{
