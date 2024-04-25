@@ -37,6 +37,7 @@ const initialState = {
 }
 
 const rootReducer = (state = initialState, action) => {
+	let find
 	let filtered
 	let order
 	switch (action.type) {
@@ -51,9 +52,7 @@ const rootReducer = (state = initialState, action) => {
 		// 		userDetail: action.payload,
 		// 	}
 		case GET_USER_BY_ID:
-			filtered = state.allProjects.filter(
-				(project) => project.entrepreneurshipId === action.payload
-			)
+			filtered = state.users.find((user) => user.id === action.payload)
 			return {
 				...state,
 				userDetail: filtered,
@@ -95,13 +94,13 @@ const rootReducer = (state = initialState, action) => {
 		// 		projectDetail: action.payload,
 		// 	}
 		case GET_PROJECT_BY_ID:
-			filtered = state.allProjects.filter((project) => {
+			find = state.allProjects.find((project) => {
 				return project.entrepreneurshipId === action.payload
 			})
 
 			return {
 				...state,
-				projectDetail: filtered,
+				projectDetail: find,
 			}
 		case GET_BEST_PROJECTS:
 			order = action.payload.sort(
