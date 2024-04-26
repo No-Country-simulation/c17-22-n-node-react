@@ -165,7 +165,7 @@ const DashboardAdmin = () => {
         className="btn btn-create"
         onClick={() => setShowFormSubCategory(!showFormSubCategory)}
       >
-        {!showFormSubCategory ? "Añadir Categoria" : "Cancelar"}
+        {!showFormSubCategory ? "Añadir Subcategoria" : "Cancelar"}
       </button>
       {showFormSubCategory && (
         <form className="group-input flex-row" onSubmit={handleNewSubCategory}>
