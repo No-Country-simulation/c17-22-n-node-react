@@ -17,37 +17,41 @@ export const Card = ({ project }) => {
 	const categories = useSelector((state) => state.categories)
 	const subcategories = useSelector((state) => state.subCategories)
 
+	console.log(categories, subcategories)
+
 	const {
 		entrepreneurshipId,
 		image,
 		name,
 		description,
-		categoryId,
+		// categoryId,
 		subcategoryId,
-		positive,
-		negative,
+		// positive,
+		// negative,
 		entrepreneurId,
 		user,
 		userPhoto,
 	} = project
 
-	const category = categories?.find((category) => {
-		return category.id === categoryId
+	console.log(user, userPhoto)
+	const subcategory = subcategories.find((subCategory) => {
+		return subCategory.id === subcategoryId
 	})
 
-	const subcategory = subcategories.find(
-		(subCategory) => subCategory.id === subcategoryId
-	)
+	const category = categories.find((category) => {
+		return category.id === subcategory.categoryId
+	})
+	console.log(category, subcategory)
 
 	//MANEJO DE VOTOS POR CARD--------------------------------------------------------
 
 	const [likeImg, setLikeImg] = useState(likeNegro)
 	const [liked, setLiked] = useState(false)
-	const [likesCard, setLikesCard] = useState(positive)
+	const [likesCard, setLikesCard] = useState(100)
 
 	const [dislikeImg, setDislikeImg] = useState(dislikeNegro)
 	const [disliked, setDisliked] = useState(false)
-	const [dislikesCard, setDislikesCard] = useState(negative)
+	const [dislikesCard, setDislikesCard] = useState(50)
 
 	const handleLike = () => {
 		if (!liked && !disliked) {
@@ -157,7 +161,7 @@ export const Card = ({ project }) => {
 											onClick={() => handleFilterCategory(category.id)}
 										>
 											<button className="me-3 badge buttonCategoryCard">
-												{category?.name}
+												{category.name}
 											</button>
 										</Link>
 										<Link

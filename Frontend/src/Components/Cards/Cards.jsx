@@ -8,20 +8,20 @@ export const Cards = ({ projects, users }) => {
 
 	const relation = (users, projects) => {
 		return projects.map((project) => {
-			let user = users.find((user) => user.id === project.entrepreneurId)
+			let user = users.find((user) => user.id === project.entrepeneurId)
 
 			return {
-				entrepreneurshipId: project.entrepreneurshipId,
+				entrepreneurshipId: project.id,
 				image: project.image,
 				name: project.name,
 				description: project.description,
-				categoryId: project.categoryId,
+				// categoryId: project.categoryId,
 				subcategoryId: project.subcategoryId,
-				positive: project.votes.cant_positive,
-				negative: project.votes.cant_negative,
+				// positive: project.votes.cant_positive,
+				// negative: project.votes.cant_negative,
 				entrepreneurId: project.entrepreneurId,
 				user: user.name,
-				userPhoto: user.imageUrl,
+				userPhoto: user.image,
 			}
 		})
 	}

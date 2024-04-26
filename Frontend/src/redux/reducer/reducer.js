@@ -10,6 +10,7 @@ import {
 	GET_PROJECTS,
 	GET_PROJECT_BY_ID,
 	GET_BEST_PROJECTS,
+	GET_LIKED_PROJECTS,
 	POST_PROJECT,
 	PUT_PROJECT,
 	FILTER_PROJECT_BY_NAME,
@@ -20,6 +21,9 @@ import {
 	GET_SUBCATEGORIES,
 	FILTER_SUBCATEGORIES,
 } from "../actions/subcategoriesActions"
+
+import projectsBDFront from "../../assets/BDdemo/entrepreneurships.json"
+import usersBDFront from "../../assets/BDdemo/users.json"
 
 const initialState = {
 	token: "",
@@ -32,22 +36,24 @@ const initialState = {
 	projectsOnScreen: [],
 	bestProjects: [],
 	projectDetail: {},
+	likedProjects: {},
 	categories: [],
 	subCategories: [],
 	votes: [],
 	newProject: [],
 	updateUser: "",
+	updateProject: {},
 }
 
 const rootReducer = (state = initialState, action) => {
-	let find
 	let filtered
 	let order
 	switch (action.type) {
+		// * USERS ----------------------------------------------------------------
 		case GET_USERS:
 			return {
 				...state,
-				users: action.payload,
+				users: usersBDFront,
 			}
 		case GET_USER_BY_ID:
 			return {
@@ -83,61 +89,40 @@ const rootReducer = (state = initialState, action) => {
 				userLogged: false,
 				token: "",
 			}
-		// case GET_PROJECTS:
-		// 	return {
-		// 		...state,
-		// 		projectsOnScreen: action.payload,
-		// 		allProjects: action.payload,
-		// 	}
+		// * PROJECTS ----------------------------------------------------------------
 		case GET_PROJECTS:
 			return {
 				...state,
-				projectsOnScreen: [...action.payload, ...state.newProject],
-				allProjects: [...action.payload, ...state.newProject],
+				projectsOnScreen: projectsBDFront,
+				allProjects: projectsBDFront,
 			}
-		// case GET_PROJECT_BY_ID:
-		// 	return {
-		// 		...state,
-		// 		projectDetail: action.payload,
-		// 	}
 		case GET_PROJECT_BY_ID:
-			find = state.allProjects.find((project) => {
-				return project.entrepreneurshipId === action.payload
-			})
-
 			return {
 				...state,
-				projectDetail: find,
+				projectDetail: action.payload,
 			}
 		case GET_BEST_PROJECTS:
-			order = action.payload.sort(
+			order = state.allProjects.sort(
 				(a, b) => b.votes.cant_positive - a.votes.cant_positive
 			)
 			return {
 				...state,
 				bestProjects: order.slice(0, 5),
 			}
+		case GET_LIKED_PROJECTS:
+			return {
+				...state,
+				likedProjects: action.payload.votes,
+			}
 		case POST_PROJECT:
 			return {
 				...state,
 				newProject: [...state.newProject, action.payload],
 			}
-		// case PUT_PROJECT:
-		// 	return {
-		// 		...state,
-		// 		userDetail: action.payload,
-		// 	}
 		case PUT_PROJECT:
 			return {
 				...state,
-				projectDetail: {
-					...state.projectDetail,
-					name: action.payload.name,
-					description: action.payload.description,
-					categoryId: action.payload.categoryId,
-					subcategoryId: action.payload.subcategoryId,
-					imageUrl: action.payload.imageUrl,
-				},
+				updateProject: action.payload,
 			}
 		case FILTER_PROJECT_BY_NAME:
 			filtered = state.allProjects.filter((project) =>
@@ -147,20 +132,11 @@ const rootReducer = (state = initialState, action) => {
 				...state,
 				projectsOnScreen: filtered,
 			}
+		// * CATEGORIES ----------------------------------------------------------------
 		case GET_CATEGORIES:
 			return {
 				...state,
 				categories: action.payload,
-			}
-		case GET_SUBCATEGORIES:
-			return {
-				...state,
-				subCategories: action.payload,
-			}
-		case GET_VOTES:
-			return {
-				...state,
-				votes: action.payload,
 			}
 		case FILTER_CATEGORIES:
 			filtered = state.allProjects.filter((project) => {
@@ -170,6 +146,12 @@ const rootReducer = (state = initialState, action) => {
 			return {
 				...state,
 				projectsOnScreen: filtered,
+			}
+		// * SUBCATEGORIES ----------------------------------------------------------------
+		case GET_SUBCATEGORIES:
+			return {
+				...state,
+				subCategories: action.payload,
 			}
 		case FILTER_SUBCATEGORIES:
 			filtered = state.allProjects.filter((project) => {
@@ -182,6 +164,12 @@ const rootReducer = (state = initialState, action) => {
 			return {
 				...state,
 				projectsOnScreen: filtered,
+			}
+		// * VOTES ----------------------------------------------------------------
+		case GET_VOTES:
+			return {
+				...state,
+				votes: action.payload,
 			}
 		default:
 			return state

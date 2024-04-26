@@ -16,6 +16,7 @@ export const CreateProject = () => {
 	const categories = useSelector((state) => state.categories)
 	const subCategories = useSelector((state) => state.subCategories)
 	const allProjects = useSelector((state) => state.allProjects)
+	const token = useSelector((state) => state.token)
 
 	const [newProject, setNewProject] = useState({
 		name: "",
@@ -92,7 +93,7 @@ export const CreateProject = () => {
 
 		if (!searchProject && completeData) {
 			e.preventDefault()
-			dispatch(addProject(newProject))
+			dispatch(addProject(newProject, token))
 			setProjectCreatedSuccessfully(true)
 		}
 	}
@@ -148,8 +149,8 @@ export const CreateProject = () => {
 									Selecciona una categoria
 								</option>
 								{categories?.map((category) => (
-									<option key={category.categoryId} value={category.categoryId}>
-										{category.category}
+									<option key={category.id} value={category.id}>
+										{category.name}
 									</option>
 								))}
 							</select>
@@ -168,12 +169,9 @@ export const CreateProject = () => {
 								<option hidden selected>
 									Selecciona una subcategoria
 								</option>
-								{subCategories?.map((subcategory) => (
-									<option
-										key={subcategory.subcategoryId}
-										value={subcategory.subcategoryId}
-									>
-										{subcategory.subcategory}
+								{subCategories?.slice(0, 6).map((subcategory) => (
+									<option key={subcategory.id} value={subcategory.id}>
+										{subcategory.name}
 									</option>
 								))}
 							</select>
