@@ -51,7 +51,6 @@
 
 ## Enlaces del Proyecto
 - Sitio web (si corresponde)
-- Repositorio en GitHub
 
 <div align='center'>
 <h3>Agradecimientos</h3>
