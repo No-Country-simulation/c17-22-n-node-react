@@ -31,11 +31,12 @@ export const Card = ({ project }) => {
 		userPhoto,
 	} = project
 
-	const category = categories.find(
-		(category) => category.categoryId === categoryId
-	)
+	const category = categories?.find((category) => {
+		return category.id === categoryId
+	})
+
 	const subcategory = subcategories.find(
-		(subCategory) => subCategory.subcategoryId === subcategoryId
+		(subCategory) => subCategory.id === subcategoryId
 	)
 
 	//MANEJO DE VOTOS POR CARD--------------------------------------------------------
@@ -99,20 +100,22 @@ export const Card = ({ project }) => {
 	//FILTRADOS POR CLICK EN CATEGORIAS DE LA CARD------------------------------------
 
 	const handleFilterCategory = (category) => {
-		console.log(category)
 		dispatch(filterCategories(category))
 		navigate("/projectsView")
 		window.scrollTo(0, 0)
 	}
 
 	const handleFilterSubCategory = (category, subCategory) => {
-		console.log(category, subCategory)
 		dispatch(filterSubcategories({ category, subCategory }))
 		navigate("/projectsView")
 		window.scrollTo(0, 0)
 	}
 
 	//--------------------------------------------------------------------------------
+
+	if (categories < 1) {
+		return <h6>cargando</h6>
+	}
 
 	return (
 		<div className="container mb-4 containerGeneralCard">
@@ -151,23 +154,20 @@ export const Card = ({ project }) => {
 									<div className="d-flex">
 										<Link
 											to={"/projectsView"}
-											onClick={() => handleFilterCategory(category.categoryId)}
+											onClick={() => handleFilterCategory(category.id)}
 										>
 											<button className="me-3 badge buttonCategoryCard">
-												{category.category}
+												{category?.name}
 											</button>
 										</Link>
 										<Link
 											to={"/projectsView"}
 											onClick={() =>
-												handleFilterSubCategory(
-													category.categoryId,
-													subcategory.subcategoryId
-												)
+												handleFilterSubCategory(category.id, subcategory.id)
 											}
 										>
 											<button className="badge  buttonCategoryCard">
-												{subcategory.subcategory}
+												{subcategory.name}
 											</button>
 										</Link>
 									</div>

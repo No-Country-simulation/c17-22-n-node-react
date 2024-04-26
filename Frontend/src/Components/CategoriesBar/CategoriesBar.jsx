@@ -10,8 +10,8 @@ export const CategoriesBar = ({ categories, subCategories }) => {
 	const dispatch = useDispatch()
 	const navigate = useNavigate()
 
-	const handleFilterCategory = (e) => {
-		dispatch(filterCategories(e.target.value))
+	const handleFilterCategory = (category) => {
+		dispatch(filterCategories(category))
 		navigate("/projectsView")
 	}
 
@@ -30,15 +30,15 @@ export const CategoriesBar = ({ categories, subCategories }) => {
 			<div className="container text-center">
 				<div className="row">
 					{categories?.map((category) => (
-						<div className="col" key={category.categoryId}>
+						<div className="col" key={category.id}>
 							<div className="btn-group">
 								<button
 									type="button"
 									className="btn btn-secondary-subtle border border-0 buttonCategory"
-									onClick={handleFilterCategory}
-									value={category.categoryId}
+									onClick={() => handleFilterCategory(category.id)}
+									value={category.id}
 								>
-									{category.category}
+									{category.name}
 								</button>
 								<button
 									type="button"
@@ -55,19 +55,16 @@ export const CategoriesBar = ({ categories, subCategories }) => {
 										</h6>
 									</li>
 
-									{subCategories?.map((subCategory) => (
+									{subCategories?.slice(0, 6).map((subCategory) => (
 										<li
-											key={subCategory.subcategoryId}
+											key={subCategory.id}
 											className="dropdown-item dropdownItem"
 											onClick={() =>
-												handleFilterSubCategory(
-													category.categoryId,
-													subCategory.subcategoryId
-												)
+												handleFilterSubCategory(category.id, subCategory.id)
 											}
-											value={subCategory.subCategory}
+											value={subCategory.name}
 										>
-											{subCategory.subcategory}
+											{subCategory.name}
 										</li>
 									))}
 								</ul>

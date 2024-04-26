@@ -1,10 +1,10 @@
 import {
 	GET_USERS,
 	GET_USER_BY_ID,
-	// LOGIN,
-	// POST_USER,
+	LOGIN,
+	POST_USER,
 	PUT_USER,
-	DELETE_MY_USER,
+	DELETE_USER,
 } from "../actions/userActions"
 import {
 	GET_PROJECTS,
@@ -22,10 +22,12 @@ import {
 } from "../actions/subcategoriesActions"
 
 const initialState = {
-	userDetail: {},
+	token: "",
 	userLogin: {},
 	userLogged: false,
+	userRegister: {},
 	users: [],
+	userDetail: {},
 	allProjects: [],
 	projectsOnScreen: [],
 	bestProjects: [],
@@ -34,6 +36,7 @@ const initialState = {
 	subCategories: [],
 	votes: [],
 	newProject: [],
+	updateUser: "",
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -46,35 +49,39 @@ const rootReducer = (state = initialState, action) => {
 				...state,
 				users: action.payload,
 			}
-		// case GET_USER_BY_ID:
-		// 	return {
-		// 		...state,
-		// 		userDetail: action.payload,
-		// 	}
 		case GET_USER_BY_ID:
-			filtered = state.users.find((user) => user.id === action.payload)
 			return {
 				...state,
-				userDetail: filtered,
+				userDetail: action.payload.userData,
 			}
-		// case PUT_USER:
-		// 	return { ...state, userLogin: action.payload }
-		case PUT_USER:
+		case LOGIN:
 			return {
 				...state,
 				userLogin: {
-					...state.userLogin,
+					id: action.payload.id,
 					name: action.payload.name,
-					email: action.payload.email,
-					password: action.payload.password,
-					imageUrl: action.payload.imageUrl,
+					type: action.payload.type,
+					username: action.payload.username,
 				},
+				token: action.payload.tokenSession,
+				userLogged: true,
 			}
-		case DELETE_MY_USER:
+		case POST_USER:
+			return {
+				...state,
+				userRegister: action.payload,
+			}
+		case PUT_USER:
+			return {
+				...state,
+				updateUser: action.payload,
+			}
+		case DELETE_USER:
 			return {
 				...state,
 				userLogin: {},
 				userLogged: false,
+				token: "",
 			}
 		// case GET_PROJECTS:
 		// 	return {

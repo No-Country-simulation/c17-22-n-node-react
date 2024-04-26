@@ -20,7 +20,7 @@ export const Cards = ({ projects, users }) => {
 				positive: project.votes.cant_positive,
 				negative: project.votes.cant_negative,
 				entrepreneurId: project.entrepreneurId,
-				user: user.username,
+				user: user.name,
 				userPhoto: user.imageUrl,
 			}
 		})
