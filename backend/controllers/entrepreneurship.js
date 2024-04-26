@@ -162,17 +162,20 @@ exports.addEntrepreneurship = [
     })
     
     if(!category){
-      return res.status(400).json({msg:`Invalid data ${ req.body.categoryId}`});
+      console.log(category)
+      return res.status(400).json({msg:`Invalid Category ${ req.body.categoryId}`});
     }
+
     const subcategory = await prisma.subcategory.findFirst({
       where:{
         id:req.body.subcategoryId,
-        categoryId:req.body.subcategoryId,
+        categoryId:category.id,
       }
     });
     
     if(!subcategory){
-      return res.status(400).json({msg:`Invalid data ${req.body.subcategoryId}`})
+      console.log(subcategory)
+      return res.status(400).json({msg:`Invalid Subcategory ${req.body.subcategoryId}`})
     }
     
     const entrepreneurshipData = {
