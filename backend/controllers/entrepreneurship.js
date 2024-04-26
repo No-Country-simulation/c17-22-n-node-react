@@ -44,12 +44,13 @@ exports.getOne = asyncHandler( async (req,res,next) => {
   const cant_positive = entrepreneurshipVotes.filter(vote => vote.value === true).length;
   const cant_negative = entrepreneurshipVotes.length - cant_positive  
 
-  entrepreneurship.votes = {
+  const totalVotes = {
    cant_positive,
    cant_negative 
   }
+  console.log(totalVotes);
 
-  return res.status(200).json({entrepreneurship})
+  return res.status(200).json({entrepreneurship, totalVotes})
 })
 
 exports.getVotes = asyncHandler(async (req,res,next) => {
