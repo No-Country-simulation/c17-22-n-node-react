@@ -50,8 +50,7 @@
 
 
 ## Enlaces del Proyecto
-- [Sitio web (si corresponde)](https://storystarter.vercel.app/)
-
+- <a href="https://storystarter.vercel.app/">Sitio Web<a>
 <div align='center'>
 <h3>Agradecimientos</h3>
   <a href="https://www.nocountry.tech/" target="_blank">
