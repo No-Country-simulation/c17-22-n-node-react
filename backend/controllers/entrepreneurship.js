@@ -113,7 +113,11 @@ exports.addEntrepreneurship = [
   .isURL()
   .withMessage("Ivalid URL provided"),
   asyncHandler(async (req, res, next ) => {
+    console.log(req.body);
     const result = validationResult(req);
+    console.log({
+      result
+    })
     if (!result.isEmpty()) {
       return res.status(400).json({ msg: 'Invalid data' + result.array()[0]});
     }
