@@ -20,7 +20,6 @@ const EditProfile = () => {
   const [profile, setProfile] = useState({
     username: "",
     email: "",
-    password: "",
     image: "",
     url: "",
   });
@@ -35,7 +34,6 @@ const EditProfile = () => {
       setProfile({
         username: currentUser.username,
         email: currentUser.email,
-        password: currentUser.password,
         image: currentUser.image,
         url: currentUser.url,
       });

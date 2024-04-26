@@ -19,3 +19,18 @@
     flex: 1 0 300px;
     max-width: 300px;
 }
+
+.category-control {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: .2rem;
+    border-radius: .5rem;
+    border: #3F3D3D solid 1px;
+    padding: .5rem;
+}
+
+.category-control p {
+    margin: 0;
+}
