@@ -1,0 +1,25 @@
+.categoriesCP {
+	justify-content: space-evenly;
+}
+
+.imgCP {
+	width: 420px;
+	height: auto;
+	object-fit: cover;
+}
+
+.cardImgCP {
+	position: relative;
+}
+.deleteImgCP {
+	position: absolute;
+	bottom: 20px;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+@media screen and (max-width: 530px) {
+	.imgCP {
+		width: 100%;
+	}
+}

@@ -1,0 +1,81 @@
+.login-container {
+  min-height: 100vh;
+}
+
+.btn-create {
+  height: 3rem;
+  background-color: #fc077d;
+  color: white;
+}
+
+.btn-create:hover {
+  background-color: #fc077d;
+}
+
+.forgot-password {
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.check-div {
+  height: 1.5rem;
+  width: 20rem;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.check-div > input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  height: 20px;
+  width: 20px;
+  background-color: #d5d5d5;
+  border-radius: 0.2em;
+  cursor: pointer;
+  display: flex;
+  outline: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.check-div > label {
+  color: #4c4c4c;
+  cursor: pointer;
+}
+
+.check-div > input[type="checkbox"]::after {
+  content: "\2713";
+  font-weight: 900;
+  color: #ffffff;
+  display: none;
+}
+
+.check-div > input[type="checkbox"]:checked {
+  background-color: #fc077d;
+}
+
+.check-div > input[type="checkbox"]:checked:after {
+  display: block;
+}
+
+.link-new-user {
+  margin-top: 4rem;
+  text-decoration: none;
+  font-size: 15px;
+}
+
+.link-new-user > a {
+  text-decoration: none;
+}
+
+@media screen and (max-width: 424px) {
+  .login-container-form,
+  .link-new-user {
+    width: 18rem;
+  }
+
+  .link-new-user {
+    text-align: center;
+  }
+}

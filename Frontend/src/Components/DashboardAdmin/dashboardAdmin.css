@@ -1,0 +1,21 @@
+.containerDashboard{
+    text-align: center;
+    margin: 50px;
+}
+
+
+.usersContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+
+.containerUsers {
+    border: 1px solid #3F3D3D;
+    font-weight: 500;
+    margin: 20px;
+    padding: 20px;
+    flex: 1 0 300px;
+    max-width: 300px;
+}

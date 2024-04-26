@@ -1,0 +1,92 @@
+.containerGeneralCard {
+	animation: fade 0.5s ease;
+}
+
+.containerCard {
+	text-decoration: none;
+	background-color: #fedded;
+	transition: transform 0.5s ease, box-shadow 0.5s ease;
+}
+
+.containerCard:hover {
+	box-shadow: 0px 0px 17px 3px rgba(0, 0, 0, 0.24);
+	transform: scale(1.01);
+	-webkit-transform: scale(1.01);
+	-moz-transform: scale(1.01);
+}
+
+.containerLinkCard {
+	text-decoration: none;
+	color: inherit;
+}
+
+.containerImgProject {
+	height: 300px;
+}
+
+.imgProject {
+	object-fit: cover;
+	width: 100%;
+	height: 100%;
+}
+
+.imgUser {
+	height: 50px;
+	width: 50px;
+}
+
+.likesCard {
+	height: 50px;
+	width: 50px;
+}
+
+.iconsCard {
+	height: 30px;
+	width: 30px;
+	margin-right: 10px;
+	cursor: pointer;
+	transition: transform 0.5s ease;
+}
+
+.iconsCard:hover {
+	transform: scale(1.3);
+	-webkit-transform: scale(1.3);
+	-moz-transform: scale(1.3);
+}
+
+.iconsCard:active {
+	transform: scale(1.1);
+	-webkit-transform: scale(1.1);
+	-moz-transform: scale(1.1);
+	animation: fade 0.5s ease;
+}
+
+.containerLinkUser {
+	display: flex;
+	text-decoration: none;
+	color: inherit;
+	transition: color 0.4s ease;
+}
+
+.containerLinkUser:hover {
+	color: #fc077d;
+}
+
+.buttonCategoryCard {
+	border: none;
+	transition: background-color 0.4s ease;
+	background-color: #6c757d;
+}
+
+.buttonCategoryCard:hover {
+	background-color: #fc077d;
+}
+
+@keyframes fade {
+	from {
+		opacity: 0; /* Inicia completamente transparente */
+	}
+	to {
+		opacity: 1; /* Se muestra completamente visible */
+	}
+}
