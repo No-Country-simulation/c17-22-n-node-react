@@ -2,8 +2,9 @@ import { projects } from "../../assets/BDdemo/projects";
 import { useState } from "react";
 import "./dashboardAdmin.css";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { deleteProject } from "../../redux/actions/projectActions";
+import { updateUser } from "../../redux/actions/userActions";
 
 const DashboardAdmin = () => {
   const [selectedProjectId, setSelectedProjectId] = useState(null);
@@ -21,11 +22,17 @@ const DashboardAdmin = () => {
       .catch((err) => console.error("No se pudo borrar el proyecto", err));
   };
 
-  const handleBanUser = (id) => {
-    console.log(id);
-    // aca se pondria la logica para banear al usuario
+  const HandleBanUser = (id) => {
+    const user = useSelector((state) =>
+      state.users.find((u) => u.userId === id)
+    );
+
+    const banUser = { ...user, baned: true }
+
+    dispatch(updateUser(banUser));
   };
 
+  // Añadir que se puedan agregar categorias y subcategorias
   return (
     <div className="containerDashboard">
       <h1>Dashboard Admin</h1>
@@ -36,7 +43,7 @@ const DashboardAdmin = () => {
             <h2>{project.user.name}</h2>
             <button
               className="btn btn-danger"
-              onClick={() => handleBanUser(project.id)}
+              onClick={() => HandleBanUser(project.user.id)}
             >
               Banear
             </button>
