@@ -18,7 +18,11 @@ const isFromLastMonth = (entrepreneurshipDate) => {
 }
 
 exports.getAll =asyncHandler(async (req,res,next) => {
-  const entrepreneurships = await prisma.entrepreneurship.findMany();
+  const entrepreneurships = await prisma.entrepreneurship.findMany({
+    include:{
+      Vote:true
+    }
+  });
   return res.status(200).json({entrepreneurships});
 });
 
