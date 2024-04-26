@@ -186,7 +186,7 @@ const DashboardAdmin = () => {
         {subCategories.map((sc) => (
           <div key={sc.subcategoryId} className="category-control">
             <p>{sc.subcategory}</p>
-            <button type="button" className="btn btn-danger">
+            <button type="button" className="btn btn-danger" onClick={() => deleteSubCategory(sc.subcategoryId)}>
               Borrar
             </button>
           </div>
