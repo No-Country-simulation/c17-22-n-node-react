@@ -14,6 +14,8 @@ const fetchUser = async (userIdString) => {
       id:true,
       name:true,
       email:true,
+      image:true,
+      url:true,
     }
   })
 
