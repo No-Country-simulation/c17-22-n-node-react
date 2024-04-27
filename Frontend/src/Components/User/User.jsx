@@ -21,10 +21,10 @@ const User = () => {
     window.scrollTo(0, 0);
   }, [dispatch]);
 
-  const user = users.filter((d) => d.userId === userId);
-  const ofTheUser = projects.filter((d) => d.entrepreneurId === userId);
+	const user = users.find((u) => u.id === userId)
+	const ofTheUser = projects.filter((p) => p.entrepreneurId === userId)
 
-	if (user.length === 0) {
+	if (users.length === 0) {
 		return <Error404 />
 	}
 
@@ -33,13 +33,13 @@ const User = () => {
 			<div className="d-flex flex-column bg-body-tertiary justify-content-center align-items-center">
 				<div className="user-container d-flex gap-5 bg-body-tertiary justify-content-center align-items-center mt-3">
 					<img
-						src={user[0].imageUrl}
+						src={user.imageUrl}
 						alt="User profile"
 						className="img-fluid"
 					/>
 					<div className="user-info">
 						<div className="d-flex align-items-center gap-4">
-							<h2> {user[0].username} </h2>
+							<h2> {user.username} </h2>
 							{isAuth ? (
 								<Link className="edit-btn efectoBoton" to={"/edit-profile"}>
 									Editar Perfil
@@ -48,8 +48,8 @@ const User = () => {
 								""
 							)}
 						</div>
-						{user[0].instagramUrl ? (
-							<a href={user[0].instagramUrl} target="_blank">
+						{user.instagramUrl ? (
+							<a href={user.instagramUrl} target="_blank">
 								<img className="ig-logo-user" src={ig} alt="img Instagram" />
 							</a>
 						) : (
