@@ -1,9 +1,9 @@
-import { projects } from "../../assets/BDdemo/projects";
+// import { projects } from "../../assets/BDdemo/projects";
 import { useEffect, useState } from "react";
 import "./dashboardAdmin.css";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteProject } from "../../redux/actions/projectActions";
+import { deleteProject, getProjects } from "../../redux/actions/projectActions";
 import { updateUser } from "../../redux/actions/userActions";
 import {
   addCategory,
@@ -16,8 +16,8 @@ import {
 } from "../../redux/actions/subcategoriesActions";
 
 const DashboardAdmin = () => {
-  const [selectedProjectId, setSelectedProjectId] = useState(null);
   const dispatch = useDispatch();
+  const [selectedProject, setSelectedProject] = useState(null);
   const [showFormCategory, setShowFormCategory] = useState(false);
   const [showFormSubCategory, setShowFormSubCategory] = useState(false);
 
@@ -32,19 +32,16 @@ const DashboardAdmin = () => {
   });
 
   const users = useSelector((state) => state.users);
-  // const projects = useSelector(state => state.projectsOnScreen)
+  const projects = useSelector((state) => state.projectsOnScreen);
   const categories = useSelector((state) => state.categories);
   const subCategories = useSelector((state) => state.subCategories);
 
   useEffect(() => {
-    // dispatch(getProjects())  // Esto es para cuando cambiemos a la base de datos porque ahora esta mostrando solo 5 projectos y solo 5 usuarios que son los basicos
+    dispatch(getProjects());
     dispatch(getCategories());
     dispatch(getSubcategories());
-  });
-
-  const handleClick = (projectId) => {
-    setSelectedProjectId((prevId) => (prevId === projectId ? null : projectId));
-  };
+    window.scrollTo(0, 0);
+  }, [dispatch]);
 
   const handleDeleteProject = (id) => {
     dispatch(deleteProject(id))
@@ -52,6 +49,10 @@ const DashboardAdmin = () => {
         console.log("El proyecto se borro correctamente");
       })
       .catch((err) => console.error("No se pudo borrar el proyecto", err));
+  };
+
+  const handleClickProject = (id) => {
+    setSelectedProject((prev) => (prev === id ? null : id));
   };
 
   const HandleBanUser = (id) => {
@@ -107,17 +108,15 @@ const DashboardAdmin = () => {
       .catch((err) => console.error("No se pudo agregar:", err));
   };
 
-  const deleteSubCategory = (id) => {
-    const subC = subCategories.find(sc => sc.subcategoryId === id)
+  function deleteSubCategory(id) {
+    const subC = subCategories.find((sc) => sc.subcategoryId === id);
 
     dispatch(deleteSubCategory(subC.subcategoryId))
       .then(() => {
         console.log("Se borro la categoria correctamente");
       })
       .catch((err) => console.error("No se pudo borro la categoria:", err));
-  };
-
-  // Añadir que se puedan agregar categorias y subcategorias
+  }
   return (
     <div className="containerDashboard d-flex flex-column align-items-center">
       <h1>Dashboard Admin</h1>
@@ -186,7 +185,11 @@ const DashboardAdmin = () => {
         {subCategories.map((sc) => (
           <div key={sc.subcategoryId} className="category-control">
             <p>{sc.subcategory}</p>
-            <button type="button" className="btn btn-danger" onClick={() => deleteSubCategory(sc.subcategoryId)}>
+            <button
+              type="button"
+              className="btn btn-danger"
+              onClick={() => deleteSubCategory(sc.subcategoryId)}
+            >
               Borrar
             </button>
           </div>
@@ -195,51 +198,53 @@ const DashboardAdmin = () => {
       <hr />
       <h3>Usuarios</h3>
       <div className="usersContainer">
-        {projects.map((project) => (
-          <div key={project.id} className="containerUsers">
-            <h2>{project.user.name}</h2>
+        {users.map((us) => (
+          <div key={us.id} className="containerUsers">
+            <h2>{us.username}</h2>
             <button
               className="btn btn-danger"
-              onClick={() => HandleBanUser(project.user.id)}
+              onClick={() => HandleBanUser(us.id)}
             >
               Banear
             </button>
             <button
-              className="efectoBoton"
+              className="btn efectoBoton"
               type="button"
-              onClick={() => handleClick(project.id)}
+              onClick={() => handleClickProject(us.id)}
             >
-              {selectedProjectId === project.id
+              {selectedProject === us.id
                 ? "Ocultar proyectos del usuario"
                 : "Ver proyectos del usuario"}
             </button>
-            {selectedProjectId === project.id && (
-              <>
-                <div
-                  style={{
-                    border: "1px solid gray",
-                    padding: ".5rem 0",
-                    borderRadius: ".5rem",
-                  }}
-                  className="d-flex flex-column align-items-center gap-1"
-                >
-                  <h3>{project.title}</h3>
-                  <Link
-                    className="btn btn-create"
-                    to={`/project/${project.id}`}
+            {selectedProject === us.id &&
+              projects
+                .filter((p) => parseInt(p.entrepreneurId) === parseInt(us.id))
+                .map((p) => (
+                  <div
+                    key={p.entrepreneurshipId}
+                    style={{
+                      border: "1px solid gray",
+                      padding: ".5rem 0",
+                      borderRadius: ".5rem",
+                    }}
+                    className="d-flex flex-column align-items-center gap-1"
                   >
-                    Ver proyecto
-                  </Link>
-                  <button
-                    className="btn btn-danger"
-                    type="button"
-                    onClick={() => handleDeleteProject(project.id)}
-                  >
-                    Borrar proyecto
-                  </button>
-                </div>
-              </>
-            )}
+                    <h3>{p.name}</h3>
+                    <Link
+                      className="btn btn-create"
+                      to={`/project/${p.entrepreneurshipId}`}
+                    >
+                      Ver proyecto
+                    </Link>
+                    <button
+                      className="btn btn-danger"
+                      type="button"
+                      onClick={() => handleDeleteProject(p.entrepreneurshipId)}
+                    >
+                      Borrar proyecto
+                    </button>
+                  </div>
+                ))}
           </div>
         ))}
       </div>
