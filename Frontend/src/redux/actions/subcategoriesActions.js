@@ -1,7 +1,7 @@
 // ! ESTE IMPORT NO VA CUANDO ESTE EL BACKEND
-import subCategories from "../../assets/BDdemo/subcategories.json"
+// import subCategories from "../../assets/BDdemo/subcategories.json"
 
-// import axios from "axios"
+import axios from "axios"
 
 export const GET_SUBCATEGORIES = "GET_SUBCATEGORIES"
 
@@ -13,30 +13,33 @@ export const DELETE_SUBCATEGORY = "DELETE_SUBCATEGORY"
 
 export const FILTER_SUBCATEGORIES = "FILTER_SUBCATEGORIES"
 
-// const urlApi = "ACA VA LA URL API"
+const urlApi = "https://c17-22-n-node-react-9h8n.onrender.com"
 
 // ! LAS FUCIONES COMENTADAS SON LAS QUE VAN REALMENTE,
 // ! LAS QUE ESTAN ABAJO DE CADA COMENTADA SON LAS DE PRUEBA
 
 // * GET ----------------------------------------------------------------
 
-// export const getSubCategories = () => {
-//     return async function(dispatch){
-//         const response = await axios(`${urlApi}/subcategories`)
-
-//         return dispatch({
-//             type: GET_CATEGORIES,
-//             payload: response.data
-//         })
-//     }
-// }
-
 export const getSubcategories = () => {
-	return {
-		type: GET_SUBCATEGORIES,
-		payload: subCategories,
+	return async function (dispatch) {
+		try {
+			const response = await axios(`${urlApi}/subcategories`)
+			return dispatch({
+				type: GET_SUBCATEGORIES,
+				payload: response.data,
+			})
+		} catch (error) {
+			console.error("Error al realizar la solicitud:", error)
+		}
 	}
 }
+
+// export const getSubcategories = () => {
+// 	return {
+// 		type: GET_SUBCATEGORIES,
+// 		payload: subCategories,
+// 	}
+// }
 
 // * POST-------------------------------------------------------------
 

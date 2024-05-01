@@ -1,7 +1,7 @@
 // ! ESTE IMPORT NO VA CUANDO ESTE EL BACKEND
-import categories from "../../assets/BDdemo/categories.json"
+// import categories from "../../assets/BDdemo/categories.json"
 
-// import axios from "axios"
+import axios from "axios"
 
 export const GET_CATEGORIES = "GET_CATEGORIES"
 
@@ -13,30 +13,33 @@ export const DELETE_CATEGORY = "DELETE_CATEGORY"
 
 export const FILTER_CATEGORIES = "FILTER_CATEGORIES"
 
-// const urlApi = "ACA VA LA URL API"
-
 // ! LAS FUCIONES COMENTADAS SON LAS QUE VAN REALMENTE,
 // ! LAS QUE ESTAN ABAJO DE CADA COMENTADA SON LAS DE PRUEBA
 
+const urlApi = "https://c17-22-n-node-react-9h8n.onrender.com"
 // * GET ----------------------------------------------------------------
 
-// export const getCategories = () => {
-// 	return async function (dispatch) {
-// 		const response = await axios(`${urlApi}/categories`)
-
-// 		return dispatch({
-// 			type: GET_CATEGORIES,
-// 			payload: response.data,
-// 		})
-// 	}
-// }
-
 export const getCategories = () => {
-	return {
-		type: GET_CATEGORIES,
-		payload: categories,
+	return async function (dispatch) {
+		try {
+			const response = await axios(`${urlApi}/categories`)
+
+			return dispatch({
+				type: GET_CATEGORIES,
+				payload: response.data,
+			})
+		} catch (error) {
+			console.error("Error al realizar la solicitud:", error)
+		}
 	}
 }
+
+// export const getCategories = () => {
+// 	return {
+// 		type: GET_CATEGORIES,
+// 		payload: categories,
+// 	}
+// }
 
 // * POST-------------------------------------------------------------
 

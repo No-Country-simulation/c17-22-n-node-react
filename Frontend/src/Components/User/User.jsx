@@ -3,7 +3,7 @@ import { Link, useParams } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import { useEffect } from "react"
 import Error404 from "../Error404/Error404"
-import { getUsers } from "../../redux/actions/userActions"
+import { getUserById } from "../../redux/actions/userActions"
 import { getProjects } from "../../redux/actions/projectActions"
 import ig from "../../assets/img/instagram.svg"
 
@@ -12,19 +12,17 @@ const User = () => {
 	const dispatch = useDispatch()
 	const isAuth = useSelector((state) => state.userLogged)
 
-	const users = useSelector((state) => state.users)
+	const userDetail = useSelector((state) => state.userDetail)
 	const projects = useSelector((state) => state.projectsOnScreen)
 
-  useEffect(() => {
-    dispatch(getUsers());
-    dispatch(getProjects());
-    window.scrollTo(0, 0);
-  }, [dispatch]);
+	useEffect(() => {
+		dispatch(getUserById(userId))
+		dispatch(getProjects())
+	}, [dispatch])
 
-	const user = users.find((u) => u.id === userId)
-	const ofTheUser = projects.filter((p) => p.entrepreneurId === userId)
+	const ofTheUser = projects.filter((d) => d.entrepreneurId === userId)
 
-	if (users.length === 0) {
+	if (Object.keys(userDetail).length === 0) {
 		return <Error404 />
 	}
 
@@ -33,13 +31,13 @@ const User = () => {
 			<div className="d-flex flex-column bg-body-tertiary justify-content-center align-items-center">
 				<div className="user-container d-flex gap-5 bg-body-tertiary justify-content-center align-items-center mt-3">
 					<img
-						src={user.imageUrl}
+						src={userDetail.imageUrl}
 						alt="User profile"
 						className="img-fluid"
 					/>
 					<div className="user-info">
 						<div className="d-flex align-items-center gap-4">
-							<h2> {user.username} </h2>
+							<h2> {userDetail.name} </h2>
 							{isAuth ? (
 								<Link className="edit-btn efectoBoton" to={"/edit-profile"}>
 									Editar Perfil
@@ -48,8 +46,8 @@ const User = () => {
 								""
 							)}
 						</div>
-						{user.instagramUrl ? (
-							<a href={user.instagramUrl} target="_blank">
+						{userDetail.instagramUrl ? (
+							<a href={userDetail.instagramUrl} target="_blank">
 								<img className="ig-logo-user" src={ig} alt="img Instagram" />
 							</a>
 						) : (
