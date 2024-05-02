@@ -27,7 +27,7 @@ const Home = () => {
 		dispatch(getUsers())
 		dispatch(getBestProjects())
 		window.scrollTo(0, 0)
-	}, [])
+	}, [dispatch])
 
 	return (
 		<>
@@ -39,7 +39,17 @@ const Home = () => {
 			</div>
 			<h3 className="container proyectoDestacado mt-5">Proyectos destacados</h3>
 			<div>
-				<Cards users={users} projects={bestProjects} categories={categories} />
+        {users.length === 0 || users ? (
+          <h4 className="text-center m-5 p-5">
+            Por ahora no hay proyectos destacados
+          </h4>
+        ) : (
+          <Cards
+            users={users}
+            projects={bestProjects}
+            categories={categories}
+          />
+        )}
 			</div>
 		</>
 	)

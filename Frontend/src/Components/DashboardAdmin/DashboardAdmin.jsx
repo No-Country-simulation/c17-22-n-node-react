@@ -4,7 +4,7 @@ import "./dashboardAdmin.css";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteProject, getProjects } from "../../redux/actions/projectActions";
-import { updateUser } from "../../redux/actions/userActions";
+import { getUsers, updateUser } from "../../redux/actions/userActions";
 import {
   addCategory,
   dedeleteCategoryleteUser,
@@ -37,12 +37,14 @@ const DashboardAdmin = () => {
   const subCategories = useSelector((state) => state.subCategories);
 
   useEffect(() => {
+    dispatch(getUsers())
     dispatch(getProjects());
     dispatch(getCategories());
     dispatch(getSubcategories());
     window.scrollTo(0, 0);
   }, [dispatch]);
 
+  console.log(users)
   const handleDeleteProject = (id) => {
     dispatch(deleteProject(id))
       .then(() => {
@@ -146,12 +148,12 @@ const DashboardAdmin = () => {
       )}
       <div className="categories-container d-flex gap-2 p-2">
         {categories.map((c) => (
-          <div key={c.categoryId} className="category-control">
-            <p>{c.category}</p>
+          <div key={c.id} className="category-control">
+            <p>{c.name}</p>
             <button
               type="button"
               className="btn btn-danger"
-              onClick={() => handleDeleteCategory(c.categoryId)}
+              onClick={() => handleDeleteCategory(c.id)}
             >
               Borrar
             </button>
@@ -183,8 +185,8 @@ const DashboardAdmin = () => {
       )}
       <div className="subcategory-container d-flex gap-2 p-2">
         {subCategories.map((sc) => (
-          <div key={sc.subcategoryId} className="category-control">
-            <p>{sc.subcategory}</p>
+          <div key={sc.id} className="category-control">
+            <p>{sc.name}</p>
             <button
               type="button"
               className="btn btn-danger"
@@ -198,9 +200,9 @@ const DashboardAdmin = () => {
       <hr />
       <h3>Usuarios</h3>
       <div className="usersContainer">
-        {users.map((us) => (
+        {users.users.map((us) => (
           <div key={us.id} className="containerUsers">
-            <h2>{us.username}</h2>
+            <h2>{us.name}</h2>
             <button
               className="btn btn-danger"
               onClick={() => HandleBanUser(us.id)}

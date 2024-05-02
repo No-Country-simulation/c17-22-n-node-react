@@ -53,10 +53,7 @@ const LoginForm = () => {
 				console.log("No funco:", err)
 				setErrorLogin("Fallo al iniciar sesion")
 			})
-		console.log(errorLogin)
 	}
-
-	console.log(formLogin)
 
 	return (
 		<>

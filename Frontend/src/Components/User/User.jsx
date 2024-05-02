@@ -6,6 +6,7 @@ import Error404 from "../Error404/Error404"
 import { getUserById } from "../../redux/actions/userActions"
 import { getProjects } from "../../redux/actions/projectActions"
 import ig from "../../assets/img/instagram.svg"
+import cargarImagen from "../../assets/img/cargarImagen.jpg"
 
 const User = () => {
 	const { userId } = useParams()
@@ -31,7 +32,7 @@ const User = () => {
 			<div className="d-flex flex-column bg-body-tertiary justify-content-center align-items-center">
 				<div className="user-container d-flex gap-5 bg-body-tertiary justify-content-center align-items-center mt-3">
 					<img
-						src={userDetail.imageUrl}
+						src={userDetail.imageUrl ? userDetail.imageUrl : cargarImagen}
 						alt="User profile"
 						className="img-fluid"
 					/>
