@@ -36,8 +36,6 @@ const DashboardAdmin = () => {
   const categories = useSelector((state) => state.categories);
   const subCategories = useSelector((state) => state.subCategories);
 
-  console.log(categories);
-  console.log(subCategories);
   useEffect(() => {
     dispatch(getProjects());
     dispatch(getCategories());
@@ -148,8 +146,8 @@ const DashboardAdmin = () => {
       )}
       <div className="categories-container d-flex gap-2 p-2">
         {categories.map((c) => (
-          <div key={c.id} className="category-control">
-            <p>{c.name}</p>
+          <div key={c.categoryId} className="category-control">
+            <p>{c.category}</p>
             <button
               type="button"
               className="btn btn-danger"
@@ -185,8 +183,8 @@ const DashboardAdmin = () => {
       )}
       <div className="subcategory-container d-flex gap-2 p-2">
         {subCategories.map((sc) => (
-          <div key={sc.id} className="category-control">
-            <p>{sc.name}</p>
+          <div key={sc.subcategoryId} className="category-control">
+            <p>{sc.subcategory}</p>
             <button
               type="button"
               className="btn btn-danger"
